@@ -1,0 +1,140 @@
+{
+  "name": "sobtracker",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node node_modules/react-native/local-cli/cli.js start",
+    "build-android-release": "cd android && ./gradlew clean && ./gradlew assembleRelease",
+    "clean-android-run": "cd android && ./gradlew clean && cd .. && react-native run-android",
+    "fabric-beta-android-release": "cd android && ./gradlew clean && ./gradlew assembleRelease crashlyticsUploadDistributionRelease",
+    "test": "jest",
+    "coverage": "jest --no-cache --coverage",
+    "detox:ios": "concurrently --kill-others \"npm run storybook\" \"npm run detox-tests:ios\"  ",
+    "detox:android": "concurrently --kill-others \"npm run storybook\" \"npm run detox-tests:android\"  ",
+    "detox-tests:ios": "detox build --configuration ios.sim.debug && detox test --configuration ios.sim.debug",
+    "detox-tests:android": "detox build --configuration android.emu.debug && detox test --configuration android.emu.debug",
+    "storybook": "storybook start -p 7007",
+    "flow": "flow; test $? -eq 0 -o $? -eq 2",
+    "precommit:tests": "jest ./__tests__/config.test.js ./src/reducers/__tests__/*",
+    "precommit:msg": "echo 'Pre-commit checks...' && exit 0",
+    "precommit:prettier": "lint-staged",
+    "prettier": "prettier --write \"{src,{__tests__}}/**/*.js\""
+  },
+  "pre-commit": [
+    "precommit:msg",
+    "precommit:prettier",
+    "precommit:tests"
+  ],
+  "lint-staged": {
+    "*.{js,json,css,md}": [
+      "prettier --write",
+      "git add"
+    ]
+  },
+  "detox": {
+    "configurations": {
+      "ios.sim.debug": {
+        "binaryPath": "ios/build/Build/Products/Debug-iphonesimulator/sobtracker.app",
+        "build": "xcodebuild -project ios/sobtracker.xcodeproj -scheme sobtracker -configuration Debug -sdk iphonesimulator -derivedDataPath ios/build",
+        "type": "ios.simulator",
+        "name": "iPhone X"
+      },
+      "android.emu.debug": {
+        "binaryPath": "android/app/build/outputs/apk/app-production-debug.apk",
+        "build": "pushd android && ./gradlew assembleDebug assembleAndroidTest -DtestBuildType=debug && popd",
+        "type": "android.emulator",
+        "name": "Nexus_5X_API_25"
+      }
+    }
+  },
+  "dependencies": {
+    "@types/react-native-vector-icons": "^4.6.1",
+    "@types/react-navigation": "^1.5.11",
+    "react": "16.3.1",
+    "react-native": "0.55.4",
+    "react-native-localization": "^1.0.9",
+    "react-native-vector-icons": "^4.6.0",
+    "react-navigation": "^2.0.4"
+  },
+  "devDependencies": {
+    "@storybook/addon-actions": "^4.0.0-alpha.8",
+    "@storybook/addon-links": "^4.0.0-alpha.8",
+    "@storybook/addons": "^4.0.0-alpha.8",
+    "@storybook/react-native": "^4.0.0-alpha.8",
+    "@types/babel-core": "^6.25.3",
+    "@types/detox": "^7.3.0",
+    "@types/mocha": "^5.2.0",
+    "@types/prettier": "^1.12.4",
+    "@types/prop-types": "^15.5.3",
+    "@types/react-dom": "^16.0.5",
+    "babel-core": "^7.0.0-bridge.0",
+    "babel-jest": "23.0.0",
+    "babel-preset-react-native": "4.0.0",
+    "babel-runtime": "^7.0.0-beta.3",
+    "concurrently": "^3.5.1",
+    "detox": "^7.3.7",
+    "husky": "^0.14.3",
+    "jest": "23.0.0",
+    "lint-staged": "^7.1.2",
+    "mocha": "^5.2.0",
+    "pre-commit": "^1.2.2",
+    "prettier": "^1.12.1",
+    "prop-types": "^15.6.1",
+    "react-dom": "16.3.1",
+    "react-test-renderer": "16.3.1"
+  },
+  "jest": {
+    "verbose": true,
+    "preset": "react-native",
+    "coveragePathIgnorePatterns": [
+      "/e2e"
+    ],
+    "testPathIgnorePatterns": [
+      "/node_modules/",
+      "/output/",
+      "/sentry_build/",
+      "/e2e"
+    ],
+    "transformIgnorePatterns": [
+      "node_modules/(?!react-native|react-native-confidence|react-clone-referenced-element)"
+    ],
+    "setupFiles": [
+      "./src/testSetup.js"
+    ],
+    "collectCoverage": false,
+    "collectCoverageFrom": [
+      "**/*.{js,jsx}",
+      "!**/node_modules/**",
+      "!testSetup.js",
+      "!**/coverage/**",
+      "!**/output/**",
+      "!flow-typed/**",
+      "!**/sentry_build/**",
+      "!**/storybook/**",
+      "!**/theme/**"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "branches": 50,
+        "functions": 50,
+        "lines": 50,
+        "statements": 50
+      }
+    },
+    "coverageDirectory": "output/coverage"
+  },
+  "prettier": {
+    "useTabs": false,
+    "trailingComma": "es5",
+    "parser": "flow",
+    "singleQuote": true,
+    "overrides": [
+      {
+        "files": "package.json",
+        "options": {
+          "printWidth": 1024
+        }
+      }
+    ]
+  }
+}
