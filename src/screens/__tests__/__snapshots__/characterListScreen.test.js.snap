@@ -117,6 +117,7 @@ exports[`Character List Screen should render all of the characters 1`] = `
           >
             J Bowler
           </Text>
+           
         </View>
       </View>
       <View
@@ -137,6 +138,7 @@ exports[`Character List Screen should render all of the characters 1`] = `
           >
             Evo
           </Text>
+           
         </View>
       </View>
       <View
@@ -157,6 +159,7 @@ exports[`Character List Screen should render all of the characters 1`] = `
           >
             FDeppy
           </Text>
+           
         </View>
       </View>
       <View
@@ -177,6 +180,7 @@ exports[`Character List Screen should render all of the characters 1`] = `
           >
             century24
           </Text>
+           
         </View>
       </View>
     </View>

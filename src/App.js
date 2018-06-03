@@ -17,7 +17,7 @@ export default createStackNavigator(
   {
     CharacterList: { screen: CharacterListScreen },
     CharacterCreation: { screen: CharacterCreationScreen },
-    StorybookUI: { screen: StorybookUI }
+    StorybookUI: { screen: StorybookUI },
   },
   {
     initialRouteName: 'StorybookUI',
