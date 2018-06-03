@@ -17,7 +17,7 @@
     "flow": "flow; test $? -eq 0 -o $? -eq 2",
     "precommit:tests": "jest --no-cache --coverage",
     "precommit:msg": "echo 'Pre-commit checks...' && exit 0",
-    "precommit:prettier": "prettier",
+    "precommit:prettier": "prettier --write \"{src,{__tests__}}/**/*.js\"",
     "prettier": "prettier --write \"{src,{__tests__}}/**/*.js\""
   },
   "pre-commit": [

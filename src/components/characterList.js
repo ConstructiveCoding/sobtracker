@@ -6,14 +6,15 @@ const CharacterList = ({ characters }) => {
   console.log(characters);
 
 
+
+
+
+
   return (
-                  <FlatList
+    <FlatList
       data={characters}
       renderItem={({ item, index }) => {
         console.log(`rendering`, item);
-
-
-
 
         return (
           <View key={`${item.id}-key`} style={{ backgroundColor: 'red' }}>
