@@ -15,9 +15,9 @@
     "detox-tests:android": "detox build --configuration android.emu.debug && detox test --configuration android.emu.debug",
     "storybook": "storybook start -p 7007",
     "flow": "flow; test $? -eq 0 -o $? -eq 2",
-    "precommit:tests": "jest ./__tests__/config.test.js ./src/reducers/__tests__/*",
+    "precommit:tests": "jest --no-cache --coverage",
     "precommit:msg": "echo 'Pre-commit checks...' && exit 0",
-    "precommit:prettier": "lint-staged",
+    "precommit:prettier": "prettier",
     "prettier": "prettier --write \"{src,{__tests__}}/**/*.js\""
   },
   "pre-commit": [
@@ -52,6 +52,7 @@
     "@types/react-navigation": "^1.5.11",
     "react": "16.3.1",
     "react-native": "0.55.4",
+    "react-native-device-log": "^1.0.2",
     "react-native-localization": "^1.0.9",
     "react-native-vector-icons": "^4.6.0",
     "react-navigation": "^2.0.4"
@@ -67,6 +68,7 @@
     "@types/prettier": "^1.12.4",
     "@types/prop-types": "^15.5.3",
     "@types/react-dom": "^16.0.5",
+    "@types/redux-mock-store": "0.0.13",
     "babel-core": "^7.0.0-bridge.0",
     "babel-jest": "23.0.0",
     "babel-preset-react-native": "4.0.0",
@@ -81,37 +83,41 @@
     "prettier": "^1.12.1",
     "prop-types": "^15.6.1",
     "react-dom": "16.3.1",
-    "react-test-renderer": "16.3.1"
+    "react-test-renderer": "16.3.1",
+    "redux-mock-store": "^1.5.1"
   },
   "jest": {
     "verbose": true,
     "preset": "react-native",
     "coveragePathIgnorePatterns": [
-      "/e2e"
+      "/e2e",
+      "./__tests__/testSetup.js"
     ],
     "testPathIgnorePatterns": [
       "/node_modules/",
       "/output/",
       "/sentry_build/",
-      "/e2e"
+      "/e2e",
+      "./__tests__/testSetup.js"
     ],
     "transformIgnorePatterns": [
       "node_modules/(?!react-native|react-native-confidence|react-clone-referenced-element)"
     ],
     "setupFiles": [
-      "./src/testSetup.js"
+      "./__tests__/testSetup.js"
     ],
     "collectCoverage": false,
     "collectCoverageFrom": [
-      "**/*.{js,jsx}",
-      "!**/node_modules/**",
-      "!testSetup.js",
       "!**/coverage/**",
+      "!**/language/**",
+      "!**/node_modules/**",
       "!**/output/**",
-      "!flow-typed/**",
       "!**/sentry_build/**",
       "!**/storybook/**",
-      "!**/theme/**"
+      "!**/theme/**",
+      "!flow-typed/**",
+      "!testSetup.js",
+      "**/*.{js,jsx}"
     ],
     "coverageThreshold": {
       "global": {

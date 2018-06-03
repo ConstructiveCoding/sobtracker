@@ -10,7 +10,7 @@ const CharacterList = ({ characters }) => {
       renderItem={({ item, index }) => {
         console.log(`rendering`, item);
         return (
-          <View style={{ backgroundColor: 'red' }} key={index}>
+          <View key={`${item.id}-key`} style={{ backgroundColor: 'red' }}>
             <Text>{item.name}</Text>
           </View>
         );
