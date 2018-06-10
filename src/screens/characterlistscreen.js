@@ -15,7 +15,7 @@ class CharacterListScreen extends Component {
       title: Strings.characterTitle,
       headerRight: (
         <TouchableOpacity onPress={params.addCharacter}>
-          <Icon name="plus-circle" />
+          <Icon testID="add-character-button" name="plus-circle" />
         </TouchableOpacity>
       ),
     };
@@ -42,7 +42,6 @@ class CharacterListScreen extends Component {
   render(props) {
     return (
       <View style={{ flex: 1 }}>
-        <Button title="Go to Details" onPress={this.addCharacter} />
         <CharacterList
           characters={[
             { name: 'J Bowler', id: 1 },

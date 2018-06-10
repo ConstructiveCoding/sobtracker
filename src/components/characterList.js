@@ -5,11 +5,6 @@ import { FlatList, Text, View } from 'react-native';
 const CharacterList = ({ characters }) => {
   console.log(characters);
 
-
-
-
-
-
   return (
     <FlatList
       data={characters}

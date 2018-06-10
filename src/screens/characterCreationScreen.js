@@ -2,52 +2,32 @@ import React, { Component } from 'react';
 
 import { Text, TextInput, TouchableOpacity, View } from 'react-native';
 
+import CreateCharacter from '../components/characterCreation/';
+import CreateCharacterStyles from '../theme/standard/components/createCharacter.styles';
+
 import Strings from '../language/strings';
 
-type CharacterCreationScreenProps = {
-  createCharacter: Function,
-};
+class CharacterCreationScreen extends Component {
+  static navigationOptions = ({ navigation }) => {
+    const params = navigation.state.params || {};
 
-type CharacterCreationScreenState = {
-  name: string,
-  class: string,
-};
+    return {
+      title: Strings.createCharacter,
+    };
+  };
 
-class CharacterCreationScreen extends Component<
-  CharacterCreationScreenProps,
-  CharacterCreationScreenState
-> {
   constructor(props) {
     super(props);
-
-    this.state = {
-      name: '',
-      class: '',
-    };
-
-    this.createCharacter = this.createCharacter.bind(this);
   }
 
   createCharacter() {
     // validation
-    this.props.createCharacter();
+    // this.props.createCharacter();
   }
 
   render() {
     return (
-      <View>
-        <View>
-          <Text>{Strings.characterName}</Text>
-          <TextInput />
-        </View>
-        <View>
-          <Text>{Strings.characterClass}</Text>
-          <TextInput />
-        </View>
-        <TouchableOpacity onPress={this.createCharacter}>
-          <Text>{Strings.createCharacter}</Text>
-        </TouchableOpacity>
-      </View>
+      <CreateCharacter style={CreateCharacterStyles.standard} createCharacter={() => true} />
     );
   }
 }

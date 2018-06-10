@@ -20,6 +20,7 @@ export default createStackNavigator(
     StorybookUI: { screen: StorybookUI },
   },
   {
-    initialRouteName: 'StorybookUI',
+    initialRouteName: 'CharacterList',
+    // initialRouteName: 'StorybookUI',
   }
 );
