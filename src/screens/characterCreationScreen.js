@@ -27,7 +27,10 @@ class CharacterCreationScreen extends Component {
 
   render() {
     return (
-      <CreateCharacter style={CreateCharacterStyles.standard} createCharacter={() => true} />
+      <CreateCharacter
+        style={CreateCharacterStyles.standard}
+        createCharacter={() => true}
+      />
     );
   }
 }

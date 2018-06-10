@@ -1,14 +1,12 @@
 import React from 'react';
-import {
-  Text,
-  TextInput,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import { Text, TextInput, TouchableOpacity, View } from 'react-native';
 
 import Strings from '../language/strings';
 
-class CreateCharacter extends React.Component<CreateCharacterProps, CreateCharacterState> {
+class CreateCharacter extends React.Component<
+  CreateCharacterProps,
+  CreateCharacterState
+> {
   constructor(props) {
     super(props);
 
@@ -19,7 +17,7 @@ class CreateCharacter extends React.Component<CreateCharacterProps, CreateCharac
       characterName: initialName,
       characterClass: initialClass,
       hasRequiredFields: this.hasRequiredFields(initialName, initialClass),
-    }
+    };
 
     this.createCharacter = this.createCharacter.bind(this);
     this.renderSubmitButton = this.renderSubmitButton.bind(this);
@@ -43,17 +41,16 @@ class CreateCharacter extends React.Component<CreateCharacterProps, CreateCharac
         testID="create-character-button"
         onPress={this.createCharacter}
       >
-        <Text style={styles.defaultSubmitButtonText}>{Strings.createCharacter}</Text>
+        <Text style={styles.defaultSubmitButtonText}>
+          {Strings.createCharacter}
+        </Text>
       </TouchableOpacity>
     );
   }
 
   renderSubmitView(styles) {
     return (
-      <View
-        style={styles.disabledSubmitButton}
-        testID="create-character-view"
-      >
+      <View style={styles.disabledSubmitButton} testID="create-character-view">
         <Text style={styles.disabledSubmitButtonText}>
           {Strings.createCharacter}
         </Text>
@@ -73,10 +70,13 @@ class CreateCharacter extends React.Component<CreateCharacterProps, CreateCharac
             style={styles.validDataEntry}
             testID="character-name-entry"
             value={this.state.characterName}
-            onChangeText={(value) => {
+            onChangeText={value => {
               this.setState({
                 characterName: value,
-                hasRequiredFields: this.hasRequiredFields(value, this.state.characterClass)
+                hasRequiredFields: this.hasRequiredFields(
+                  value,
+                  this.state.characterClass
+                ),
               });
             }}
           />
@@ -88,19 +88,20 @@ class CreateCharacter extends React.Component<CreateCharacterProps, CreateCharac
             style={styles.validDataEntry}
             testID="character-class-entry"
             value={this.state.characterClass}
-            onChangeText={(value) => {
+            onChangeText={value => {
               this.setState({
                 characterClass: value,
-                hasRequiredFields: this.hasRequiredFields(this.state.characterName, value)
+                hasRequiredFields: this.hasRequiredFields(
+                  this.state.characterName,
+                  value
+                ),
               });
             }}
           />
         </View>
-        {
-          this.state.hasRequiredFields ?
-          this.renderSubmitButton(styles) :
-            this.renderSubmitView(styles)
-        }
+        {this.state.hasRequiredFields
+          ? this.renderSubmitButton(styles)
+          : this.renderSubmitView(styles)}
       </View>
     );
   }
@@ -111,12 +112,12 @@ type CreateCharacterProps = {
   characterClass: string,
   createCharacter: Function,
   styles: object,
-}
+};
 
 type CreateCharacterState = {
   characterName: string,
   characterClass: string,
   hasRequiredFields: boolean,
-}
+};
 
 export default CreateCharacter;
