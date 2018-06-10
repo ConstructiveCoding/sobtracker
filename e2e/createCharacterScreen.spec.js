@@ -21,6 +21,8 @@ describe('Create Character Screen', () => {
   it('should create a character', async () => {
     await createCharacterPage.enterName('New Character Name');
     await createCharacterPage.enterClass('Cowboy');
+    await createCharacterPage.enterGender('Female');
+
     await createCharacterPage.submitIsEnabled();
     await createCharacterPage.createCharacter();
   });

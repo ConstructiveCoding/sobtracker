@@ -12,11 +12,13 @@ class CreateCharacter extends React.Component<
 
     const initialName = props.characterName || '';
     const initialClass = props.characterClass || '';
+    const initialGender = props.characterGender || '';
 
     this.state = {
       characterName: initialName,
       characterClass: initialClass,
-      hasRequiredFields: this.hasRequiredFields(initialName, initialClass),
+      characterGender: initialGender,
+      hasRequiredFields: this.hasRequiredFields(initialName, initialClass, initialGender),
     };
 
     this.createCharacter = this.createCharacter.bind(this);
@@ -30,8 +32,12 @@ class CreateCharacter extends React.Component<
     // this.props.createCharacter(this.state.name, this.state.class);
   }
 
-  hasRequiredFields(newName: string, newClass: string) {
-    return newName.trim().length > 0 && newClass.trim().length > 0;
+  hasRequiredFields(newName: string, newClass: string, newGender: string) {
+    return (
+      newName.trim().length > 0 &&
+      newClass.trim().length > 0 &&
+      newGender.trim().length > 0
+    );
   }
 
   renderSubmitButton(styles) {
@@ -75,7 +81,8 @@ class CreateCharacter extends React.Component<
                 characterName: value,
                 hasRequiredFields: this.hasRequiredFields(
                   value,
-                  this.state.characterClass
+                  this.state.characterClass,
+                  this.state.characterGender
                 ),
               });
             }}
@@ -93,6 +100,26 @@ class CreateCharacter extends React.Component<
                 characterClass: value,
                 hasRequiredFields: this.hasRequiredFields(
                   this.state.characterName,
+                  value,
+                  this.state.characterGender
+                ),
+              });
+            }}
+          />
+        </View>
+        <View style={styles.emptyFormRow}>
+          <Text style={styles.validDataLabel}>{Strings.characterGender}</Text>
+          <TextInput
+            placeholder={Strings.characterGender}
+            style={styles.validDataEntry}
+            testID="character-gender-entry"
+            value={this.state.characterGender}
+            onChangeText={value => {
+              this.setState({
+                characterGender: value,
+                hasRequiredFields: this.hasRequiredFields(
+                  this.state.characterName,
+                  this.state.characterClass,
                   value
                 ),
               });
@@ -110,6 +137,7 @@ class CreateCharacter extends React.Component<
 type CreateCharacterProps = {
   characterName: string,
   characterClass: string,
+  characterGender: string,
   createCharacter: Function,
   styles: object,
 };
@@ -117,6 +145,7 @@ type CreateCharacterProps = {
 type CreateCharacterState = {
   characterName: string,
   characterClass: string,
+  characterGender: string,
   hasRequiredFields: boolean,
 };
 
