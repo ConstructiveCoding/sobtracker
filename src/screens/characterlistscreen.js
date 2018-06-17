@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import { connect } from 'react-redux';
+
 import { Button, Text, TouchableOpacity, View } from 'react-native';
 
 import CharacterList from '../components/characterList';
@@ -7,7 +9,11 @@ import Strings from '../language/strings';
 
 import Icon from 'react-native-vector-icons/dist/FontAwesome';
 
-class CharacterListScreen extends Component {
+type CharacterListScreenProps = {
+  characterList: Array<any>
+}
+
+class CharacterListScreen extends Component<CharacterListScreenProps> {
   static navigationOptions = ({ navigation }) => {
     const params = navigation.state.params || {};
 
@@ -43,16 +49,18 @@ class CharacterListScreen extends Component {
     return (
       <View style={{ flex: 1 }}>
         <CharacterList
-          characters={[
-            { name: 'J Bowler', id: 1 },
-            { name: 'Evo', id: 2 },
-            { name: 'FDeppy', id: 3 },
-            { name: 'century24', id: 4 },
-          ]}
+          characters={this.props.characterList}
         />
       </View>
     );
   }
 }
 
-export default CharacterListScreen;
+function mapStateToProps(state) {
+  console.log('Mapping state', state);
+  return {
+    characterList: state.character.characterList,
+  }
+}
+
+export default connect(mapStateToProps)(CharacterListScreen);

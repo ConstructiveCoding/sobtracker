@@ -8,6 +8,7 @@ import React, { Component } from 'react';
 import { Platform, StyleSheet, Text, View } from 'react-native';
 import { createStackNavigator } from 'react-navigation';
 
+
 import CharacterListScreen from './screens/characterListScreen';
 import CharacterCreationScreen from './screens/characterCreationScreen';
 

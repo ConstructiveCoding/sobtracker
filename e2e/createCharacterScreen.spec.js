@@ -19,11 +19,16 @@ describe('Create Character Screen', () => {
   });
 
   it('should create a character', async () => {
-    await createCharacterPage.enterName('New Character Name');
+    const newCharName = 'New Character Name';
+    await createCharacterPage.enterName(newCharName);
     await createCharacterPage.enterClass('Cowboy');
     await createCharacterPage.enterGender('Female');
 
     await createCharacterPage.submitIsEnabled();
     await createCharacterPage.createCharacter();
+
+    const characterListPage = CharacterListPage();
+    await characterListPage.isVisible();
+    await characterListPage.hasCharacter(newCharName);
   });
 });

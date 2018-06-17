@@ -18,7 +18,11 @@ class CreateCharacter extends React.Component<
       characterName: initialName,
       characterClass: initialClass,
       characterGender: initialGender,
-      hasRequiredFields: this.hasRequiredFields(initialName, initialClass, initialGender),
+      hasRequiredFields: this.hasRequiredFields(
+        initialName,
+        initialClass,
+        initialGender
+      ),
     };
 
     this.createCharacter = this.createCharacter.bind(this);
@@ -29,7 +33,7 @@ class CreateCharacter extends React.Component<
 
   createCharacter() {
     // TODO: Validation
-    // this.props.createCharacter(this.state.name, this.state.class);
+    this.props.createCharacter(this.state.characterName, this.state.characterClass, this.state.characterGender);
   }
 
   hasRequiredFields(newName: string, newClass: string, newGender: string) {

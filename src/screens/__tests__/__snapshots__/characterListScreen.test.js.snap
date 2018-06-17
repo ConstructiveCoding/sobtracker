@@ -9,26 +9,7 @@ exports[`Character List Screen should render all of the characters 1`] = `
   }
 >
   <RCTScrollView
-    data={
-      Array [
-        Object {
-          "id": 1,
-          "name": "J Bowler",
-        },
-        Object {
-          "id": 2,
-          "name": "Evo",
-        },
-        Object {
-          "id": 3,
-          "name": "FDeppy",
-        },
-        Object {
-          "id": 4,
-          "name": "century24",
-        },
-      ]
-    }
+    data={Array []}
     disableVirtualization={false}
     getItem={[Function]}
     getItemCount={[Function]}
@@ -51,92 +32,7 @@ exports[`Character List Screen should render all of the characters 1`] = `
     viewabilityConfigCallbackPairs={Array []}
     windowSize={21}
   >
-    <View>
-      <View
-        onLayout={[Function]}
-        style={null}
-      >
-        <View
-          style={
-            Object {
-              "backgroundColor": "red",
-            }
-          }
-        >
-          <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
-          >
-            J Bowler
-          </Text>
-           
-        </View>
-      </View>
-      <View
-        onLayout={[Function]}
-        style={null}
-      >
-        <View
-          style={
-            Object {
-              "backgroundColor": "red",
-            }
-          }
-        >
-          <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
-          >
-            Evo
-          </Text>
-           
-        </View>
-      </View>
-      <View
-        onLayout={[Function]}
-        style={null}
-      >
-        <View
-          style={
-            Object {
-              "backgroundColor": "red",
-            }
-          }
-        >
-          <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
-          >
-            FDeppy
-          </Text>
-           
-        </View>
-      </View>
-      <View
-        onLayout={[Function]}
-        style={null}
-      >
-        <View
-          style={
-            Object {
-              "backgroundColor": "red",
-            }
-          }
-        >
-          <Text
-            accessible={true}
-            allowFontScaling={true}
-            ellipsizeMode="tail"
-          >
-            century24
-          </Text>
-           
-        </View>
-      </View>
-    </View>
+    <View />
   </RCTScrollView>
 </View>
 `;

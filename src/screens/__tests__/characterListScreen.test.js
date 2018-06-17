@@ -12,7 +12,10 @@ const mockStore = configureStore(middlewares);
 describe('Character List Screen', () => {
   it('should render all of the characters', () => {
     const initialState = {
-      characters: [{}],
+      character: {
+        characterList: [],
+        selectedCharacter: undefined,
+      },
     };
     const store = mockStore(initialState);
 
