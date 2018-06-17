@@ -5,14 +5,14 @@ import * as types from '../actions/actionTypes';
 type CharacterState = {
   characterList: Array<Character>,
   selectedCharacter: Character,
-}
+};
 
 const InitialState = Immutable({
   characterList: [],
   selectedCharacter: undefined,
 });
 
-export default function (
+export default function(
   state: CharacterState = InitialState,
   action: Types.Action = { type: undefined }
 ): CharacterState {
@@ -20,9 +20,10 @@ export default function (
     case types.CREATE_CHARACTER: {
       return Immutable({
         ...state,
-        characterList: [action.character].concat(state.characterList)
+        characterList: [action.character].concat(state.characterList),
       });
     }
-    default: return state;
+    default:
+      return state;
   }
 }

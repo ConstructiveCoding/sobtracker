@@ -10,8 +10,8 @@ import Strings from '../language/strings';
 import Icon from 'react-native-vector-icons/dist/FontAwesome';
 
 type CharacterListScreenProps = {
-  characterList: Array<any>
-}
+  characterList: Array<any>,
+};
 
 class CharacterListScreen extends Component<CharacterListScreenProps> {
   static navigationOptions = ({ navigation }) => {
@@ -48,9 +48,7 @@ class CharacterListScreen extends Component<CharacterListScreenProps> {
   render(props) {
     return (
       <View style={{ flex: 1 }}>
-        <CharacterList
-          characters={this.props.characterList}
-        />
+        <CharacterList characters={this.props.characterList} />
       </View>
     );
   }
@@ -60,7 +58,7 @@ function mapStateToProps(state) {
   console.log('Mapping state', state);
   return {
     characterList: state.character.characterList,
-  }
+  };
 }
 
 export default connect(mapStateToProps)(CharacterListScreen);

@@ -12,12 +12,12 @@ describe('Character reducer', () => {
 
   it('should store a newly created character', () => {
     const initialState = {
-      characterList: []
+      characterList: [],
     };
 
     const action = {
       type: types.CREATE_CHARACTER,
-      character: { name: 'test character' }
+      character: { name: 'test character' },
     };
 
     const returnedState = CharacterReducer(initialState, action);

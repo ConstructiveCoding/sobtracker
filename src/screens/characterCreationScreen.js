@@ -26,11 +26,15 @@ class CharacterCreationScreen extends Component {
     this.createCharacter = this.createCharacter.bind(this);
   }
 
-  createCharacter(characterName: string, characterClass: string, characterGender: string) {
+  createCharacter(
+    characterName: string,
+    characterClass: string,
+    characterGender: string
+  ) {
     this.props.createCharacter({
       name: characterName,
       class: characterClass,
-      gender: characterGender
+      gender: characterGender,
     });
 
     this.props.navigation.pop();
@@ -48,10 +52,13 @@ class CharacterCreationScreen extends Component {
 
 const actions = {
   createCharacter,
-}
+};
 
 function mapStateToProps() {
   return {};
 }
 
-export default connect(mapStateToProps, actions)(CharacterCreationScreen);
+export default connect(
+  mapStateToProps,
+  actions
+)(CharacterCreationScreen);
