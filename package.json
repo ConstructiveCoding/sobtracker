@@ -17,8 +17,14 @@
     "flow": "flow; test $? -eq 0 -o $? -eq 2",
     "precommit:tests": "jest --no-cache --coverage",
     "precommit:msg": "echo 'Pre-commit checks...' && exit 0",
-    "precommit:prettier": "prettier --write \"{src,{__tests__}}/**/*.js\"",
+    "precommit:prettier": "lint-staged",
     "prettier": "prettier --write \"{src,{__tests__}}/**/*.js\""
+  },
+  "lint-staged": {
+    "*.js": [
+      "npm run prettier",
+      "git add"
+    ]
   },
   "pre-commit": [
     "precommit:msg",
@@ -73,8 +79,17 @@
     "babel-runtime": "^7.0.0-beta.3",
     "concurrently": "^3.5.1",
     "detox": "^7.3.7",
+    "eslint": "^4.19.0",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-config-prettier": "^2.9.0",
+    "eslint-plugin-import": "^2.9.0",
+    "eslint-plugin-jsx-a11y": "^6.0.3",
+    "eslint-plugin-prettier": "^2.6.0",
+    "eslint-plugin-react": "^7.7.0",
+    "flow-bin": "^0.65.0",
     "husky": "^0.14.3",
     "jest": "23.0.0",
+    "lint-staged": "^7.2.0",
     "mocha": "^5.2.0",
     "pre-commit": "^1.2.2",
     "prettier": "^1.12.1",
@@ -130,6 +145,8 @@
     "useTabs": false,
     "trailingComma": "es5",
     "parser": "flow",
+    "semi": true,
+    "jsxBracketSameLine": false,
     "singleQuote": true,
     "overrides": [
       {
