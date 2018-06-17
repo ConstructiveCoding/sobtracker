@@ -20,8 +20,10 @@ describe('Create Character Screen', () => {
 
   it('should create a character', async () => {
     const newCharName = 'New Character Name';
+    const newCharClass = 'Cowboy';
+
     await createCharacterPage.enterName(newCharName);
-    await createCharacterPage.enterClass('Cowboy');
+    await createCharacterPage.enterClass(newCharClass);
     await createCharacterPage.enterGender('Female');
 
     await createCharacterPage.submitIsEnabled();
@@ -29,6 +31,6 @@ describe('Create Character Screen', () => {
 
     const characterListPage = CharacterListPage();
     await characterListPage.isVisible();
-    await characterListPage.hasCharacter(newCharName);
+    await characterListPage.hasCharacter(newCharName, newCharClass);
   });
 });

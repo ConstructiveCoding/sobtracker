@@ -6,8 +6,10 @@ module.exports = CharacterListPage = () => {
     addCharacter: async () => {
       await element(by.id('add-character-button')).tap();
     },
-    hasCharacter: async (characterName) => {
-      await expect(element(by.text(characterName))).toExist();
-    }
-  }
-}
+    hasCharacter: async (characterName, characterClass) => {
+      await expect(
+        element(by.text(`${characterName} ${characterClass}`))
+      ).toExist();
+    },
+  };
+};

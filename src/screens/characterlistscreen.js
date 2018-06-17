@@ -3,11 +3,12 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import { Button, Text, TouchableOpacity, View } from 'react-native';
+import Icon from 'react-native-vector-icons/dist/FontAwesome';
 
 import CharacterList from '../components/characterList';
 import Strings from '../language/strings';
 
-import Icon from 'react-native-vector-icons/dist/FontAwesome';
+import CharacterListStyles from '../theme/standard/components/characterList.styles';
 
 type CharacterListScreenProps = {
   characterList: Array<any>,
@@ -21,7 +22,11 @@ class CharacterListScreen extends Component<CharacterListScreenProps> {
       title: Strings.characterTitle,
       headerRight: (
         <TouchableOpacity onPress={params.addCharacter}>
-          <Icon testID="add-character-button" name="plus-circle" />
+          <Icon
+            style={CharacterListStyles.standard.addIcon}
+            testID="add-character-button"
+            name="plus-circle"
+          />
         </TouchableOpacity>
       ),
     };
@@ -45,10 +50,15 @@ class CharacterListScreen extends Component<CharacterListScreenProps> {
     this.props.navigation.navigate('CharacterCreation');
   }
 
-  render(props) {
+  render() {
+    console.log(`CharacterListStyles ${CharacterListStyles}`);
+
     return (
       <View style={{ flex: 1 }}>
-        <CharacterList characters={this.props.characterList} />
+        <CharacterList
+          style={CharacterListStyles.standard}
+          characters={this.props.characterList}
+        />
       </View>
     );
   }

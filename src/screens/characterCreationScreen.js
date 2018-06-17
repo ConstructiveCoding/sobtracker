@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 
 import { Text, TextInput, TouchableOpacity, View } from 'react-native';
 
+import uuid from 'uuid';
+
 import CreateCharacter from '../components/characterCreation/';
 import CreateCharacterStyles from '../theme/standard/components/createCharacter.styles';
 
@@ -32,6 +34,7 @@ class CharacterCreationScreen extends Component {
     characterGender: string
   ) {
     this.props.createCharacter({
+      id: uuid.v4(),
       name: characterName,
       class: characterClass,
       gender: characterGender,

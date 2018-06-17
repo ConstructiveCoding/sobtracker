@@ -3,7 +3,7 @@ import { StyleSheet } from 'react-native';
 import Colours from '../colours';
 
 export default class CreateCharacterStyles {
-  static standard: any = StyleSheet.create({
+  static standard: StyleSheet = StyleSheet.create({
     formContainer: {
       padding: 20,
     },
