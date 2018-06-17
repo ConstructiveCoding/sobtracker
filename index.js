@@ -6,14 +6,12 @@ import App from './src/app';
 import { Provider } from 'react-redux';
 import { configureStore } from './src/store';
 
-const store = configureStore();
+const { store } = configureStore();
 
-const app = () => {
-  return (
-    <Provider store={store}>
-      <App />
-    </Provider>
-  );
-}
+const app = () => (
+  <Provider store={store}>
+    <App />
+  </Provider>
+);
 
 AppRegistry.registerComponent('sobtracker', () => app);
