@@ -14,13 +14,21 @@ const InitialState = Immutable({
 
 export default function(
   state: CharacterState = InitialState,
-  action: Types.Action = { type: undefined }
+  action: types.Action = { type: undefined }
 ): CharacterState {
   switch (action.type) {
     case types.CREATE_CHARACTER: {
       return Immutable({
         ...state,
         characterList: [action.character].concat(state.characterList),
+      });
+    }
+    case types.LOAD_CHARACTER: {
+      return Immutable({
+        ...state,
+        selectedCharacter: state.characterList.find(
+          item => item.id === action.characterId
+        ),
       });
     }
     default:

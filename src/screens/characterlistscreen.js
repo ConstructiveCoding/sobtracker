@@ -10,8 +10,11 @@ import Strings from '../language/strings';
 
 import CharacterListStyles from '../theme/standard/components/characterList.styles';
 
+import { loadCharacter } from '../actions/character';
+
 type CharacterListScreenProps = {
   characterList: Array<any>,
+  loadCharacter: Function,
 };
 
 class CharacterListScreen extends Component<CharacterListScreenProps> {
@@ -36,6 +39,7 @@ class CharacterListScreen extends Component<CharacterListScreenProps> {
     super(props);
 
     this.addCharacter = this.addCharacter.bind(this);
+    this.selectCharacter = this.selectCharacter.bind(this);
   }
 
   componentWillMount() {
@@ -50,25 +54,35 @@ class CharacterListScreen extends Component<CharacterListScreenProps> {
     this.props.navigation.navigate('CharacterCreation');
   }
 
-  render() {
-    console.log(`CharacterListStyles ${CharacterListStyles}`);
+  selectCharacter(characterId) {
+    this.props.loadCharacter(characterId);
+    this.props.navigation.navigate('CharacterScreen');
+  }
 
+  render() {
     return (
       <View style={{ flex: 1 }}>
         <CharacterList
           style={CharacterListStyles.standard}
           characters={this.props.characterList}
+          loadCharacter={this.selectCharacter}
         />
       </View>
     );
   }
 }
 
+const actions = {
+  loadCharacter,
+};
+
 function mapStateToProps(state) {
-  console.log('Mapping state', state);
   return {
     characterList: state.character.characterList,
   };
 }
 
-export default connect(mapStateToProps)(CharacterListScreen);
+export default connect(
+  mapStateToProps,
+  actions
+)(CharacterListScreen);

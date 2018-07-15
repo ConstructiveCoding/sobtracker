@@ -36,8 +36,8 @@ class CharacterCreationScreen extends Component {
     this.props.createCharacter({
       id: uuid.v4(),
       name: characterName,
-      class: characterClass,
       gender: characterGender,
+      characterClass,
     });
 
     this.props.navigation.pop();
