@@ -13,4 +13,10 @@ export default class Colours {
   static characterListItemBorder = 'rgba(163, 37, 82, 1.00)';
   static characterName = Colours.standardText;
   static characterClass = Colours.lightText;
+
+  static toggleButtonBgColour = Colours.buttonBackground;
+  static toggleButtonSelectedBgColour = Colours.lightText;
+
+  static cancelButtonBackground = 'rgba(255, 0, 0, .5)';
+  static saveButtonBackground = 'rgba(0, 255, 0, .5)';
 }

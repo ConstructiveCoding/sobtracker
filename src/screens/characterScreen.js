@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 
 import { Text, View } from 'react-native';
 
+import CharacterDetailsStyles from '../theme/standard/components/characterDetails.styles';
 import CharacterDetails from '../components/character/characterDetails';
 
 type CharacterScreenProps = {
@@ -14,7 +15,10 @@ type CharacterScreenProps = {
 
 const CharacterScreen = (props: CharacterScreenProps) => (
   <View>
-    <CharacterDetails {...props.character} />
+    <CharacterDetails
+      {...props.character}
+      style={CharacterDetailsStyles.standard}
+    />
   </View>
 );
 

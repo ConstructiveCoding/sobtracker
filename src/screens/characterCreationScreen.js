@@ -2,16 +2,13 @@ import React, { Component } from 'react';
 
 import { connect } from 'react-redux';
 
-import { Text, TextInput, TouchableOpacity, View } from 'react-native';
-
-import uuid from 'uuid';
-
-import CreateCharacter from '../components/characterCreation/';
+import CreateCharacter from '../components/characterCreation';
 import CreateCharacterStyles from '../theme/standard/components/createCharacter.styles';
 
 import { createCharacter } from '../actions/character';
 
 import Strings from '../language/strings';
+import Character from '../models/character';
 
 class CharacterCreationScreen extends Component {
   static navigationOptions = ({ navigation }) => {
@@ -33,12 +30,12 @@ class CharacterCreationScreen extends Component {
     characterClass: string,
     characterGender: string
   ) {
-    this.props.createCharacter({
-      id: uuid.v4(),
-      name: characterName,
-      gender: characterGender,
-      characterClass,
-    });
+    const character = new Character(
+      characterName,
+      characterGender,
+      characterClass
+    );
+    this.props.createCharacter(character);
 
     this.props.navigation.pop();
   }
