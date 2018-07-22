@@ -1,3 +1,4 @@
 import character from './character';
+import calculator from './calculator';
 
-export { character };
+export { calculator, character };

@@ -13,3 +13,11 @@ export function loadCharacter(characterId) {
     characterId,
   };
 }
+
+export function updateCharacter(characterId, characterUpdate) {
+  return {
+    type: types.UPDATE_CHARACTER,
+    characterId,
+    characterUpdate,
+  };
+}

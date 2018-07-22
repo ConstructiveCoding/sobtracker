@@ -41,6 +41,10 @@ export default class CharacterDetailsStyles {
       fontSize: 18,
     },
     characterDetailRow: {
+      marginTop: 10,
+      paddingBottom: 5,
+    },
+    characterDetailRowButton: {
       flexDirection: 'row',
     },
     characterDetailTitle: {

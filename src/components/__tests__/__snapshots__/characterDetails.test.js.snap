@@ -111,236 +111,362 @@ exports[`CharacterDetails should render the character details screen with the su
   <View
     style={
       Object {
-        "flexDirection": "row",
+        "marginTop": 10,
+        "paddingBottom": 5,
       }
     }
   >
-    <Text
+    <View
       accessible={true}
-      allowFontScaling={true}
-      ellipsizeMode="tail"
+      isTVSelectable={true}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
       style={
         Object {
-          "flex": 1,
-          "textAlign": "left",
+          "flexDirection": "row",
+          "opacity": 1,
         }
       }
     >
-      XP
-    </Text>
-    <Text
-      accessible={true}
-      allowFontScaling={true}
-      ellipsizeMode="tail"
-      style={
-        Object {
-          "flex": 1,
-          "textAlign": "right",
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Object {
+            "flex": 1,
+            "textAlign": "left",
+          }
         }
-      }
-    />
+      >
+        XP
+      </Text>
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Object {
+            "flex": 1,
+            "textAlign": "right",
+          }
+        }
+      />
+    </View>
   </View>
   <View
     style={
       Object {
-        "flexDirection": "row",
+        "marginTop": 10,
+        "paddingBottom": 5,
       }
     }
   >
-    <Text
+    <View
       accessible={true}
-      allowFontScaling={true}
-      ellipsizeMode="tail"
+      isTVSelectable={true}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
       style={
         Object {
-          "flex": 1,
-          "textAlign": "left",
+          "flexDirection": "row",
+          "opacity": 1,
         }
       }
     >
-      Level
-    </Text>
-    <Text
-      accessible={true}
-      allowFontScaling={true}
-      ellipsizeMode="tail"
-      style={
-        Object {
-          "flex": 1,
-          "textAlign": "right",
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Object {
+            "flex": 1,
+            "textAlign": "left",
+          }
         }
-      }
-    >
-      0
-    </Text>
+      >
+        Level
+      </Text>
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Object {
+            "flex": 1,
+            "textAlign": "right",
+          }
+        }
+      >
+        0
+      </Text>
+    </View>
   </View>
   <View
     style={
       Object {
-        "flexDirection": "row",
+        "marginTop": 10,
+        "paddingBottom": 5,
       }
     }
   >
-    <Text
+    <View
       accessible={true}
-      allowFontScaling={true}
-      ellipsizeMode="tail"
+      isTVSelectable={true}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
       style={
         Object {
-          "flex": 1,
-          "textAlign": "left",
+          "flexDirection": "row",
+          "opacity": 1,
         }
       }
     >
-      Gold
-    </Text>
-    <Text
-      accessible={true}
-      allowFontScaling={true}
-      ellipsizeMode="tail"
-      style={
-        Object {
-          "flex": 1,
-          "textAlign": "right",
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Object {
+            "flex": 1,
+            "textAlign": "left",
+          }
         }
-      }
-    >
-      0
-    </Text>
+      >
+        Gold
+      </Text>
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Object {
+            "flex": 1,
+            "textAlign": "right",
+          }
+        }
+      >
+        0
+      </Text>
+    </View>
   </View>
   <View
     style={
       Object {
-        "flexDirection": "row",
+        "marginTop": 10,
+        "paddingBottom": 5,
       }
     }
   >
-    <Text
+    <View
       accessible={true}
-      allowFontScaling={true}
-      ellipsizeMode="tail"
+      isTVSelectable={true}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
       style={
         Object {
-          "flex": 1,
-          "textAlign": "left",
+          "flexDirection": "row",
+          "opacity": 1,
         }
       }
     >
-      Dark Stone
-    </Text>
-    <Text
-      accessible={true}
-      allowFontScaling={true}
-      ellipsizeMode="tail"
-      style={
-        Object {
-          "flex": 1,
-          "textAlign": "right",
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Object {
+            "flex": 1,
+            "textAlign": "left",
+          }
         }
-      }
-    >
-      0
-    </Text>
+      >
+        Dark Stone
+      </Text>
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Object {
+            "flex": 1,
+            "textAlign": "right",
+          }
+        }
+      >
+        0
+      </Text>
+    </View>
   </View>
   <View
     style={
       Object {
-        "flexDirection": "row",
+        "marginTop": 10,
+        "paddingBottom": 5,
       }
     }
   >
-    <Text
+    <View
       accessible={true}
-      allowFontScaling={true}
-      ellipsizeMode="tail"
+      isTVSelectable={true}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
       style={
         Object {
-          "flex": 1,
-          "textAlign": "left",
+          "flexDirection": "row",
+          "opacity": 1,
         }
       }
     >
-      Initiative
-    </Text>
-    <Text
-      accessible={true}
-      allowFontScaling={true}
-      ellipsizeMode="tail"
-      style={
-        Object {
-          "flex": 1,
-          "textAlign": "right",
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Object {
+            "flex": 1,
+            "textAlign": "left",
+          }
         }
-      }
-    >
-      0
-    </Text>
+      >
+        Initiative
+      </Text>
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Object {
+            "flex": 1,
+            "textAlign": "right",
+          }
+        }
+      >
+        0
+      </Text>
+    </View>
   </View>
   <View
     style={
       Object {
-        "flexDirection": "row",
+        "marginTop": 10,
+        "paddingBottom": 5,
       }
     }
   >
-    <Text
+    <View
       accessible={true}
-      allowFontScaling={true}
-      ellipsizeMode="tail"
+      isTVSelectable={true}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
       style={
         Object {
-          "flex": 1,
-          "textAlign": "left",
+          "flexDirection": "row",
+          "opacity": 1,
         }
       }
     >
-      Corruption
-    </Text>
-    <Text
-      accessible={true}
-      allowFontScaling={true}
-      ellipsizeMode="tail"
-      style={
-        Object {
-          "flex": 1,
-          "textAlign": "right",
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Object {
+            "flex": 1,
+            "textAlign": "left",
+          }
         }
-      }
-    >
-      0
-    </Text>
+      >
+        Corruption
+      </Text>
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Object {
+            "flex": 1,
+            "textAlign": "right",
+          }
+        }
+      >
+        0
+      </Text>
+    </View>
   </View>
   <View
     style={
       Object {
-        "flexDirection": "row",
+        "marginTop": 10,
+        "paddingBottom": 5,
       }
     }
   >
-    <Text
+    <View
       accessible={true}
-      allowFontScaling={true}
-      ellipsizeMode="tail"
+      isTVSelectable={true}
+      onResponderGrant={[Function]}
+      onResponderMove={[Function]}
+      onResponderRelease={[Function]}
+      onResponderTerminate={[Function]}
+      onResponderTerminationRequest={[Function]}
+      onStartShouldSetResponder={[Function]}
       style={
         Object {
-          "flex": 1,
-          "textAlign": "left",
+          "flexDirection": "row",
+          "opacity": 1,
         }
       }
     >
-      Grit
-    </Text>
-    <Text
-      accessible={true}
-      allowFontScaling={true}
-      ellipsizeMode="tail"
-      style={
-        Object {
-          "flex": 1,
-          "textAlign": "right",
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Object {
+            "flex": 1,
+            "textAlign": "left",
+          }
         }
-      }
-    />
+      >
+        Grit
+      </Text>
+      <Text
+        accessible={true}
+        allowFontScaling={true}
+        ellipsizeMode="tail"
+        style={
+          Object {
+            "flex": 1,
+            "textAlign": "right",
+          }
+        }
+      />
+    </View>
   </View>
 </View>
 `;

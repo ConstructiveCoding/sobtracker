@@ -6,23 +6,239 @@
 
 import React, { Component } from 'react';
 import { Platform, StyleSheet, Text, View } from 'react-native';
-import { createStackNavigator } from 'react-navigation';
+import {
+  createBottomTabNavigator,
+  createStackNavigator,
+} from 'react-navigation';
+import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
+import IoniconsIcon from 'react-native-vector-icons/Ionicons';
+import OcticonsIcon from 'react-native-vector-icons/Octicons';
+
+import Strings from './language/strings';
 
 import CharacterListScreen from './screens/characterListScreen';
 import CharacterCreationScreen from './screens/characterCreationScreen';
 import CharacterScreen from './screens/characterScreen';
+import AbilitiesScreen from './screens/abilitiesScreen';
+import AttributesScreen from './screens/attributesScreen';
+import InjuriesScreen from './screens/injuriesScreen';
+import ItemsScreen from './screens/itemsScreen';
 
 import StorybookUI from '../storybook';
 
-export default createStackNavigator(
+import CalculatorScreen from './screens/calculatorScreen';
+
+const CharacterDetailsStack = createStackNavigator(
+  {
+    Home: { screen: CharacterScreen },
+  },
+  {
+    initialRouteName: 'Home',
+  }
+);
+
+const AbilitiesStack = createStackNavigator(
+  {
+    AbilitiesHome: { screen: AbilitiesScreen },
+  },
+  {
+    initialRouteName: 'AbilitiesHome',
+  }
+);
+
+const AttributesStack = createStackNavigator(
+  {
+    AttributesHome: { screen: AttributesScreen },
+  },
+  {
+    initialRouteName: 'AttributesHome',
+  }
+);
+
+const InjuriesStack = createStackNavigator(
+  {
+    InjuriesHome: { screen: InjuriesScreen },
+  },
+  {
+    initialRouteName: 'InjuriesHome',
+  }
+);
+
+const ItemsStack = createStackNavigator(
+  {
+    ItemsHome: { screen: ItemsScreen },
+  },
+  {
+    initialRouteName: 'ItemsHome',
+  }
+);
+
+const TabNavigator = createBottomTabNavigator(
+  {
+    Character: CharacterDetailsStack,
+    Attributes: AttributesStack,
+    Items: ItemsStack,
+    Injuries: InjuriesStack,
+    Abilities: AbilitiesStack,
+  },
+  {
+    navigationOptions: ({ navigation }) => ({
+      tabBarLabel: ({ focused, tintColor }) => {
+        const { routeName } = navigation.state;
+
+        switch (routeName) {
+          case 'Character': {
+            return (
+              <Text
+                style={{ color: tintColor }}
+                adjustsFontSizeToFit
+                minimumFontScale={0.5}
+                numberOfLines={1}
+              >
+                {Strings.character}
+              </Text>
+            );
+          }
+          case 'Attributes': {
+            return (
+              <Text
+                style={{ color: tintColor }}
+                adjustsFontSizeToFit
+                minimumFontScale={0.5}
+                numberOfLines={1}
+              >
+                {Strings.attributes}
+              </Text>
+            );
+          }
+          case 'Items': {
+            return (
+              <Text
+                style={{ color: tintColor }}
+                adjustsFontSizeToFit
+                minimumFontScale={0.5}
+                numberOfLines={1}
+              >
+                {Strings.items}
+              </Text>
+            );
+          }
+          case 'Injuries': {
+            return (
+              <Text
+                style={{ color: tintColor }}
+                adjustsFontSizeToFit
+                minimumFontScale={0.5}
+                numberOfLines={1}
+              >
+                {Strings.injuries}
+              </Text>
+            );
+          }
+          case 'Abilities': {
+            return (
+              <Text
+                style={{ color: tintColor }}
+                adjustsFontSizeToFit
+                minimumFontScale={0.5}
+                numberOfLines={1}
+              >
+                {Strings.abilities}
+              </Text>
+            );
+          }
+          default:
+            return (
+              <Text
+                style={{ color: tintColor }}
+                adjustsFontSizeToFit
+                minimumFontScale={0.5}
+                numberOfLines={1}
+              >
+                {Strings.character}
+              </Text>
+            );
+        }
+      },
+      tabBarIcon: ({ focused, tintColor }) => {
+        const { routeName } = navigation.state;
+        let icon;
+
+        switch (routeName) {
+          case 'Character': {
+            icon = <FontAwesomeIcon name="user" size={25} color={tintColor} />;
+            break;
+          }
+          case 'Attributes': {
+            icon = <OcticonsIcon name="graph" size={25} color={tintColor} />;
+            break;
+          }
+          case 'Items': {
+            icon = (
+              <FontAwesomeIcon name="suitcase" size={25} color={tintColor} />
+            );
+            break;
+          }
+          case 'Injuries': {
+            icon = (
+              <IoniconsIcon
+                name="ios-medical-outline"
+                size={25}
+                color={tintColor}
+              />
+            );
+            break;
+          }
+          case 'Abilities': {
+            icon = (
+              <FontAwesomeIcon name="superpowers" size={25} color={tintColor} />
+            );
+            break;
+          }
+          default:
+            icon = <FontAwesomeIcon name="user" size={25} color={tintColor} />;
+        }
+
+        return icon;
+      },
+    }),
+  }
+);
+
+const MainStack = createStackNavigator(
   {
     CharacterList: { screen: CharacterListScreen },
     CharacterCreation: { screen: CharacterCreationScreen },
-    CharacterScreen: { screen: CharacterScreen },
+    CharacterScreen: TabNavigator,
     StorybookUI: { screen: StorybookUI },
   },
   {
     initialRouteName: 'CharacterList',
     // initialRouteName: 'StorybookUI',
+  }
+);
+
+MainStack.navigationOptions = ({ navigation }) => {
+  if (navigation.state.index === 2) {
+    return {
+      header: null,
+    };
+  }
+
+  return {};
+};
+
+export default createStackNavigator(
+  {
+    Main: {
+      screen: MainStack,
+    },
+    Calculator: {
+      screen: CalculatorScreen,
+    },
+  },
+  {
+    mode: 'modal',
+    headerMode: 'none',
   }
 );

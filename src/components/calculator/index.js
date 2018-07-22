@@ -18,7 +18,7 @@ class Calculator extends React.Component {
 
     this.state = {
       originalValue: props.original,
-      changeValue: 30,
+      changeValue: 0,
       operator: Operators.add,
       updatedValue: this.calculateNewValue(props.original, 0, Operators.add),
     };
@@ -42,7 +42,11 @@ class Calculator extends React.Component {
   }
 
   newChangeValueEntered(newValue) {
-    const changeValue = Number(newValue);
+    let changeValue = Number(newValue);
+    if (Number.isNaN(changeValue)) {
+      changeValue = 0;
+    }
+
     this.setState({
       changeValue,
       updatedValue: this.calculateNewValue(
@@ -66,8 +70,15 @@ class Calculator extends React.Component {
 
     return (
       <View style={this.props.style.container}>
+        <View style={this.props.style.title}>
+          <Text style={this.props.style.titleText}>
+            {this.props.attributeToUpdate}
+          </Text>
+        </View>
         <View style={this.props.style.row}>
-          <Text style={this.props.style.label}>{Strings.currentValue}</Text>
+          <Text style={this.props.style.label}>{`${Strings.currentValue} ${
+            this.props.attributeToUpdate
+          }`}</Text>
           <Text style={this.props.style.value}>{this.state.originalValue}</Text>
         </View>
         <View style={this.props.style.row}>
@@ -77,9 +88,10 @@ class Calculator extends React.Component {
             value={`${this.state.changeValue}`}
             onChangeText={this.newChangeValueEntered}
             keyboardType="number-pad"
+            underlineColorAndroid="transparent"
           />
         </View>
-        <View style={this.props.style.row}>
+        <View style={this.props.style.operatorRow}>
           <View style={minusButtonStyle}>
             <TouchableOpacity
               style={this.props.style.button}

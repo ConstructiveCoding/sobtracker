@@ -1,3 +1,4 @@
+/* @flow */
 import Immutable from 'seamless-immutable';
 
 import * as types from '../actions/actionTypes';
@@ -29,6 +30,31 @@ export default function(
         selectedCharacter: state.characterList.find(
           item => item.id === action.characterId
         ),
+      });
+    }
+    case types.UPDATE_CHARACTER: {
+      const characterToUpdate = state.characterList.find(
+        item => item.id === action.characterId
+      );
+
+      const updatedCharacter = {
+        ...characterToUpdate,
+        ...action.characterUpdate,
+      };
+
+      const mutableCharacterList = [].concat(state.characterList);
+
+      // find the index of the character to be updated
+      const characterIndex = mutableCharacterList.findIndex(
+        item => item.id === action.characterId
+      );
+      // replace the instance of the character directly in the array
+      mutableCharacterList[characterIndex] = updatedCharacter;
+
+      return Immutable({
+        ...state,
+        characterList: mutableCharacterList,
+        selectedCharacter: updatedCharacter,
       });
     }
     default:
