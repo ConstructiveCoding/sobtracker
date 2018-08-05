@@ -12,6 +12,12 @@ import AttributeStyles from '../theme/standard/components/attribute.style';
 import { updateCharacter } from '../actions/character';
 
 class AttributesScreen extends React.Component {
+  static navigationOptions = () => {
+    return {
+      title: Strings.attributes,
+    };
+  };
+
   constructor(props) {
     super(props);
 

@@ -55,5 +55,9 @@ export default class CharacterDetailsStyles {
       flex: 1,
       textAlign: 'right',
     },
+    characterListIcon: {
+      fontSize: 32,
+      paddingLeft: 10,
+    },
   });
 }
