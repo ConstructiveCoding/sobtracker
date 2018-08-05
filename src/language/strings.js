@@ -124,7 +124,7 @@ const strings = new LocalizedStrings({
     characterLevel: 'Level',
     gold: 'Guld',
     darkStone: 'Mørk sten',
-    initiative: 'Initiative',
+    initiative: 'Initiativ',
     corruption: 'Korruption',
     grit: 'Mod',
     experience: 'XP',
