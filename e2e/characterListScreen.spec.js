@@ -2,6 +2,8 @@ const CharacterListPage = require('./pages/characterListScreen.page');
 const CreateCharacterPage = require('./pages/createCharacterScreen.page');
 const CharacterScreenPage = require('./pages/characterScreen.page');
 
+const CreateCharacterFlow = require('./flows/createCharacter');
+
 describe('Character List Screen', () => {
   beforeEach(async () => {
     await device.reloadReactNative();
@@ -9,6 +11,7 @@ describe('Character List Screen', () => {
 
   const characterListPage = CharacterListPage();
   const createCharacterPage = CreateCharacterPage();
+  const createCharacterFlow = CreateCharacterFlow();
 
   const navigateToAddCharacterScreen = async () => {
     await characterListPage.addCharacter();
@@ -27,18 +30,6 @@ describe('Character List Screen', () => {
   });
 
   it('should list characters from the application state', async () => {
-    const createCharacter = async (characterName, characterClass) => {
-      await createCharacterPage.enterName(characterName);
-      await createCharacterPage.enterClass(characterClass);
-      await createCharacterPage.enterGender('Female');
-
-      await createCharacterPage.submitIsEnabled();
-      await createCharacterPage.createCharacter();
-
-      await characterListPage.isVisible();
-      await characterListPage.hasCharacter(characterName, characterClass);
-    };
-
     const characters = [
       {
         characterName: 'Character 1',
@@ -52,18 +43,17 @@ describe('Character List Screen', () => {
 
     await characterListPage.isVisible();
 
-    await navigateToAddCharacterScreen();
-    await createCharacter(
+    await createCharacterFlow.createCharacter(
       characters[0].characterName,
       characters[0].characterClass
     );
+
     await characterListPage.hasCharacter(
       characters[0].characterName,
       characters[0].characterClass
     );
 
-    await navigateToAddCharacterScreen();
-    await createCharacter(
+    await createCharacterFlow.createCharacter(
       characters[1].characterName,
       characters[1].characterClass
     );

@@ -26,7 +26,9 @@ export default ({
 }) => (
   <View style={style.characterDetailsContainer}>
     <View style={style.characterNameContainer}>
-      <Text style={style.characterName}>{name}</Text>
+      <Text testID="character-name" style={style.characterName}>
+        {name}
+      </Text>
     </View>
     <View style={style.characterMinorDetailsContainer}>
       <View style={style.characterGenderContainer}>
@@ -36,20 +38,25 @@ export default ({
         <Text style={style.characterGender}>{gender}</Text>
       </View>
       <View style={style.characterClassContainer}>
-        <Text style={style.characterClassTitle} testID="character-name">
+        <Text style={style.characterClassTitle} testID="character-class">
           {Strings.characterClass}
         </Text>
         <Text style={style.characterClass}>{characterClass}</Text>
       </View>
     </View>
     <View style={style.characterDetailRow}>
-      <TouchableOpacity style={style.characterDetailRowButton} onPress={editXP}>
+      <TouchableOpacity
+        testID="xp"
+        style={style.characterDetailRowButton}
+        onPress={editXP}
+      >
         <Text style={style.characterDetailTitle}>{Strings.experience}</Text>
         <Text style={style.characterDetailValue}>{xp}</Text>
       </TouchableOpacity>
     </View>
     <View style={style.characterDetailRow}>
       <TouchableOpacity
+        testID="level"
         style={style.characterDetailRowButton}
         onPress={editLevel}
       >
@@ -59,6 +66,7 @@ export default ({
     </View>
     <View style={style.characterDetailRow}>
       <TouchableOpacity
+        testID="gold"
         style={style.characterDetailRowButton}
         onPress={editGold}
       >
@@ -68,6 +76,7 @@ export default ({
     </View>
     <View style={style.characterDetailRow}>
       <TouchableOpacity
+        testID="dark-stone"
         style={style.characterDetailRowButton}
         onPress={editDarkStone}
       >
@@ -77,6 +86,7 @@ export default ({
     </View>
     <View style={style.characterDetailRow}>
       <TouchableOpacity
+        testID="initiative"
         style={style.characterDetailRowButton}
         onPress={editInitiative}
       >
@@ -86,6 +96,7 @@ export default ({
     </View>
     <View style={style.characterDetailRow}>
       <TouchableOpacity
+        testID="corruption"
         style={style.characterDetailRowButton}
         onPress={editCorruption}
       >
@@ -95,6 +106,7 @@ export default ({
     </View>
     <View style={style.characterDetailRow}>
       <TouchableOpacity
+        testID="grit"
         style={style.characterDetailRowButton}
         onPress={editGrit}
       >

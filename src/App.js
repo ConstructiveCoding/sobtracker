@@ -9,6 +9,7 @@ import { Platform, StyleSheet, Text, View } from 'react-native';
 import {
   createBottomTabNavigator,
   createStackNavigator,
+  createSwitchNavigator,
 } from 'react-navigation';
 import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
 import IoniconsIcon from 'react-native-vector-icons/Ionicons';
@@ -90,7 +91,8 @@ const TabNavigator = createBottomTabNavigator(
           case 'Character': {
             return (
               <Text
-                style={{ color: tintColor }}
+                testID="character-tab"
+                style={{ color: tintColor, textAlign: 'center' }}
                 adjustsFontSizeToFit
                 minimumFontScale={0.5}
                 numberOfLines={1}
@@ -102,7 +104,8 @@ const TabNavigator = createBottomTabNavigator(
           case 'Attributes': {
             return (
               <Text
-                style={{ color: tintColor }}
+                testID="attributes-tab"
+                style={{ color: tintColor, textAlign: 'center' }}
                 adjustsFontSizeToFit
                 minimumFontScale={0.5}
                 numberOfLines={1}
@@ -114,7 +117,8 @@ const TabNavigator = createBottomTabNavigator(
           case 'Items': {
             return (
               <Text
-                style={{ color: tintColor }}
+                testID="items-tab"
+                style={{ color: tintColor, textAlign: 'center' }}
                 adjustsFontSizeToFit
                 minimumFontScale={0.5}
                 numberOfLines={1}
@@ -126,7 +130,8 @@ const TabNavigator = createBottomTabNavigator(
           case 'Injuries': {
             return (
               <Text
-                style={{ color: tintColor }}
+                testID="injuries-tab"
+                style={{ color: tintColor, textAlign: 'center' }}
                 adjustsFontSizeToFit
                 minimumFontScale={0.5}
                 numberOfLines={1}
@@ -138,7 +143,8 @@ const TabNavigator = createBottomTabNavigator(
           case 'Abilities': {
             return (
               <Text
-                style={{ color: tintColor }}
+                testID="abilities-tab"
+                style={{ color: tintColor, textAlign: 'center' }}
                 adjustsFontSizeToFit
                 minimumFontScale={0.5}
                 numberOfLines={1}
@@ -150,7 +156,7 @@ const TabNavigator = createBottomTabNavigator(
           default:
             return (
               <Text
-                style={{ color: tintColor }}
+                style={{ color: tintColor, textAlign: 'center' }}
                 adjustsFontSizeToFit
                 minimumFontScale={0.5}
                 numberOfLines={1}
@@ -205,11 +211,10 @@ const TabNavigator = createBottomTabNavigator(
   }
 );
 
-const MainStack = createStackNavigator(
+const CharacterListStack = createStackNavigator(
   {
     CharacterList: { screen: CharacterListScreen },
     CharacterCreation: { screen: CharacterCreationScreen },
-    CharacterScreen: TabNavigator,
     StorybookUI: { screen: StorybookUI },
   },
   {
@@ -218,20 +223,10 @@ const MainStack = createStackNavigator(
   }
 );
 
-MainStack.navigationOptions = ({ navigation }) => {
-  if (navigation.state.index === 2) {
-    return {
-      header: null,
-    };
-  }
-
-  return {};
-};
-
-export default createStackNavigator(
+const MainAppStack = createStackNavigator(
   {
-    Main: {
-      screen: MainStack,
+    CharacterScreen: {
+      screen: TabNavigator,
     },
     Calculator: {
       screen: CalculatorScreen,
@@ -242,3 +237,8 @@ export default createStackNavigator(
     headerMode: 'none',
   }
 );
+
+export default createSwitchNavigator({
+  CharacterList: CharacterListStack,
+  CharacterDetails: MainAppStack,
+});

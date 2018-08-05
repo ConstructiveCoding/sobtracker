@@ -12,6 +12,9 @@ exports[`CharacterCreation should render the character creation screen with no p
     </Text>
     <TextInput
       allowFontScaling={true}
+      autoCapitalize={true}
+      autoCorrect={false}
+      autoFocus={true}
       onChangeText={[Function]}
       placeholder="Name"
       testID="character-name-entry"
@@ -28,6 +31,7 @@ exports[`CharacterCreation should render the character creation screen with no p
     </Text>
     <TextInput
       allowFontScaling={true}
+      autoCorrect={false}
       onChangeText={[Function]}
       placeholder="Class"
       testID="character-class-entry"
@@ -44,6 +48,7 @@ exports[`CharacterCreation should render the character creation screen with no p
     </Text>
     <TextInput
       allowFontScaling={true}
+      autoCorrect={false}
       onChangeText={[Function]}
       placeholder="Gender"
       testID="character-gender-entry"
@@ -76,6 +81,9 @@ exports[`CharacterCreation should render the character creation screen with prop
     </Text>
     <TextInput
       allowFontScaling={true}
+      autoCapitalize={true}
+      autoCorrect={false}
+      autoFocus={true}
       onChangeText={[Function]}
       placeholder="Name"
       testID="character-name-entry"
@@ -92,6 +100,7 @@ exports[`CharacterCreation should render the character creation screen with prop
     </Text>
     <TextInput
       allowFontScaling={true}
+      autoCorrect={false}
       onChangeText={[Function]}
       placeholder="Class"
       testID="character-class-entry"
@@ -108,6 +117,7 @@ exports[`CharacterCreation should render the character creation screen with prop
     </Text>
     <TextInput
       allowFontScaling={true}
+      autoCorrect={false}
       onChangeText={[Function]}
       placeholder="Gender"
       testID="character-gender-entry"

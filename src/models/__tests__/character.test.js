@@ -19,6 +19,21 @@ describe('Character Model', () => {
       expect(character.corruption).toEqual(0);
       expect(character.grit).toEqual(0);
       expect(character.darkStone).toEqual(0);
+
+      expect(character.agility).toEqual(0);
+      expect(character.cunning).toEqual(0);
+      expect(character.strength).toEqual(0);
+      expect(character.spirit).toEqual(0);
+      expect(character.luck).toEqual(0);
+      expect(character.lore).toEqual(0);
+      expect(character.health).toEqual(0);
+      expect(character.sanity).toEqual(0);
+      expect(character.defense).toEqual(0);
+      expect(character.willpower).toEqual(0);
+      expect(character.maxGrit).toEqual(0);
+      expect(character.combat).toEqual(0);
+      expect(character.range).toEqual(0);
+      expect(character.melee).toEqual(0);
     });
   });
 });

@@ -19,4 +19,7 @@ export default class Colours {
 
   static cancelButtonBackground = 'rgba(255, 0, 0, .5)';
   static saveButtonBackground = 'rgba(0, 255, 0, .5)';
+
+  static attributeText = 'rgba(255, 255, 0, 1)';
+  static attributeBackground = 'rgba(125, 0, 255, 1)';
 }

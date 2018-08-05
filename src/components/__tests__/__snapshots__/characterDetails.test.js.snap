@@ -27,6 +27,7 @@ exports[`CharacterDetails should render the character details screen with the su
           "fontSize": 18,
         }
       }
+      testID="character-name"
     >
       Test Character
     </Text>
@@ -90,7 +91,7 @@ exports[`CharacterDetails should render the character details screen with the su
             "fontSize": 10,
           }
         }
-        testID="character-name"
+        testID="character-class"
       >
         Class
       </Text>
@@ -131,6 +132,7 @@ exports[`CharacterDetails should render the character details screen with the su
           "opacity": 1,
         }
       }
+      testID="xp"
     >
       <Text
         accessible={true}
@@ -181,6 +183,7 @@ exports[`CharacterDetails should render the character details screen with the su
           "opacity": 1,
         }
       }
+      testID="level"
     >
       <Text
         accessible={true}
@@ -233,6 +236,7 @@ exports[`CharacterDetails should render the character details screen with the su
           "opacity": 1,
         }
       }
+      testID="gold"
     >
       <Text
         accessible={true}
@@ -285,6 +289,7 @@ exports[`CharacterDetails should render the character details screen with the su
           "opacity": 1,
         }
       }
+      testID="dark-stone"
     >
       <Text
         accessible={true}
@@ -337,6 +342,7 @@ exports[`CharacterDetails should render the character details screen with the su
           "opacity": 1,
         }
       }
+      testID="initiative"
     >
       <Text
         accessible={true}
@@ -389,6 +395,7 @@ exports[`CharacterDetails should render the character details screen with the su
           "opacity": 1,
         }
       }
+      testID="corruption"
     >
       <Text
         accessible={true}
@@ -441,6 +448,7 @@ exports[`CharacterDetails should render the character details screen with the su
           "opacity": 1,
         }
       }
+      testID="grit"
     >
       <Text
         accessible={true}

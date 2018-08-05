@@ -71,7 +71,10 @@ class Calculator extends React.Component {
     return (
       <View style={this.props.style.container}>
         <View style={this.props.style.title}>
-          <Text style={this.props.style.titleText}>
+          <Text
+            testID="attribute-to-update-title"
+            style={this.props.style.titleText}
+          >
             {this.props.attributeToUpdate}
           </Text>
         </View>
@@ -84,6 +87,7 @@ class Calculator extends React.Component {
         <View style={this.props.style.row}>
           <Text style={this.props.style.label}>{Strings.newAmount}</Text>
           <TextInput
+            testID="new-amount-entry"
             style={this.props.style.numericInput}
             value={`${this.state.changeValue}`}
             onChangeText={this.newChangeValueEntered}
@@ -94,6 +98,7 @@ class Calculator extends React.Component {
         <View style={this.props.style.operatorRow}>
           <View style={minusButtonStyle}>
             <TouchableOpacity
+              testID="minus-operator"
               style={this.props.style.button}
               onPress={() => this.operatorSelected(Operators.subtract)}
             >
@@ -102,6 +107,7 @@ class Calculator extends React.Component {
           </View>
           <View style={plusButtonStyle}>
             <TouchableOpacity
+              testID="add-operator"
               style={this.props.style.button}
               onPress={() => this.operatorSelected(Operators.add)}
             >
@@ -116,6 +122,7 @@ class Calculator extends React.Component {
         <View style={this.props.style.commandRow}>
           <View style={this.props.style.cancelButtonContainer}>
             <TouchableOpacity
+              testID="cancel-calculator"
               style={this.props.style.cancelButton}
               onPress={this.props.onCancel}
             >
@@ -124,6 +131,7 @@ class Calculator extends React.Component {
           </View>
           <View style={this.props.style.saveButtonContainer}>
             <TouchableOpacity
+              testID="save-calculator"
               style={this.props.style.saveButton}
               onPress={() => {
                 this.props.onSave(this.state.updatedValue);

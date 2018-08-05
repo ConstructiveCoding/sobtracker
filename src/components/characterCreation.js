@@ -80,6 +80,9 @@ class CreateCharacter extends React.Component<
         <View style={styles.emptyFormRow}>
           <Text style={styles.validDataLabel}>{Strings.characterName}</Text>
           <TextInput
+            autoFocus
+            autoCapitalize
+            autoCorrect={false}
             placeholder={Strings.characterName}
             style={styles.validDataEntry}
             testID="character-name-entry"
@@ -99,6 +102,7 @@ class CreateCharacter extends React.Component<
         <View style={styles.emptyFormRow}>
           <Text style={styles.validDataLabel}>{Strings.characterClass}</Text>
           <TextInput
+            autoCorrect={false}
             placeholder={Strings.characterClass}
             style={styles.validDataEntry}
             testID="character-class-entry"
@@ -118,6 +122,7 @@ class CreateCharacter extends React.Component<
         <View style={styles.emptyFormRow}>
           <Text style={styles.validDataLabel}>{Strings.characterGender}</Text>
           <TextInput
+            autoCorrect={false}
             placeholder={Strings.characterGender}
             style={styles.validDataEntry}
             testID="character-gender-entry"
