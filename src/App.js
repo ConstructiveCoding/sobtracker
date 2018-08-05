@@ -24,6 +24,7 @@ import AbilitiesScreen from './screens/abilitiesScreen';
 import AttributesScreen from './screens/attributesScreen';
 import InjuriesScreen from './screens/injuriesScreen';
 import ItemsScreen from './screens/itemsScreen';
+import ItemCreation from './screens/createItemScreen';
 
 import StorybookUI from '../storybook';
 
@@ -230,6 +231,9 @@ const MainAppStack = createStackNavigator(
     },
     Calculator: {
       screen: CalculatorScreen,
+    },
+    ItemCreation: {
+      screen: ItemCreation,
     },
   },
   {

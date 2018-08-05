@@ -12,7 +12,7 @@ exports[`CharacterCreation should render the character creation screen with no p
     </Text>
     <TextInput
       allowFontScaling={true}
-      autoCapitalize={true}
+      autoCapitalize="words"
       autoCorrect={false}
       autoFocus={true}
       onChangeText={[Function]}
@@ -81,7 +81,7 @@ exports[`CharacterCreation should render the character creation screen with prop
     </Text>
     <TextInput
       allowFontScaling={true}
-      autoCapitalize={true}
+      autoCapitalize="words"
       autoCorrect={false}
       autoFocus={true}
       onChangeText={[Function]}

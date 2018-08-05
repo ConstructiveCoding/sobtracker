@@ -32,7 +32,6 @@ export default class CreateCharacterStyles {
     defaultSubmitButtonText: {
       color: Colours.buttonText,
     },
-
     disabledSubmitButton: {
       borderWidth: 1,
       borderRadius: 5,

@@ -5,3 +5,5 @@ export const UPDATE_CHARACTER: string = 'sob.app.UPDATE_CHARACTER';
 
 export const PREPARE_CALCULATOR: string = 'sob.app.PREPARE_CALCULATOR';
 export const RESET_CALCULATOR: string = 'sob.app.RESET_CALCULATOR';
+
+export const CREATE_ITEM: string = 'sob.app.CREATE_ITEM';

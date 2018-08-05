@@ -81,7 +81,7 @@ class CreateCharacter extends React.Component<
           <Text style={styles.validDataLabel}>{Strings.characterName}</Text>
           <TextInput
             autoFocus
-            autoCapitalize
+            autoCapitalize="words"
             autoCorrect={false}
             placeholder={Strings.characterName}
             style={styles.validDataEntry}
