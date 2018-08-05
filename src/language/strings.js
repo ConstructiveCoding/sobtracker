@@ -176,7 +176,15 @@ const strings = new LocalizedStrings({
     combat: 'Kamp',
     range: 'Rækkevidde',
     melee: 'Nærkamp',
-  }
+    name: 'Navn',
+    weight: 'Vægt',
+    keywords: 'Nøgleord',
+    location: 'Beliggenhed',
+    cost: 'Koste',
+    modifiers: 'Modifiers',
+    description: 'Beskrivelse',
+    newItem: 'Ny vare',
+  },
 });
 
 module.exports = strings;
