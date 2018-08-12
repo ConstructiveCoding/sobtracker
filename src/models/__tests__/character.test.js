@@ -34,6 +34,9 @@ describe('Character Model', () => {
       expect(character.combat).toEqual(0);
       expect(character.range).toEqual(0);
       expect(character.melee).toEqual(0);
+
+      expect(character.items).toBeDefined();
+      expect(character.items).toHaveLength(0);
     });
   });
 });

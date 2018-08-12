@@ -57,6 +57,34 @@ export default function(
         selectedCharacter: updatedCharacter,
       });
     }
+    case types.CREATE_ITEM: {
+      const itemId = action.item.id;
+      const characterToUpdate = state.characterList.find(
+        item => item.id === state.selectedCharacter.id
+      );
+
+      const mutableItems = [].concat(characterToUpdate.items);
+      mutableItems.push(itemId);
+
+      const updatedCharacter = {
+        ...characterToUpdate,
+        items: mutableItems,
+      };
+
+      const mutableCharacterList = [].concat(state.characterList);
+
+      // find the index of the character to be updated
+      const characterIndex = mutableCharacterList.findIndex(
+        item => item.id === state.selectedCharacter.id
+      );
+      // replace the instance of the character directly in the array
+      mutableCharacterList[characterIndex] = updatedCharacter;
+
+      return Immutable({
+        ...state,
+        characterList: mutableCharacterList,
+      });
+    }
     default:
       return state;
   }

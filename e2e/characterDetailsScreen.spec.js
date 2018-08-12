@@ -5,11 +5,18 @@ const CharacterListPage = require('./pages/characterListScreen.page');
 const CharacterDetailsPage = require('./pages/characterDetailsScreen.page');
 const CalculatorScreen = require('./pages/calculator.page');
 
+const CreateItemScreen = require('./pages/createItemScreen.page');
+const ItemsListScreen = require('./pages/itemListScreen.page');
+const ITEMS_TAB = 'items-tab';
+
 describe('Character Details Screen', () => {
   const createCharacterFlow = CreateCharacterFlow();
   const characterListPage = CharacterListPage();
   const characterDetailsScreen = CharacterDetailsPage();
   const calculatorScreen = CalculatorScreen();
+
+  const itemsListScreen = ItemsListScreen();
+  const createItemScreen = CreateItemScreen();
 
   const charName = 'Char Name';
   const charClass = 'Char Class';
@@ -42,5 +49,19 @@ describe('Character Details Screen', () => {
     await updateAndValidate(characterDetailsScreen.attributes.INITIATIVE, '4');
     await updateAndValidate(characterDetailsScreen.attributes.CORRUPTION, '1');
     await updateAndValidate(characterDetailsScreen.attributes.GRIT, '2');
+  });
+
+  it('should add a new item to the list', async () => {
+    await element(by.id(ITEMS_TAB)).tap();
+    await itemsListScreen.isVisible();
+    await itemsListScreen.addItem();
+    await createItemScreen.isVisible();
+
+    const newItemName = 'This is a test item';
+    await createItemScreen.enterName(newItemName);
+    await createItemScreen.createItem();
+
+    await itemsListScreen.isVisible();
+    await itemsListScreen.hasItem(newItemName);
   });
 });

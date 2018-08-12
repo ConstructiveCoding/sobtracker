@@ -2,8 +2,16 @@
 
 import React from 'react';
 
-import { Text, TextInput, TouchableOpacity, View } from 'react-native';
+import {
+  ScrollView,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 
+import CreateItemStyles from '../../theme/standard/components/createItem.style';
+import Item from '../../models/item';
 import Strings from '../../language/strings';
 
 type ItemCreationState = {
@@ -31,26 +39,46 @@ export default class ItemCreation extends React.Component {
     super(props);
 
     this.state = initialState;
+
+    this.validateForm = this.validateForm.bind(this);
+  }
+
+  validateForm() {
+    const item = new Item(
+      this.state.name,
+      this.state.type,
+      this.state.weight,
+      this.state.keywords,
+      this.state.location,
+      this.state.cost,
+      this.state.modifiers,
+      this.state.description
+    );
+    this.props.onSave(item);
   }
 
   render() {
+    const styles = CreateItemStyles.standard;
     return (
-      <View>
-        <View>
-          <Text>{Strings.newItem}</Text>
+      <View style={styles.formContainer}>
+        <View style={styles.formHeader}>
+          <Text style={styles.formHeaderText}>{Strings.newItem}</Text>
         </View>
-        <View>
-          <Text>{Strings.name}</Text>
+        <View style={styles.formRow}>
+          <Text style={styles.formLabel}>{Strings.name}</Text>
           <TextInput
+            testID="item-name-entry"
+            style={styles.formDataEntry}
             value={this.state.name}
             onChangeText={newValue => {
               this.setState({ name: newValue });
             }}
           />
         </View>
-        <View>
-          <Text>{Strings.weight}</Text>
+        <View style={styles.formRow}>
+          <Text style={styles.formLabel}>{Strings.weight}</Text>
           <TextInput
+            style={styles.formDataEntry}
             value={this.state.weight.toString()}
             onChangeText={newValue => {
               let changeValue = Number(newValue);
@@ -62,22 +90,24 @@ export default class ItemCreation extends React.Component {
             }}
           />
         </View>
-        <View>
-          <Text>{Strings.keywords}</Text>
+        <View style={styles.formRow}>
+          <Text style={styles.formLabel}>{Strings.keywords}</Text>
           <TextInput />
         </View>
-        <View>
-          <Text>{Strings.location}</Text>
+        <View style={styles.formRow}>
+          <Text style={styles.formLabel}>{Strings.location}</Text>
           <TextInput
+            style={styles.formDataEntry}
             value={this.state.location}
             onChangeText={newValue => {
               this.setState({ location: newValue });
             }}
           />
         </View>
-        <View>
-          <Text>{Strings.cost}</Text>
+        <View style={styles.formRow}>
+          <Text style={styles.formLabel}>{Strings.cost}</Text>
           <TextInput
+            style={styles.formDataEntry}
             value={this.state.cost.toString()}
             onChangeText={newValue => {
               let costValue = Number(newValue);
@@ -89,26 +119,38 @@ export default class ItemCreation extends React.Component {
             }}
           />
         </View>
-        <View>
-          <Text>{Strings.modifiers}</Text>
+        <View style={styles.formRow}>
+          <Text style={styles.formLabel}>{Strings.modifiers}</Text>
           <TextInput />
         </View>
-        <View>
-          <Text>{Strings.description}</Text>
+        <View style={styles.formRow}>
+          <Text style={styles.formLabel}>{Strings.description}</Text>
           <TextInput
+            style={styles.formDataEntry}
             value={this.state.description}
             onChangeText={newValue => {
               this.setState({ description: newValue });
             }}
           />
         </View>
-        <View>
-          <TouchableOpacity onPress={this.props.onCancel}>
-            <Text>{Strings.cancel}</Text>
-          </TouchableOpacity>
-          <TouchableOpacity onPress={() => this.props.onSave(this.state)}>
-            <Text>{Strings.save}</Text>
-          </TouchableOpacity>
+        <View style={styles.commandRow}>
+          <View style={styles.cancelButtonContainer}>
+            <TouchableOpacity
+              style={styles.cancelButton}
+              onPress={this.props.onCancel}
+            >
+              <Text>{Strings.cancel}</Text>
+            </TouchableOpacity>
+          </View>
+          <View style={styles.saveButtonContainer}>
+            <TouchableOpacity
+              testID="save-item"
+              style={styles.saveButton}
+              onPress={this.validateForm}
+            >
+              <Text>{Strings.save}</Text>
+            </TouchableOpacity>
+          </View>
         </View>
       </View>
     );

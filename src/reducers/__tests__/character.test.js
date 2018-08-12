@@ -78,7 +78,7 @@ describe('Character reducer', () => {
           level: 100,
         },
       ],
-      selectedCharacter: 'character2',
+      selectedCharacter: { id: 'character2' },
     });
 
     const action = {
@@ -107,5 +107,34 @@ describe('Character reducer', () => {
     expect(returnedState.characterList[1].id).toEqual('character2');
     expect(returnedState.characterList[1].xp).toEqual(35);
     expect(returnedState.characterList[1].level).toEqual(1);
+  });
+
+  it('should add a new item to the currently selected character', () => {
+    const InitialState = Immutable({
+      characterList: [
+        {
+          id: 'character2',
+          name: 'test character 2',
+          xp: 535,
+          level: 0,
+          items: [],
+        },
+      ],
+      selectedCharacter: { id: 'character2' },
+    });
+
+    const testItemName = 'Test Item';
+    const testItemId = 'TEST_ITEM_ID';
+
+    const action = {
+      type: types.CREATE_ITEM,
+      item: { id: testItemId, name: testItemName },
+    };
+
+    const updatedState = CharacterReducer(InitialState, action);
+
+    expect(updatedState.characterList).toHaveLength(1);
+    expect(updatedState.characterList[0].items).toHaveLength(1);
+    expect(updatedState.characterList[0].items[0]).toEqual(testItemId);
   });
 });

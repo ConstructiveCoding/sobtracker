@@ -1,7 +1,7 @@
 /* @flow */
 
 import React from 'react';
-import { Text, TouchableOpacity } from 'react-native';
+import { FlatList, Text, TouchableOpacity, View } from 'react-native';
 
 import { connect } from 'react-redux';
 
@@ -51,14 +51,32 @@ class ItemsScreen extends React.Component {
   render() {
     return (
       <SafeAreaView>
-        <Text>{Strings.items}</Text>
+        <FlatList
+          data={this.props.items}
+          keyExtractor={item => item.id}
+          renderItem={({ item }) => (
+            <View>
+              <Text>{item.name}</Text>
+            </View>
+          )}
+        />
       </SafeAreaView>
     );
   }
 }
 
 function mapStateToProps(state) {
-  return {};
+  const character = state.character.characterList.find(
+    item => item.id === state.character.selectedCharacter.id
+  );
+
+  const items = character.items.map(itemId => state.items.byId[itemId]);
+
+  console.log('Binding items to props', items);
+
+  return {
+    items,
+  };
 }
 
 const actions = {};
