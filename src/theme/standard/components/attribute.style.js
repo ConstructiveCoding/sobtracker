@@ -31,6 +31,20 @@ export default class AttributeStyles {
       justifyContent: 'center',
       overflow: 'hidden',
     },
+    attributeBaseValue: {
+      fontSize: 12,
+      fontWeight: '400',
+      marginHorizontal: 4,
+      padding: 4,
+      color: Colours.attributeBackground,
+      backgroundColor: Colours.attributeText,
+      height: 22,
+      width: 22,
+      borderRadius: 11,
+      textAlign: 'center',
+      justifyContent: 'center',
+      overflow: 'hidden',
+    },
   };
 
   static standard: StyleSheet = StyleSheet.create(AttributeStyles.base);

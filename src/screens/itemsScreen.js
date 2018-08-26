@@ -57,6 +57,7 @@ class ItemsScreen extends React.Component {
           renderItem={({ item }) => (
             <View>
               <Text>{item.name}</Text>
+              <Text>{item.type}</Text>
             </View>
           )}
         />

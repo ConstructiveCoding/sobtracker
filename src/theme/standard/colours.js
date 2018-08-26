@@ -1,4 +1,6 @@
 export default class Colours {
+  static backgroundColor = 'rgba(233, 233, 239, 1)';
+
   static buttonBorder = 'rgba(240, 200, 200, 1)';
   static buttonBackground = 'rgba(240, 200, 200, .5)';
   static buttonText = 'rgba(253, 116, 40, 1.00)';

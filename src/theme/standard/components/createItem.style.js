@@ -64,5 +64,36 @@ export default class CreateItemStyles {
       alignItems: 'center',
       backgroundColor: Colours.saveButtonBackground,
     },
+    modifierRow: {
+      flexDirection: 'row',
+      alignItems: 'center',
+      justifyContent: 'center',
+    },
+    modifierLabel: {
+      alignItems: 'center',
+      justifyContent: 'center',
+      flex: 1,
+    },
+    modifierButton: {
+      alignItems: 'center',
+      justifyContent: 'center',
+    },
+    modifierButtonText: {
+      alignItems: 'center',
+      justifyContent: 'center',
+    },
+    attributePickerContainer: {
+      position: 'absolute',
+      top: 100,
+      left: 0,
+      right: 0,
+      backgroundColor: Colours.backgroundColor,
+    },
+    attributePicker: {
+      color: Colours.backgroundColor,
+    },
+    attributePickerItem: {
+      backgroundColor: Colours.backgroundColor,
+    },
   });
 }

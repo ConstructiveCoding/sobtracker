@@ -11,19 +11,22 @@ export default ({
   startEditing,
   editing,
   label,
+  baseValue,
   value,
   style,
   attribute,
 }) => (
   <View style={style.attributeContainer}>
-    <Text
-      adjustsFontSizeToFit
-      numberOfLines={1}
-      minimumFontScale={0.5}
-      style={style.attributeLabel}
-    >
-      {label}
-    </Text>
+    {label !== undefined && (
+      <Text
+        adjustsFontSizeToFit
+        numberOfLines={1}
+        minimumFontScale={0.5}
+        style={style.attributeLabel}
+      >
+        {label}
+      </Text>
+    )}
     <View
       testID={`${attribute}-attribute`}
       style={style.attributeInnerContainer}
@@ -42,6 +45,16 @@ export default ({
         >
           {value}
         </Text>
+        {baseValue !== undefined && (
+          <Text
+            adjustsFontSizeToFit
+            numberOfLines={1}
+            minimumFontScale={0.5}
+            style={style.attributeBaseValue}
+          >
+            {baseValue}
+          </Text>
+        )}
       </TouchableOpacity>
       {editing && (
         <TouchableOpacity testID="increment-attribute" onPress={increment}>
