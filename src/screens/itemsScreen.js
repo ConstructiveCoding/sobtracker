@@ -66,13 +66,8 @@ class ItemsScreen extends React.Component {
 }
 
 function mapStateToProps(state) {
-  const character = state.character.characterList.find(
-    item => item.id === state.character.selectedCharacter.id
-  );
-
+  const character = state.character.selectedCharacter;
   const items = character.items.map(itemId => state.items.byId[itemId]);
-
-  console.log('Binding items to props', items);
 
   return {
     items,

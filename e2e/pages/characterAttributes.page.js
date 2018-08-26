@@ -45,7 +45,6 @@ module.exports = () => ({
     await element(by.id(attributeID)).tap();
   },
   checkAttribute: async (attributeID, value) => {
-    console.log('Attribute ID', attributeID);
     await expect(
       element(by.text(value).withAncestor(by.id(attributeID)))
     ).toBeVisible();

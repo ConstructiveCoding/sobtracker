@@ -5,6 +5,8 @@ import { connect } from 'react-redux';
 import { Button, Text, TouchableOpacity, View } from 'react-native';
 import Icon from 'react-native-vector-icons/dist/FontAwesome';
 
+import CharacterListSelector from '../selectors/characterListSelector';
+
 import CharacterList from '../components/characterList';
 import Strings from '../language/strings';
 
@@ -77,8 +79,10 @@ const actions = {
 };
 
 function mapStateToProps(state) {
+  const characterList = CharacterListSelector(state.character);
+
   return {
-    characterList: state.character.characterList,
+    characterList,
   };
 }
 

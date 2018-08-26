@@ -13,6 +13,8 @@ describe('Character List Screen', () => {
   it('should render all of the characters', () => {
     const initialState = {
       character: {
+        allIds: [],
+        byId: {},
         characterList: [],
         selectedCharacter: undefined,
       },

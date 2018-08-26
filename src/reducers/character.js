@@ -4,12 +4,14 @@ import Immutable from 'seamless-immutable';
 import * as types from '../actions/actionTypes';
 
 type CharacterState = {
-  characterList: Array<Character>,
+  allIds: Array<string>,
+  byId: Object,
   selectedCharacter: Character,
 };
 
 const InitialState = Immutable({
-  characterList: [],
+  allIds: [],
+  byId: {},
   selectedCharacter: undefined,
 });
 
@@ -19,49 +21,48 @@ export default function(
 ): CharacterState {
   switch (action.type) {
     case types.CREATE_CHARACTER: {
+      const allIds = [action.character.id].concat(state.allIds);
+      const byId = {
+        ...state.byId,
+      };
+
+      byId[action.character.id] = action.character;
+
       return Immutable({
         ...state,
-        characterList: [action.character].concat(state.characterList),
+        allIds,
+        byId,
       });
     }
     case types.LOAD_CHARACTER: {
       return Immutable({
         ...state,
-        selectedCharacter: state.characterList.find(
-          item => item.id === action.characterId
-        ),
+        selectedCharacter: state.byId[action.characterId],
       });
     }
     case types.UPDATE_CHARACTER: {
-      const characterToUpdate = state.characterList.find(
-        item => item.id === action.characterId
-      );
+      const characterToUpdate = state.byId[action.characterId];
 
       const updatedCharacter = {
         ...characterToUpdate,
         ...action.characterUpdate,
       };
 
-      const mutableCharacterList = [].concat(state.characterList);
+      const newById = {
+        ...state.byId,
+      };
 
-      // find the index of the character to be updated
-      const characterIndex = mutableCharacterList.findIndex(
-        item => item.id === action.characterId
-      );
-      // replace the instance of the character directly in the array
-      mutableCharacterList[characterIndex] = updatedCharacter;
+      newById[action.characterId] = updatedCharacter;
 
       return Immutable({
         ...state,
-        characterList: mutableCharacterList,
+        byId: newById,
         selectedCharacter: updatedCharacter,
       });
     }
     case types.CREATE_ITEM: {
       const itemId = action.item.id;
-      const characterToUpdate = state.characterList.find(
-        item => item.id === state.selectedCharacter.id
-      );
+      const characterToUpdate = state.byId[state.selectedCharacter.id];
 
       const mutableItems = [].concat(characterToUpdate.items);
       mutableItems.push(itemId);
@@ -71,18 +72,16 @@ export default function(
         items: mutableItems,
       };
 
-      const mutableCharacterList = [].concat(state.characterList);
+      const newById = {
+        ...state.byId,
+      };
 
-      // find the index of the character to be updated
-      const characterIndex = mutableCharacterList.findIndex(
-        item => item.id === state.selectedCharacter.id
-      );
-      // replace the instance of the character directly in the array
-      mutableCharacterList[characterIndex] = updatedCharacter;
+      newById[state.selectedCharacter.id] = updatedCharacter;
 
       return Immutable({
         ...state,
-        characterList: mutableCharacterList,
+        byId: newById,
+        selectedCharacter: updatedCharacter,
       });
     }
     default:

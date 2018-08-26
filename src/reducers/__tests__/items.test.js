@@ -4,7 +4,7 @@ import ItemsReducer from '../items';
 import * as types from '../../actions/actionTypes';
 
 describe('Items reducer', () => {
-  it('should return the default state when there is no matching actino', () => {
+  it('should return the default state when there is no matching action', () => {
     const initialState = ItemsReducer();
 
     expect(initialState).toBeDefined();

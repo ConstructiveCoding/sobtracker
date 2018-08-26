@@ -1,6 +1,7 @@
 /* @flow */
 
 import uuid from 'uuid';
+import Modifier from './modifier';
 
 class Item {
   id: string;
@@ -12,7 +13,7 @@ class Item {
   location: string;
   cost: number;
 
-  modifiers: Array;
+  modifiers: Array<Modifier>;
   description: string;
 
   constructor(
@@ -22,7 +23,7 @@ class Item {
     keywords: Array<string>,
     location: string,
     cost: number,
-    modifiers: Array,
+    modifiers: Array<Modifier>,
     description: string
   ) {
     this.id = uuid.v4();
