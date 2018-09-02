@@ -35,6 +35,12 @@ class AttributesScreen extends React.Component {
     this.createDecrementor = this.createDecrementor.bind(this);
   }
 
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      dataSource: nextProps.dataSource,
+    });
+  }
+
   createAttributeSelector(index) {
     return () => {
       this.selectAttribute(index);
@@ -57,13 +63,9 @@ class AttributesScreen extends React.Component {
     const dataSource = this.state.dataSource;
 
     dataSource[index].baseValue += 1;
-    dataSource[index].value += 1;
-    this.setState({
-      dataSource,
-    });
 
     const characterUpdate = {};
-    characterUpdate[dataSource[index].attribute] = dataSource[index].value;
+    characterUpdate[dataSource[index].attribute] = dataSource[index].baseValue;
 
     this.props.updateCharacter(this.props.character.id, characterUpdate);
   }
@@ -72,13 +74,9 @@ class AttributesScreen extends React.Component {
     const dataSource = this.state.dataSource;
 
     dataSource[index].baseValue -= 1;
-    dataSource[index].value -= 1;
-    this.setState({
-      dataSource,
-    });
 
     const characterUpdate = {};
-    characterUpdate[dataSource[index].attribute] = dataSource[index].value;
+    characterUpdate[dataSource[index].attribute] = dataSource[index].baseValue;
 
     this.props.updateCharacter(this.props.character.id, characterUpdate);
   }
@@ -124,6 +122,7 @@ class AttributesScreen extends React.Component {
 
 function mapStateToProps(state) {
   const dataSource = CharacterAttributesSelector(state);
+
   return {
     dataSource,
     character: state.character.selectedCharacter,

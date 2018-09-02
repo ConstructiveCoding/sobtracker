@@ -1,10 +1,10 @@
 /* @flow */
 
 import React from 'react';
+import Picker from 'react-native-picker';
 
 import {
   FlatList,
-  Picker,
   SafeAreaView,
   ScrollView,
   Text,
@@ -46,11 +46,29 @@ const initialState = {
   selectedModifierId: undefined,
   isEditingModifierType: false,
   type: 'gear',
+  attributePickerItems: [],
 };
 
 export default class ItemCreation extends React.Component {
   constructor(props) {
     super(props);
+
+    initialState.attributePickerItems = [
+      { title: Strings.agility, value: 'agility' },
+      { title: Strings.cunning, value: 'cunning' },
+      { title: Strings.strength, value: 'strength' },
+      { title: Strings.spirit, value: 'spirit' },
+      { title: Strings.lore, value: 'lore' },
+      { title: Strings.luck, value: 'luck' },
+      { title: Strings.health, value: 'health' },
+      { title: Strings.defense, value: 'defense' },
+      { title: Strings.sanity, value: 'sanity' },
+      { title: Strings.willpower, value: 'willpower' },
+      { title: Strings.maxGrit, value: 'maxGrit' },
+      { title: Strings.combat, value: 'combat' },
+      { title: Strings.range, value: 'range' },
+      { title: Strings.melee, value: 'melee' },
+    ];
 
     this.state = initialState;
 
@@ -125,6 +143,51 @@ export default class ItemCreation extends React.Component {
       selectedModifier,
       selectedModifierId,
     });
+
+    const pickerData = [
+      Strings.agility,
+      Strings.cunning,
+      Strings.strength,
+      Strings.spirit,
+      Strings.lore,
+      Strings.luck,
+      Strings.health,
+      Strings.defense,
+      Strings.sanity,
+      Strings.willpower,
+      Strings.maxGrit,
+      Strings.combat,
+      Strings.range,
+      Strings.melee,
+    ];
+
+    Picker.init({
+      pickerData,
+      pickerTitleText: Strings.attribute,
+      onPickerConfirm: data => {
+        const attribute = this.findSelectedAttribute(data[0]);
+        this.updateModifierAttribute(attribute.value);
+        this.setState({
+          selectedModifier: undefined,
+          selectedModifierId: undefined,
+        });
+      },
+      onPickerCancel: data => {
+        this.findSelectedAttribute(data[0]);
+      },
+      onPickerSelect: data => {
+        const attribute = this.findSelectedAttribute(data[0]);
+        this.updateModifierAttribute(attribute.value);
+      },
+    });
+
+    Picker.show();
+  }
+
+  findSelectedAttribute(attributeTitle) {
+    return this.state.attributePickerItems.find(
+      attribute => attribute.title === attributeTitle
+    );
   }
 
   updateModifierAttribute(newAttributeValue) {
@@ -136,7 +199,7 @@ export default class ItemCreation extends React.Component {
     selectedModifier = {
       ...selectedModifier,
     };
-    this.setState({ modifiers, selectedModifier });
+    this.setState({ selectedModifier });
   }
 
   render() {
@@ -160,6 +223,12 @@ export default class ItemCreation extends React.Component {
               }}
             />
           </View>
+
+          <View style={styles.formRow}>
+            <Text style={styles.formLabel}>{Strings.type}</Text>
+            <TextInput />
+          </View>
+
           <View style={styles.formRow}>
             <Text style={styles.formLabel}>{Strings.weight}</Text>
             <TextInput
@@ -282,32 +351,6 @@ export default class ItemCreation extends React.Component {
             </View>
           </View>
         </ScrollView>
-        {this.state.selectedModifierId && (
-          <View style={styles.attributePickerContainer}>
-            <Picker
-              prompt={Strings.attributeType}
-              style={styles.attributePicker}
-              selectedValue={this.state.selectedModifier.attribute}
-              onValueChange={this.updateModifierAttribute}
-              itemStyle={styles.attributePickerItem}
-            >
-              <Picker.Item label={Strings.agility} value="agility" />
-              <Picker.Item label={Strings.cunning} value="cunning" />
-              <Picker.Item label={Strings.strength} value="strength" />
-              <Picker.Item label={Strings.spirit} value="spirit" />
-              <Picker.Item label={Strings.lore} value="lore" />
-              <Picker.Item label={Strings.luck} value="luck" />
-              <Picker.Item label={Strings.health} value="health" />
-              <Picker.Item label={Strings.defense} value="defense" />
-              <Picker.Item label={Strings.sanity} value="sanity" />
-              <Picker.Item label={Strings.willpower} value="willpower" />
-              <Picker.Item label={Strings.maxGrit} value="maxGrit" />
-              <Picker.Item label={Strings.combat} value="combat" />
-              <Picker.Item label={Strings.range} value="range" />
-              <Picker.Item label={Strings.melee} value="melee" />
-            </Picker>
-          </View>
-        )}
       </SafeAreaView>
     );
   }

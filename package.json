@@ -57,6 +57,7 @@
     "react-native": "0.55.4",
     "react-native-device-log": "^1.0.2",
     "react-native-localization": "^1.0.9",
+    "react-native-picker": "^4.3.7",
     "react-native-vector-icons": "^4.6.0",
     "react-navigation": "^2.0.4",
     "react-redux": "^5.0.7",
