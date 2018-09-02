@@ -38,6 +38,7 @@ export default ({
       )}
       <TouchableOpacity testID="edit-attribute" onPress={startEditing}>
         <Text
+          testID={`${attribute}-attribute-current`}
           adjustsFontSizeToFit
           numberOfLines={1}
           minimumFontScale={0.5}

@@ -32,6 +32,7 @@ describe('Character Attributes Screen', () => {
     await characterAttributesScreen.checkAttribute(atts.lore, '0');
     await characterAttributesScreen.checkAttribute(atts.luck, '0');
     await characterAttributesScreen.checkAttribute(atts.maxgrit, '0');
+    await characterAttributesScreen.scrollToBottom();
     await characterAttributesScreen.checkAttribute(atts.melee, '0');
     await characterAttributesScreen.checkAttribute(atts.range, '0');
     await characterAttributesScreen.checkAttribute(atts.sanity, '0');

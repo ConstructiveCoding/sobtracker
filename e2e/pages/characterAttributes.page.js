@@ -1,23 +1,23 @@
 const DECREMENT_BUTTON = 'decrement-attribute';
 const INCREMENT_BUTTON = 'increment-attribute';
-const AGILITY_ATTRIBUTE = 'agility-attribute';
+const AGILITY_ATTRIBUTE = 'agility-attribute-current';
 
 module.exports = () => ({
   attributes: {
-    agility: 'agility-attribute',
-    cunning: 'cunning-attribute',
-    strength: 'strength-attribute',
-    spirit: 'spirit-attribute',
-    lore: 'lore-attribute',
-    luck: 'luck-attribute',
-    health: 'health-attribute',
-    defense: 'defense-attribute',
-    sanity: 'sanity-attribute',
-    willpower: 'willpower-attribute',
-    maxgrit: 'maxGrit-attribute',
-    combat: 'combat-attribute',
-    range: 'range-attribute',
-    melee: 'melee-attribute',
+    agility: 'agility-attribute-current',
+    cunning: 'cunning-attribute-current',
+    strength: 'strength-attribute-current',
+    spirit: 'spirit-attribute-current',
+    lore: 'lore-attribute-current',
+    luck: 'luck-attribute-current',
+    health: 'health-attribute-current',
+    defense: 'defense-attribute-current',
+    sanity: 'sanity-attribute-current',
+    willpower: 'willpower-attribute-current',
+    maxgrit: 'maxGrit-attribute-current',
+    combat: 'combat-attribute-current',
+    range: 'range-attribute-current',
+    melee: 'melee-attribute-current',
   },
   isVisible: async () => {
     await expect(element(by.id(AGILITY_ATTRIBUTE))).toBeVisible();
@@ -46,7 +46,13 @@ module.exports = () => ({
   },
   checkAttribute: async (attributeID, value) => {
     await expect(
-      element(by.text(value).withAncestor(by.id(attributeID)))
+      // element(by.text(value).withAncestor(by.id(attributeID)))
+      element(by.id(attributeID))
     ).toBeVisible();
+
+    await expect(element(by.id(attributeID))).toHaveText(value);
+  },
+  scrollToBottom: async () => {
+    await element(by.type('UIScrollView')).swipe('up', 'fast');
   },
 });
