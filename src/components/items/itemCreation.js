@@ -31,6 +31,7 @@ type ItemCreationState = {
   cost: number,
   modifiers: Array<Modifier>,
   description: string,
+  type: string,
 };
 
 const initialState = {
@@ -44,6 +45,7 @@ const initialState = {
   selectedModifier: undefined,
   selectedModifierId: undefined,
   isEditingModifierType: false,
+  type: 'gear',
 };
 
 export default class ItemCreation extends React.Component {
@@ -80,6 +82,7 @@ export default class ItemCreation extends React.Component {
       this.state.modifiers,
       this.state.description
     );
+
     this.props.onSave(item);
   }
 

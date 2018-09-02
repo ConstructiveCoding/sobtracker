@@ -6,3 +6,10 @@ export function createItem(item) {
     item,
   };
 }
+
+export function editItem(itemId) {
+  return {
+    type: types.EDIT_ITEM,
+    itemId,
+  };
+}

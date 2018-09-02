@@ -48,17 +48,24 @@ class ItemsScreen extends React.Component {
     this.props.navigation.navigate('ItemCreation');
   }
 
+  editItem(itemId) {
+    this.props.editItem(itemId, this.navigator);
+  }
+
   render() {
+    const styles = ItemScreenStyles.standard;
     return (
       <SafeAreaView>
         <FlatList
           data={this.props.items}
           keyExtractor={item => item.id}
           renderItem={({ item }) => (
-            <View>
-              <Text>{item.name}</Text>
-              <Text>{item.type}</Text>
-            </View>
+            <TouchableOpacity onPress={() => this.editItem(item.id)}>
+              <View style={styles.row}>
+                <Text style={styles.itemName}>{item.name}</Text>
+                <Text style={styles.itemType}>{item.type}</Text>
+              </View>
+            </TouchableOpacity>
           )}
         />
       </SafeAreaView>
