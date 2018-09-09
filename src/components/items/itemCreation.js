@@ -46,7 +46,7 @@ const initialState = {
   selectedModifierId: undefined,
   isEditingModifierType: false,
   type: 'gear',
-  attributePickerItems: [],
+  attributePickerItems: []
 };
 
 export default class ItemCreation extends React.Component {
@@ -158,7 +158,7 @@ export default class ItemCreation extends React.Component {
       Strings.maxGrit,
       Strings.combat,
       Strings.range,
-      Strings.melee,
+      Strings.melee
     ];
 
     Picker.init({
@@ -178,16 +178,16 @@ export default class ItemCreation extends React.Component {
       onPickerSelect: data => {
         const attribute = this.findSelectedAttribute(data[0]);
         this.updateModifierAttribute(attribute.value);
-      },
+      }
     });
 
+    // TODO: Figure out how to make the flatlist move the contents up the screen when the picker is visible.
+    // https://github.com/beefe/react-native-picker
     Picker.show();
   }
 
   findSelectedAttribute(attributeTitle) {
-    return this.state.attributePickerItems.find(
-      attribute => attribute.title === attributeTitle
-    );
+    return this.state.attributePickerItems.find(attribute => attribute.title === attributeTitle);
   }
 
   updateModifierAttribute(newAttributeValue) {
