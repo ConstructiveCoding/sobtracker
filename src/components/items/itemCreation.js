@@ -5,15 +5,18 @@ import Picker from 'react-native-picker';
 
 import {
   FlatList,
+  Keyboard,
+  Platform,
   SafeAreaView,
-  ScrollView,
   Text,
   TextInput,
   TouchableOpacity,
   View,
 } from 'react-native';
 
+import TagInput from 'react-native-tag-input';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 
 import CreateItemStyles from '../../theme/standard/components/createItem.style';
 import Item from '../../models/item';
@@ -27,6 +30,7 @@ type ItemCreationState = {
   name: string,
   weight: number,
   keywords: Array<string>,
+  keywordsText: string,
   location: string,
   cost: number,
   modifiers: Array<Modifier>,
@@ -38,6 +42,7 @@ const initialState = {
   name: '',
   weight: 0,
   keywords: [],
+  keywordsText: '',
   location: 'Mine',
   cost: 0,
   modifiers: [],
@@ -46,9 +51,23 @@ const initialState = {
   selectedModifierId: undefined,
   isEditingModifierType: false,
   type: 'gear',
-  attributePickerItems: []
+  attributePickerItems: [],
 };
 
+const horizontalTagInputProps = {
+  keyboardType: 'default',
+  returnKeyType: 'done',
+  placeholder: 'Keywords',
+  style: {
+    fontSize: 14,
+    marginVertical: Platform.OS == 'ios' ? 10 : -2,
+  },
+};
+
+const horizontalTagScrollViewProps = {
+  horizontal: true,
+  showsHorizontalScrollIndicator: false,
+};
 export default class ItemCreation extends React.Component {
   constructor(props) {
     super(props);
@@ -74,11 +93,29 @@ export default class ItemCreation extends React.Component {
 
     this.validateForm = this.validateForm.bind(this);
     this.onAddNewModifier = this.onAddNewModifier.bind(this);
+    this.keyboardDidShow = this.keyboardDidShow.bind(this);
 
     this.createModifierDecrement = this.createModifierDecrement.bind(this);
     this.createModifierIncrement = this.createModifierIncrement.bind(this);
-    this.startEditingModifier = this.startEditingModifier.bind(this);
+    this.toggleEditingModifier = this.toggleEditingModifier.bind(this);
     this.updateModifierAttribute = this.updateModifierAttribute.bind(this);
+    this.startRemovingModifier = this.startRemovingModifier.bind(this);
+    this.displayModifierPicker = this.displayModifierPicker.bind(this);
+    this.findAttributeByValue = this.findAttributeByValue.bind(this);
+    this.onChangeTags = this.onChangeTags.bind(this);
+    this.onChangeKeywordsText = this.onChangeKeywordsText.bind(this);
+  }
+
+  componentDidMount() {
+    this.keyboardDidShowListener = Keyboard.addListener(
+      'keyboardDidShow',
+      this.keyboardDidShow
+    );
+  }
+
+  componentWillUnmount() {
+    this.toggleEditingModifier(this.state.selectedModifierId);
+    this.keyboardDidShowListener.remove();
   }
 
   onAddNewModifier() {
@@ -87,6 +124,31 @@ export default class ItemCreation extends React.Component {
     this.setState({
       modifiers,
     });
+  }
+
+  onChangeTags = keywords => {
+    // this.setState({
+    //   keywords,
+    // });
+  };
+
+  onChangeKeywordsText = keywordsText => {
+    this.setState({ keywordsText });
+
+    const lastTyped = keywordsText.charAt(keywordsText.length - 1);
+    const parseWhen = [',', ' ', ';', '\n'];
+
+    if (parseWhen.indexOf(lastTyped) > -1) {
+      this.setState({
+        keywords: [...this.state.keywords, this.state.keywordsText],
+        keywordsText: '',
+      });
+      // this._horizontalTagInput.scrollToEnd();
+    }
+  };
+
+  keyboardDidShow() {
+    this.toggleEditingModifier(this.state.selectedModifierId);
   }
 
   validateForm() {
@@ -128,7 +190,7 @@ export default class ItemCreation extends React.Component {
     };
   }
 
-  startEditingModifier(modifierId) {
+  toggleEditingModifier(modifierId) {
     const selectedModifierId =
       this.state.selectedModifierId === modifierId ? undefined : modifierId;
     let selectedModifier;
@@ -137,76 +199,103 @@ export default class ItemCreation extends React.Component {
       selectedModifier = this.state.modifiers.find(
         modifier => modifier.id === selectedModifierId
       );
+    } else {
+      Picker.hide();
     }
 
     this.setState({
       selectedModifier,
       selectedModifierId,
     });
+  }
 
-    const pickerData = [
-      Strings.agility,
-      Strings.cunning,
-      Strings.strength,
-      Strings.spirit,
-      Strings.lore,
-      Strings.luck,
-      Strings.health,
-      Strings.defense,
-      Strings.sanity,
-      Strings.willpower,
-      Strings.maxGrit,
-      Strings.combat,
-      Strings.range,
-      Strings.melee
-    ];
+  displayModifierPicker(modifierId) {
+    let selectedModifier = this.state.modifiers.find(
+      item => item.id === modifierId
+    );
 
-    Picker.init({
-      pickerData,
-      pickerTitleText: Strings.attribute,
-      onPickerConfirm: data => {
-        const attribute = this.findSelectedAttribute(data[0]);
-        this.updateModifierAttribute(attribute.value);
-        this.setState({
-          selectedModifier: undefined,
-          selectedModifierId: undefined,
-        });
-      },
-      onPickerCancel: data => {
-        this.findSelectedAttribute(data[0]);
-      },
-      onPickerSelect: data => {
-        const attribute = this.findSelectedAttribute(data[0]);
-        this.updateModifierAttribute(attribute.value);
-      }
-    });
+    if (selectedModifier) {
+      const pickerData = [
+        Strings.agility,
+        Strings.cunning,
+        Strings.strength,
+        Strings.spirit,
+        Strings.lore,
+        Strings.luck,
+        Strings.health,
+        Strings.defense,
+        Strings.sanity,
+        Strings.willpower,
+        Strings.maxGrit,
+        Strings.combat,
+        Strings.range,
+        Strings.melee,
+      ];
 
-    // TODO: Figure out how to make the flatlist move the contents up the screen when the picker is visible.
-    // https://github.com/beefe/react-native-picker
-    Picker.show();
+      Picker.init({
+        pickerData,
+        selectedValue: [
+          this.findAttributeByValue(selectedModifier.attribute).title,
+        ],
+        pickerConfirmBtnText: Strings.save,
+        pickerCancelBtnText: Strings.cancel,
+        pickerTitleText: Strings.attributes,
+        onPickerConfirm: data => {
+          // const attribute = this.findSelectedAttribute(data[0]);
+          // this.updateModifierAttribute(attribute.value);
+        },
+        onPickerCancel: data => {
+          this.findSelectedAttribute(data[0]);
+        },
+        onPickerSelect: data => {
+          const attribute = this.findSelectedAttribute(data[0]);
+          this.updateModifierAttribute(modifierId, attribute.value);
+        },
+      });
+
+      // TODO: Figure out how to make the flatlist move the contents up the screen when the picker is visible.
+      // https://github.com/beefe/react-native-picker
+      Picker.show();
+    }
   }
 
   findSelectedAttribute(attributeTitle) {
-    return this.state.attributePickerItems.find(attribute => attribute.title === attributeTitle);
+    return this.state.attributePickerItems.find(
+      attribute => attribute.title === attributeTitle
+    );
   }
 
-  updateModifierAttribute(newAttributeValue) {
-    const modifiers = this.state.modifiers;
-    let selectedModifier = modifiers.find(
-      item => item.id === this.state.selectedModifierId
+  findAttributeByValue(attributeValue) {
+    return this.state.attributePickerItems.find(
+      attribute => attribute.value === attributeValue
     );
-    selectedModifier.attribute = newAttributeValue;
-    selectedModifier = {
-      ...selectedModifier,
-    };
-    this.setState({ selectedModifier });
+  }
+
+  startRemovingModifier(modifierId) {
+    const modifiers = this.state.modifiers.filter(
+      modifier => modifier.id !== modifierId
+    );
+    this.setState({ modifiers });
+  }
+
+  updateModifierAttribute(modifierId, newAttributeValue) {
+    const modifiers = this.state.modifiers.concat([]);
+    let selectedModifierIndex = modifiers.findIndex(
+      item => item.id === modifierId
+    );
+    modifiers[selectedModifierIndex].attribute = newAttributeValue;
+
+    this.setState({ modifiers });
   }
 
   render() {
     const styles = CreateItemStyles.standard;
     return (
       <SafeAreaView>
-        <ScrollView testID="item-scroll" style={styles.formContainer}>
+        <KeyboardAwareScrollView
+          testID="item-scroll"
+          style={styles.formContainer}
+        >
           <View style={styles.formHeader}>
             <Text style={styles.formHeaderText}>{Strings.newItem}</Text>
           </View>
@@ -247,7 +336,17 @@ export default class ItemCreation extends React.Component {
           </View>
           <View style={styles.formRow}>
             <Text style={styles.formLabel}>{Strings.keywords}</Text>
-            <TextInput />
+            <TagInput
+              value={this.state.keywords}
+              onChange={this.onChangeTags}
+              labelExtractor={keyword => keyword}
+              text={this.state.keywordsText}
+              tagColor="blue"
+              tagTextColor="white"
+              onChangeText={this.onChangeKeywordsText}
+              inputProps={horizontalTagInputProps}
+              scrollViewProps={horizontalTagScrollViewProps}
+            />
           </View>
           <View style={styles.formRow}>
             <Text style={styles.formLabel}>{Strings.location}</Text>
@@ -291,13 +390,21 @@ export default class ItemCreation extends React.Component {
               keyExtractor={item => item.id}
               renderItem={({ item }) => (
                 <View style={styles.modifierRow}>
+                  <View style={styles.modifierRemoveButton}>
+                    <TouchableOpacity
+                      style={styles.modifierButton}
+                      onPress={() => this.startRemovingModifier(item.id)}
+                    >
+                      <Icon name="remove" />
+                    </TouchableOpacity>
+                  </View>
                   <View style={styles.modifierLabel}>
                     <TouchableOpacity
                       style={styles.modifierButton}
-                      onPress={() => this.startEditingModifier(item.id)}
+                      onPress={() => this.displayModifierPicker(item.id)}
                     >
                       <Text style={styles.modifierButtonText}>
-                        {item.attribute}
+                        {this.findAttributeByValue(item.attribute).title}
                       </Text>
                     </TouchableOpacity>
                   </View>
@@ -305,7 +412,7 @@ export default class ItemCreation extends React.Component {
                     increment={this.createModifierIncrement(item.id)}
                     decrement={this.createModifierDecrement(item.id)}
                     startEditing={() => {
-                      this.startEditingModifier(item.id);
+                      this.toggleEditingModifier(item.id);
                     }}
                     editing={this.state.selectedModifierId === item.id}
                     value={item.modification}
@@ -350,7 +457,7 @@ export default class ItemCreation extends React.Component {
               </TouchableOpacity>
             </View>
           </View>
-        </ScrollView>
+        </KeyboardAwareScrollView>
       </SafeAreaView>
     );
   }
