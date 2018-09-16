@@ -50,6 +50,8 @@ const strings = new LocalizedStrings({
     gear: 'gear',
     item: 'item',
     artefact: 'artefact',
+    mine: 'Mine',
+    otherWorld: 'Other World',
   },
   en: {
     characterClass: 'Class',
@@ -100,6 +102,8 @@ const strings = new LocalizedStrings({
     gear: 'gear',
     item: 'item',
     artefact: 'artefact',
+    mine: 'Mine',
+    otherWorld: 'Other World',
   },
   de: {
     characterClass: 'Klasse',
@@ -150,6 +154,8 @@ const strings = new LocalizedStrings({
     gear: 'ausrüstung',
     item: 'artikel',
     artefact: 'artefakt',
+    mine: 'Mine',
+    otherWorld: 'Other World',
   },
   dk: {
     characterClass: 'Rolle',
@@ -200,6 +206,8 @@ const strings = new LocalizedStrings({
     gear: 'udstyr',
     item: 'vare',
     artefact: 'artefakt',
+    mine: 'Mine',
+    otherWorld: 'Other World',
   },
 });
 

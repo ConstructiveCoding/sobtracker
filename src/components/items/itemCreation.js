@@ -108,6 +108,7 @@ export default class ItemCreation extends React.Component {
     this.onChangeTags = this.onChangeTags.bind(this);
     this.onChangeKeywordsText = this.onChangeKeywordsText.bind(this);
     this.handleItemTypeSelection = this.handleItemTypeSelection.bind(this);
+    this.startSelectingLocation = this.startSelectingLocation.bind(this);
   }
 
   componentDidMount() {
@@ -131,9 +132,9 @@ export default class ItemCreation extends React.Component {
   }
 
   onChangeTags = keywords => {
-    // this.setState({
-    //   keywords,
-    // });
+    this.setState({
+      keywords,
+    });
   };
 
   onChangeKeywordsText = keywordsText => {
@@ -143,10 +144,10 @@ export default class ItemCreation extends React.Component {
     const parseWhen = [',', ' ', ';', '\n'];
 
     if (parseWhen.indexOf(lastTyped) > -1) {
-      this.setState({
-        keywords: [...this.state.keywords, this.state.keywordsText],
+      this.setState(prevState => ({
+        keywords: [...prevState.keywords, prevState.keywordsText],
         keywordsText: '',
-      });
+      }));
       // this._horizontalTagInput.scrollToEnd();
     }
   };
@@ -297,6 +298,32 @@ export default class ItemCreation extends React.Component {
     this.setState({ itemTypeIndex });
   }
 
+  startSelectingLocation() {
+    const pickerData = [Strings.mine, Strings.otherWorld];
+
+    Picker.init({
+      pickerData,
+      selectedValue: [this.state.location],
+      pickerConfirmBtnText: Strings.save,
+      pickerCancelBtnText: Strings.cancel,
+      pickerTitleText: Strings.location,
+      onPickerConfirm: data => {
+        // const attribute = this.findSelectedAttribute(data[0]);
+        // this.updateModifierAttribute(attribute.value);
+      },
+      onPickerCancel: data => {},
+      onPickerSelect: data => {
+        this.setState({
+          location: data[0],
+        });
+      },
+    });
+
+    // TODO: Figure out how to make the flatlist move the contents up the screen when the picker is visible.
+    // https://github.com/beefe/react-native-picker
+    Picker.show();
+  }
+
   render() {
     const styles = CreateItemStyles.standard;
     return (
@@ -350,13 +377,13 @@ export default class ItemCreation extends React.Component {
           <View style={styles.formRow}>
             <Text style={styles.formLabel}>{Strings.keywords}</Text>
             <TagInput
-              style={styles.keyWordEntry}
               value={this.state.keywords}
               onChange={this.onChangeTags}
               labelExtractor={keyword => keyword}
               text={this.state.keywordsText}
               tagColor="blue"
               tagTextColor="white"
+              tagContainerStyle={{ height: 40 }}
               onChangeText={this.onChangeKeywordsText}
               inputProps={horizontalTagInputProps}
               scrollViewProps={horizontalTagScrollViewProps}
@@ -364,13 +391,12 @@ export default class ItemCreation extends React.Component {
           </View>
           <View style={styles.formRow}>
             <Text style={styles.formLabel}>{Strings.location}</Text>
-            <TextInput
-              style={styles.formDataEntry}
-              value={this.state.location}
-              onChangeText={newValue => {
-                this.setState({ location: newValue });
-              }}
-            />
+            <TouchableOpacity
+              style={styles.formDataSelectButton}
+              onPress={this.startSelectingLocation}
+            >
+              <Text>{this.state.location}</Text>
+            </TouchableOpacity>
           </View>
           <View style={styles.formRow}>
             <Text style={styles.formLabel}>{Strings.cost}</Text>

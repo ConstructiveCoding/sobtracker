@@ -65,7 +65,7 @@ export default class CreateItemStyles {
     },
     keyWordEntry: {
       width: '100%',
-      height: 80,
+      height: 40,
     },
     commandRow: {
       flexDirection: 'row',

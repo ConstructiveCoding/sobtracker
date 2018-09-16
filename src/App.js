@@ -219,8 +219,8 @@ const CharacterListStack = createStackNavigator(
     StorybookUI: { screen: StorybookUI },
   },
   {
-    // initialRouteName: 'CharacterList',
-    initialRouteName: 'StorybookUI',
+    initialRouteName: 'CharacterList',
+    // initialRouteName: 'StorybookUI',
   }
 );
 
