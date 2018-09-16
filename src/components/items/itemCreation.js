@@ -2,6 +2,7 @@
 
 import React from 'react';
 import Picker from 'react-native-picker';
+import Immutable from 'seamless-immutable';
 
 import {
   FlatList,
@@ -100,9 +101,14 @@ export default class ItemCreation extends React.Component {
         Strings.artefact,
         Strings.item,
       ].indexOf(props.itemDetails.type);
+
+      const mutableItemDetails = Immutable.asMutable(props.itemDetails, {
+        deep: true,
+      });
+
       this.state = {
         ...this.state,
-        ...props.itemDetails,
+        ...mutableItemDetails,
         itemTypeIndex,
       };
     }
