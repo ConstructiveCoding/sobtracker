@@ -10,3 +10,4 @@ export const CREATE_ITEM: string = 'sob.app.CREATE_ITEM';
 
 export const EDIT_ITEM: string = 'sob.app.EDIT_ITEM';
 export const SAVE_ITEM: string = 'sob.app.SAVE_ITEM';
+export const CANCEL_EDIT: string = 'sob.app.CANCEL_EDIT';

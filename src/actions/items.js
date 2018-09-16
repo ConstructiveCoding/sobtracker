@@ -20,3 +20,9 @@ export function saveItem(item) {
     item,
   };
 }
+
+export function cancelEditItem() {
+  return {
+    type: types.CANCEL_EDIT,
+  };
+}

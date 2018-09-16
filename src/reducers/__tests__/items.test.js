@@ -83,4 +83,19 @@ describe('Items reducer', () => {
     expect(returnedState.byId['4'].name).toEqual('This is updated');
     expect(returnedState.editingItemId).toBeUndefined();
   });
+
+  it('should remove the editing item id', () => {
+    const initialState = {
+      allIds: [],
+      byId: {},
+      editingItemId: '4',
+    };
+
+    const action = {
+      type: types.CANCEL_EDIT,
+    };
+
+    const returnedState = ItemsReducer(initialState, action);
+    expect(returnedState.editingItemId).toBeUndefined();
+  });
 });

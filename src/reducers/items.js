@@ -52,6 +52,12 @@ export default function(
         editingItemId: undefined,
       });
     }
+    case types.CANCEL_EDIT: {
+      return Immutable({
+        ...state,
+        editingItemId: undefined,
+      });
+    }
     default:
       return state;
   }

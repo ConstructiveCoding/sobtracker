@@ -4,7 +4,7 @@ import React from 'react';
 import { SafeAreaView, StackActions } from 'react-navigation';
 import { connect } from 'react-redux';
 
-import { createItem, saveItem } from '../actions/items';
+import { cancelEditItem, createItem, saveItem } from '../actions/items';
 import ItemCreation from '../components/items/itemCreation';
 
 const popAction = StackActions.pop({
@@ -15,7 +15,10 @@ const CreateItemScreen = props => (
   <SafeAreaView style={{ flex: 1 }}>
     <ItemCreation
       itemDetails={props.existingItem}
-      onCancel={() => props.navigation.dispatch(popAction)}
+      onCancel={() => {
+        props.cancelEditItem();
+        props.navigation.dispatch(popAction);
+      }}
       onSave={itemDetails => {
         if (typeof props.existingItem !== 'undefined') {
           props.saveItem(itemDetails);
@@ -35,6 +38,7 @@ function mapStateToProps(state) {
 }
 
 const actions = {
+  cancelEditItem,
   createItem,
   saveItem,
 };
