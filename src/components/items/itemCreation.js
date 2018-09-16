@@ -94,6 +94,19 @@ export default class ItemCreation extends React.Component {
 
     this.state = initialState;
 
+    if (props.itemDetails) {
+      const itemTypeIndex = [
+        Strings.gear,
+        Strings.artefact,
+        Strings.item,
+      ].indexOf(props.itemDetails.type);
+      this.state = {
+        ...this.state,
+        ...props.itemDetails,
+        itemTypeIndex,
+      };
+    }
+
     this.validateForm = this.validateForm.bind(this);
     this.onAddNewModifier = this.onAddNewModifier.bind(this);
     this.keyboardDidShow = this.keyboardDidShow.bind(this);
@@ -158,6 +171,7 @@ export default class ItemCreation extends React.Component {
 
   validateForm() {
     const itemTypes = [Strings.gear, Strings.artefact, Strings.item];
+
     const item = new Item(
       this.state.name,
       itemTypes[this.state.itemTypeIndex],
@@ -168,6 +182,10 @@ export default class ItemCreation extends React.Component {
       this.state.modifiers,
       this.state.description
     );
+
+    if (typeof this.props.itemDetails !== 'undefined') {
+      item.id = this.props.itemDetails.id;
+    }
 
     this.props.onSave(item);
   }
@@ -327,7 +345,7 @@ export default class ItemCreation extends React.Component {
   render() {
     const styles = CreateItemStyles.standard;
     return (
-      <SafeAreaView>
+      <SafeAreaView style={{ flex: 1 }}>
         <KeyboardAwareScrollView
           testID="item-scroll"
           style={styles.formContainer}

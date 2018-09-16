@@ -8,7 +8,7 @@ export default class ItemScreenStyles {
     },
     row: {
       flexDirection: 'row',
-      paddingVertical: 5,
+      padding: 10,
     },
     itemName: {
       fontWeight: '900',

@@ -6,11 +6,13 @@ import * as types from '../actions/actionTypes';
 type ItemState = {
   allIds: Array<string>,
   byId: Object,
+  editingItemId?: string,
 };
 
 const InitialState = Immutable({
   allIds: [],
   byId: {},
+  editingItemId: undefined,
 });
 
 export default function(
@@ -29,6 +31,25 @@ export default function(
       return Immutable({
         allIds,
         byId,
+      });
+    }
+    case types.EDIT_ITEM: {
+      return Immutable({
+        ...state,
+        editingItemId: action.itemId,
+      });
+    }
+    case types.SAVE_ITEM: {
+      const byId = {
+        ...state.byId,
+      };
+
+      byId[action.item.id] = action.item;
+
+      return Immutable({
+        ...state,
+        byId,
+        editingItemId: undefined,
       });
     }
     default:

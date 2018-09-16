@@ -8,6 +8,8 @@ import { connect } from 'react-redux';
 import Icon from 'react-native-vector-icons/dist/FontAwesome';
 import { SafeAreaView } from 'react-navigation';
 
+import { editItem } from '../actions/items';
+
 import ItemScreenStyles from '../theme/standard/screens/itemScreen.styles';
 
 import Strings from '../language/strings';
@@ -49,13 +51,14 @@ class ItemsScreen extends React.Component {
   }
 
   editItem(itemId) {
-    this.props.editItem(itemId, this.navigator);
+    this.props.editItem(itemId);
+    this.props.navigation.navigate('ItemCreation');
   }
 
   render() {
     const styles = ItemScreenStyles.standard;
     return (
-      <SafeAreaView>
+      <SafeAreaView style={{ flex: 1 }}>
         <FlatList
           data={this.props.items}
           keyExtractor={item => item.id}
@@ -82,7 +85,9 @@ function mapStateToProps(state) {
   };
 }
 
-const actions = {};
+const actions = {
+  editItem,
+};
 
 export default connect(
   mapStateToProps,

@@ -14,7 +14,7 @@ const popAction = StackActions.pop({
 });
 
 const CalculatorScreen = props => (
-  <SafeAreaView>
+  <SafeAreaView style={{ flex: 1 }}>
     <Calculator
       attributeToUpdate={props.attributeToUpdate}
       original={props.original}

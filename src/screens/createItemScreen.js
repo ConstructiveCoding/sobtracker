@@ -4,33 +4,39 @@ import React from 'react';
 import { SafeAreaView, StackActions } from 'react-navigation';
 import { connect } from 'react-redux';
 
-import { createItem } from '../actions/items';
+import { createItem, saveItem } from '../actions/items';
 import ItemCreation from '../components/items/itemCreation';
 
 const popAction = StackActions.pop({
   n: 1,
 });
 
-const CreateItemScreen = props => {
-  return (
-    <SafeAreaView>
-      <ItemCreation
-        onCancel={() => props.navigation.dispatch(popAction)}
-        onSave={newItemDetails => {
-          props.createItem(newItemDetails);
-          props.navigation.dispatch(popAction);
-        }}
-      />
-    </SafeAreaView>
-  );
-};
+const CreateItemScreen = props => (
+  <SafeAreaView style={{ flex: 1 }}>
+    <ItemCreation
+      itemDetails={props.existingItem}
+      onCancel={() => props.navigation.dispatch(popAction)}
+      onSave={itemDetails => {
+        if (typeof props.existingItem !== 'undefined') {
+          props.saveItem(itemDetails);
+        } else {
+          props.createItem(itemDetails);
+        }
+        props.navigation.dispatch(popAction);
+      }}
+    />
+  </SafeAreaView>
+);
 
-function mapStateToProps() {
-  return {};
+function mapStateToProps(state) {
+  return {
+    existingItem: state.items.byId[state.items.editingItemId],
+  };
 }
 
 const actions = {
   createItem,
+  saveItem,
 };
 
 export default connect(

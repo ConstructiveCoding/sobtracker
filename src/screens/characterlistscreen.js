@@ -1,9 +1,12 @@
+/* @flow */
+
 import React, { Component } from 'react';
 
 import { connect } from 'react-redux';
 
 import { Button, Text, TouchableOpacity, View } from 'react-native';
 import Icon from 'react-native-vector-icons/dist/FontAwesome';
+import { SafeAreaView } from 'react-navigation';
 
 import CharacterListSelector from '../selectors/characterListSelector';
 
@@ -63,13 +66,13 @@ class CharacterListScreen extends Component<CharacterListScreenProps> {
 
   render() {
     return (
-      <View style={{ flex: 1 }}>
+      <SafeAreaView style={{ flex: 1 }}>
         <CharacterList
           style={CharacterListStyles.standard}
           characters={this.props.characterList}
           loadCharacter={this.selectCharacter}
         />
-      </View>
+      </SafeAreaView>
     );
   }
 }

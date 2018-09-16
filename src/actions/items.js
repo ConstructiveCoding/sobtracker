@@ -13,3 +13,10 @@ export function editItem(itemId) {
     itemId,
   };
 }
+
+export function saveItem(item) {
+  return {
+    type: types.SAVE_ITEM,
+    item,
+  };
+}
