@@ -47,6 +47,9 @@ const strings = new LocalizedStrings({
     modifiers: 'Modifiers',
     description: 'Description',
     newItem: 'New Item',
+    gear: 'gear',
+    item: 'item',
+    artefact: 'artefact',
   },
   en: {
     characterClass: 'Class',
@@ -94,6 +97,9 @@ const strings = new LocalizedStrings({
     modifiers: 'Modifiers',
     description: 'Description',
     newItem: 'New Item',
+    gear: 'gear',
+    item: 'item',
+    artefact: 'artefact',
   },
   de: {
     characterClass: 'Klasse',
@@ -141,6 +147,9 @@ const strings = new LocalizedStrings({
     modifiers: 'Modifikatoren',
     description: 'Beschreibung',
     newItem: 'Neuer Gegenstand',
+    gear: 'ausrüstung',
+    item: 'artikel',
+    artefact: 'artefakt',
   },
   dk: {
     characterClass: 'Rolle',
@@ -188,6 +197,9 @@ const strings = new LocalizedStrings({
     modifiers: 'Modifiers',
     description: 'Beskrivelse',
     newItem: 'Ny vare',
+    gear: 'udstyr',
+    item: 'vare',
+    artefact: 'artefakt',
   },
 });
 

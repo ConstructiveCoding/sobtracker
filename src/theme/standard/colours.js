@@ -24,4 +24,7 @@ export default class Colours {
 
   static attributeText = 'rgba(255, 255, 0, 1)';
   static attributeBackground = 'rgba(125, 0, 255, 1)';
+
+  static dataEntryInputBorder = 'rgba(127, 132, 135, 1.00)';
+  static dataEntryInputBackground = 'rgba(240, 240, 240, 1.00)';
 }

@@ -7,5 +7,8 @@ import { linkTo } from '@storybook/addon-links';
 
 import CenterView from './CenterView';
 import Welcome from './Welcome';
+import Items from './Items';
 
-storiesOf('Welcome', module).add('to Storybook', () => <Welcome showApp={linkTo('Button')} />);
+storiesOf('Welcome', module).add('to Storybook', () => (
+  <Welcome showApp={linkTo('Button')} />
+));

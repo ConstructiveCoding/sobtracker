@@ -1,11 +1,11 @@
 import { StyleSheet } from 'react-native';
-
 import Colours from '../colours';
 
 export default class CreateItemStyles {
   static standard: StyleSheet = StyleSheet.create({
     formContainer: {
       padding: 20,
+      backgroundColor: Colours.backgroundColor,
     },
     formHeader: {
       alignItems: 'center',
@@ -17,23 +17,55 @@ export default class CreateItemStyles {
       fontWeight: '700',
     },
     formRow: {
-      flexDirection: 'row',
-      alignItems: 'center',
-      height: 40,
-      marginBottom: 20,
-      borderBottomWidth: StyleSheet.hairlineWidth,
-      borderColor: 'black',
-      borderStyle: 'solid',
+      flexDirection: 'column',
+      alignItems: 'flex-start',
+      paddingBottom: 10,
     },
     formLabel: {
-      flex: 1,
       fontWeight: '900',
       textAlign: 'left',
     },
     formDataEntry: {
-      flex: 3,
-      textAlign: 'right',
+      width: '100%',
+      textAlign: 'left',
+      borderColor: Colours.dataEntryInputBorder,
+      borderWidth: 1,
+      borderStyle: 'solid',
+      borderRadius: 5,
       height: 40,
+      backgroundColor: Colours.dataEntryInputBackground,
+      paddingLeft: 10,
+    },
+    formDataSelectButton: {
+      width: '100%',
+      borderColor: Colours.dataEntryInputBorder,
+      borderWidth: 1,
+      borderStyle: 'solid',
+      borderRadius: 5,
+      height: 40,
+      backgroundColor: Colours.dataEntryInputBackground,
+      paddingLeft: 10,
+      justifyContent: 'center',
+    },
+    formSectionHeader: {
+      flexDirection: 'row',
+      alignItems: 'stretch',
+      justifyContent: 'center',
+      marginTop: 20,
+      paddingBottom: 10,
+    },
+    sectionHeaderLabel: {
+      flex: 1,
+      fontWeight: '900',
+      textAlign: 'left',
+    },
+    formHeaderButtonContainer: {
+      width: 40,
+      height: 40,
+    },
+    keyWordEntry: {
+      width: '100%',
+      height: 80,
     },
     commandRow: {
       flexDirection: 'row',

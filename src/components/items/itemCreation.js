@@ -14,6 +14,7 @@ import {
   View,
 } from 'react-native';
 
+import SegmentedControlTab from 'react-native-segmented-control-tab';
 import TagInput from 'react-native-tag-input';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
@@ -36,6 +37,7 @@ type ItemCreationState = {
   modifiers: Array<Modifier>,
   description: string,
   type: string,
+  itemTypeIndex: number,
 };
 
 const initialState = {
@@ -52,6 +54,7 @@ const initialState = {
   isEditingModifierType: false,
   type: 'gear',
   attributePickerItems: [],
+  itemTypeIndex: 0,
 };
 
 const horizontalTagInputProps = {
@@ -104,6 +107,7 @@ export default class ItemCreation extends React.Component {
     this.findAttributeByValue = this.findAttributeByValue.bind(this);
     this.onChangeTags = this.onChangeTags.bind(this);
     this.onChangeKeywordsText = this.onChangeKeywordsText.bind(this);
+    this.handleItemTypeSelection = this.handleItemTypeSelection.bind(this);
   }
 
   componentDidMount() {
@@ -152,9 +156,10 @@ export default class ItemCreation extends React.Component {
   }
 
   validateForm() {
+    const itemTypes = [Strings.gear, Strings.artefact, Strings.item];
     const item = new Item(
       this.state.name,
-      this.state.type,
+      itemTypes[this.state.itemTypeIndex],
       this.state.weight,
       this.state.keywords,
       this.state.location,
@@ -288,6 +293,10 @@ export default class ItemCreation extends React.Component {
     this.setState({ modifiers });
   }
 
+  handleItemTypeSelection(itemTypeIndex) {
+    this.setState({ itemTypeIndex });
+  }
+
   render() {
     const styles = CreateItemStyles.standard;
     return (
@@ -315,7 +324,11 @@ export default class ItemCreation extends React.Component {
 
           <View style={styles.formRow}>
             <Text style={styles.formLabel}>{Strings.type}</Text>
-            <TextInput />
+            <SegmentedControlTab
+              values={[Strings.gear, Strings.artefact, Strings.item]}
+              selectedIndex={this.state.itemTypeIndex}
+              onTabPress={this.handleItemTypeSelection}
+            />
           </View>
 
           <View style={styles.formRow}>
@@ -337,6 +350,7 @@ export default class ItemCreation extends React.Component {
           <View style={styles.formRow}>
             <Text style={styles.formLabel}>{Strings.keywords}</Text>
             <TagInput
+              style={styles.keyWordEntry}
               value={this.state.keywords}
               onChange={this.onChangeTags}
               labelExtractor={keyword => keyword}
@@ -374,12 +388,25 @@ export default class ItemCreation extends React.Component {
               }}
             />
           </View>
+
           <View style={styles.formRow}>
-            <Text style={styles.formLabel}>{Strings.modifiers}</Text>
-            <TouchableOpacity onPress={this.onAddNewModifier}>
-              <View>
-                <Icon style={{ height: 20, width: 20 }} name="plus" />
-              </View>
+            <Text style={styles.formLabel}>{Strings.description}</Text>
+            <TextInput
+              style={styles.formDataEntry}
+              value={this.state.description}
+              onChangeText={newValue => {
+                this.setState({ description: newValue });
+              }}
+            />
+          </View>
+
+          <View style={styles.formSectionHeader}>
+            <Text style={styles.sectionHeaderLabel}>{Strings.modifiers}</Text>
+            <TouchableOpacity
+              style={styles.formHeaderButtonContainer}
+              onPress={this.onAddNewModifier}
+            >
+              <Icon size={25} name="plus" />
             </TouchableOpacity>
           </View>
 
@@ -395,7 +422,7 @@ export default class ItemCreation extends React.Component {
                       style={styles.modifierButton}
                       onPress={() => this.startRemovingModifier(item.id)}
                     >
-                      <Icon name="remove" />
+                      <Icon size={15} name="remove" />
                     </TouchableOpacity>
                   </View>
                   <View style={styles.modifierLabel}>
@@ -425,17 +452,6 @@ export default class ItemCreation extends React.Component {
                   />
                 </View>
               )}
-            />
-          </View>
-
-          <View style={styles.formRow}>
-            <Text style={styles.formLabel}>{Strings.description}</Text>
-            <TextInput
-              style={styles.formDataEntry}
-              value={this.state.description}
-              onChangeText={newValue => {
-                this.setState({ description: newValue });
-              }}
             />
           </View>
           <View style={styles.commandRow}>

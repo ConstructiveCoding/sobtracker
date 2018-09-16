@@ -7,6 +7,7 @@ configure(() => {
   require('./stories');
   require('./stories/CreateCharacter');
   require('./stories/Calcuator');
+  require('./stories/Items');
 }, module);
 
 // This assumes that storybook is running on the same host as your RN packager,
