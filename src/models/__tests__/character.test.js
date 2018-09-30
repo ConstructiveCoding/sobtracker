@@ -37,6 +37,9 @@ describe('Character Model', () => {
 
       expect(character.items).toBeDefined();
       expect(character.items).toHaveLength(0);
+
+      expect(character.injuries).toBeDefined();
+      expect(character.injuries).toHaveLength(0);
     });
   });
 });

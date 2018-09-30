@@ -61,7 +61,7 @@ describe('Character reducer', () => {
     expect(returnedState.selectedCharacter.name).toEqual('test character 2');
   });
 
-  it('should update the specified charcter and attributes', () => {
+  it('should update the specified character and attributes', () => {
     const initialState = Immutable({
       allIds: ['character1', 'character2', 'character3'],
       byId: {
@@ -131,5 +131,38 @@ describe('Character reducer', () => {
 
     expect(updatedState.selectedCharacter.items).toHaveLength(1);
     expect(updatedState.selectedCharacter.items[0]).toEqual(testItemId);
+  });
+
+  it('should add a new injury to the currently selected character', () => {
+    const InitialState = Immutable({
+      allIds: ['character2'],
+      byId: {
+        character2: {
+          id: 'character2',
+          name: 'test character 2',
+          xp: 535,
+          level: 0,
+          items: [],
+          injuries: [],
+        },
+      },
+      selectedCharacter: { id: 'character2' },
+    });
+
+    const testInjuryName = 'Test injury';
+    const testInjuryId = 'TEST_INJURY_ID';
+
+    const action = {
+      type: types.CREATE_INJURY,
+      injury: { id: testInjuryId, name: testInjuryName },
+    };
+
+    const updatedState = CharacterReducer(InitialState, action);
+
+    expect(updatedState.byId['character2'].injuries).toHaveLength(1);
+    expect(updatedState.byId['character2'].injuries[0]).toEqual(testInjuryId);
+
+    expect(updatedState.selectedCharacter.injuries).toHaveLength(1);
+    expect(updatedState.selectedCharacter.injuries[0]).toEqual(testInjuryId);
   });
 });

@@ -1,5 +1,15 @@
 /* @flow */
 
+/*
+
+TODO: Support adding Armour through mutation
+TODO: Support altering Move through mutation
+TODO: Support altering Initiative through mutation
+
+TODO: Support altering Damage through mutation?
+
+*/
+
 import React from 'react';
 import Picker from 'react-native-picker';
 import Immutable from 'seamless-immutable';
@@ -7,7 +17,6 @@ import Immutable from 'seamless-immutable';
 import {
   FlatList,
   Keyboard,
-  Platform,
   SafeAreaView,
   Text,
   TextInput,
@@ -16,63 +25,41 @@ import {
 } from 'react-native';
 
 import SegmentedControlTab from 'react-native-segmented-control-tab';
-import TagInput from 'react-native-tag-input';
-import Icon from 'react-native-vector-icons/FontAwesome';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
-import CreateItemStyles from '../../theme/standard/components/createItem.style';
-import Item from '../../models/item';
+import CreateInjuryStyles from '../../theme/standard/components/createInjury.style';
+import Injury from '../../models/injury';
 import Modifier from '../../models/modifier';
 import Strings from '../../language/strings';
 
 import Attribute from '../attribute';
 import AttributeStyles from '../../theme/standard/components/attribute.style';
 
-type ItemCreationState = {
+type InjuryCreationState = {
   name: string,
-  weight: number,
-  keywords: Array<string>,
-  keywordsText: string,
-  location: string,
-  cost: number,
-  modifiers: Array<Modifier>,
-  description: string,
+  flavourText: string,
+  effects: string,
+  diceRoll: number,
   type: string,
-  itemTypeIndex: number,
+  modifiers: Array<Modifier>,
+  injuryTypeIndex: number,
 };
 
 const initialState = {
   name: '',
-  weight: 0,
-  keywords: [],
-  keywordsText: '',
-  location: 'Mine',
-  cost: 0,
   modifiers: [],
-  description: '',
+  flavourText: '',
+  effects: '',
+  type: 'injury',
+  diceRoll: 2,
   selectedModifier: undefined,
   selectedModifierId: undefined,
   isEditingModifierType: false,
-  type: 'gear',
-  attributePickerItems: [],
-  itemTypeIndex: 0,
+  injuryTypeIndex: 0,
 };
 
-const horizontalTagInputProps = {
-  keyboardType: 'default',
-  returnKeyType: 'done',
-  placeholder: 'Keywords',
-  style: {
-    fontSize: 14,
-    marginVertical: Platform.OS == 'ios' ? 10 : -2,
-  },
-};
-
-const horizontalTagScrollViewProps = {
-  horizontal: true,
-  showsHorizontalScrollIndicator: false,
-};
-export default class ItemCreation extends React.Component {
+export default class InjuryCreation extends React.Component {
   constructor(props) {
     super(props);
 
@@ -95,21 +82,19 @@ export default class ItemCreation extends React.Component {
 
     this.state = initialState;
 
-    if (props.itemDetails) {
-      const itemTypeIndex = [
-        Strings.gear,
-        Strings.artefact,
-        Strings.item,
-      ].indexOf(props.itemDetails.type);
+    if (props.injuryDetails) {
+      const injuryTypeIndex = [Strings.injury, Strings.mutation].indexOf(
+        props.injuryDetails.type
+      );
 
-      const mutableItemDetails = Immutable.asMutable(props.itemDetails, {
+      const mutableInjuryDetails = Immutable.asMutable(props.injuryDetails, {
         deep: true,
       });
 
       this.state = {
         ...this.state,
-        ...mutableItemDetails,
-        itemTypeIndex,
+        ...mutableInjuryDetails,
+        injuryTypeIndex,
       };
     }
 
@@ -124,12 +109,8 @@ export default class ItemCreation extends React.Component {
     this.startRemovingModifier = this.startRemovingModifier.bind(this);
     this.displayModifierPicker = this.displayModifierPicker.bind(this);
     this.findAttributeByValue = this.findAttributeByValue.bind(this);
-    this.onChangeTags = this.onChangeTags.bind(this);
-    this.onChangeKeywordsText = this.onChangeKeywordsText.bind(this);
-    this.handleItemTypeSelection = this.handleItemTypeSelection.bind(this);
-    this.startSelectingLocation = this.startSelectingLocation.bind(this);
+    this.handleInjuryTypeSelection = this.handleInjuryTypeSelection.bind(this);
   }
-
   componentDidMount() {
     this.keyboardDidShowListener = Keyboard.addListener(
       'keyboardDidShow',
@@ -150,50 +131,27 @@ export default class ItemCreation extends React.Component {
     });
   }
 
-  onChangeTags = keywords => {
-    this.setState({
-      keywords,
-    });
-  };
-
-  onChangeKeywordsText = keywordsText => {
-    this.setState({ keywordsText });
-
-    const lastTyped = keywordsText.charAt(keywordsText.length - 1);
-    const parseWhen = [',', ' ', ';', '\n'];
-
-    if (parseWhen.indexOf(lastTyped) > -1) {
-      this.setState(prevState => ({
-        keywords: [...prevState.keywords, prevState.keywordsText],
-        keywordsText: '',
-      }));
-      // this._horizontalTagInput.scrollToEnd();
-    }
-  };
-
   keyboardDidShow() {
     this.toggleEditingModifier(this.state.selectedModifierId);
   }
 
   validateForm() {
-    const itemTypes = [Strings.gear, Strings.artefact, Strings.item];
+    const injuryTypes = [Strings.injury, Strings.mutation];
 
-    const item = new Item(
+    const injury = new Injury(
       this.state.name,
-      itemTypes[this.state.itemTypeIndex],
-      this.state.weight,
-      this.state.keywords,
-      this.state.location,
-      this.state.cost,
-      this.state.modifiers,
-      this.state.description
+      this.state.flavourText,
+      this.state.effects,
+      this.state.diceRoll,
+      injuryTypes[this.state.injuryTypeIndex],
+      this.state.modifiers
     );
 
-    if (typeof this.props.itemDetails !== 'undefined') {
-      item.id = this.props.itemDetails.id;
+    if (typeof this.props.injuryDetails !== 'undefined') {
+      injury.id = this.props.injuryDetails.id;
     }
 
-    this.props.onSave(item);
+    this.props.onSave(injury);
   }
 
   createModifierDecrement(modifierId) {
@@ -316,36 +274,13 @@ export default class ItemCreation extends React.Component {
     this.setState({ modifiers });
   }
 
-  handleItemTypeSelection(itemTypeIndex) {
-    this.setState({ itemTypeIndex });
-  }
-
-  startSelectingLocation() {
-    const pickerData = [Strings.mine, Strings.otherWorld];
-
-    Picker.init({
-      pickerData,
-      selectedValue: [this.state.location],
-      pickerConfirmBtnText: Strings.save,
-      pickerCancelBtnText: Strings.cancel,
-      pickerTitleText: Strings.location,
-      onPickerConfirm: data => {
-        // const attribute = this.findSelectedAttribute(data[0]);
-        // this.updateModifierAttribute(attribute.value);
-      },
-      onPickerCancel: data => {},
-      onPickerSelect: data => {
-        this.setState({
-          location: data[0],
-        });
-      },
-    });
-
-    Picker.show();
+  handleInjuryTypeSelection(injuryTypeIndex) {
+    this.setState({ injuryTypeIndex });
   }
 
   render() {
-    const styles = CreateItemStyles.standard;
+    const styles = CreateInjuryStyles.standard;
+
     return (
       <SafeAreaView style={{ flex: 1 }}>
         <KeyboardAwareScrollView
@@ -353,12 +288,23 @@ export default class ItemCreation extends React.Component {
           style={styles.formContainer}
         >
           <View style={styles.formHeader}>
-            <Text style={styles.formHeaderText}>{Strings.newItem}</Text>
+            <Text style={styles.formHeaderText}>{Strings.newInjury}</Text>
           </View>
+
+          <View style={styles.formRow}>
+            <Text style={styles.formLabel}>{Strings.type}</Text>
+            <SegmentedControlTab
+              values={[Strings.injury, Strings.mutation]}
+              selectedIndex={this.state.injuryTypeIndex}
+              onTabPress={this.handleInjuryTypeSelection}
+            />
+          </View>
+
           <View style={styles.formRow}>
             <Text testID={'item-name-label'} style={styles.formLabel}>
               {Strings.name}
             </Text>
+
             <TextInput
               testID="item-name-entry"
               style={styles.formDataEntry}
@@ -368,80 +314,49 @@ export default class ItemCreation extends React.Component {
               }}
             />
           </View>
-
           <View style={styles.formRow}>
-            <Text style={styles.formLabel}>{Strings.type}</Text>
-            <SegmentedControlTab
-              values={[Strings.gear, Strings.artefact, Strings.item]}
-              selectedIndex={this.state.itemTypeIndex}
-              onTabPress={this.handleItemTypeSelection}
+            <Text testID={'item-flavour-text-label'} style={styles.formLabel}>
+              {Strings.flavourText}
+            </Text>
+
+            <TextInput
+              testID="item-flavour-text-entry"
+              style={styles.formDataEntry}
+              value={this.state.flavourText}
+              onChangeText={newValue => {
+                this.setState({ flavourText: newValue });
+              }}
             />
           </View>
 
           <View style={styles.formRow}>
-            <Text style={styles.formLabel}>{Strings.weight}</Text>
+            <Text testID={'item-effects-label'} style={styles.formLabel}>
+              {Strings.effects}
+            </Text>
+
+            <TextInput
+              testID="item-effects-entry"
+              style={styles.formDataEntry}
+              value={this.state.effects}
+              onChangeText={newValue => {
+                this.setState({ effects: newValue });
+              }}
+            />
+          </View>
+
+          <View style={styles.formRow}>
+            <Text style={styles.formLabel}>{Strings.diceRoll}</Text>
             <TextInput
               keyboardType="number-pad"
               style={styles.formDataEntry}
-              value={this.state.weight.toString()}
+              value={this.state.diceRoll.toString()}
               onChangeText={newValue => {
                 let changeValue = Number(newValue);
                 if (Number.isNaN(changeValue)) {
                   changeValue = 0;
                 }
 
-                this.setState({ weight: changeValue });
-              }}
-            />
-          </View>
-          <View style={styles.formRow}>
-            <Text style={styles.formLabel}>{Strings.keywords}</Text>
-            <TagInput
-              value={this.state.keywords}
-              onChange={this.onChangeTags}
-              labelExtractor={keyword => keyword}
-              text={this.state.keywordsText}
-              tagColor="blue"
-              tagTextColor="white"
-              tagContainerStyle={{ height: 40 }}
-              onChangeText={this.onChangeKeywordsText}
-              inputProps={horizontalTagInputProps}
-              scrollViewProps={horizontalTagScrollViewProps}
-            />
-          </View>
-          <View style={styles.formRow}>
-            <Text style={styles.formLabel}>{Strings.location}</Text>
-            <TouchableOpacity
-              style={styles.formDataSelectButton}
-              onPress={this.startSelectingLocation}
-            >
-              <Text>{this.state.location}</Text>
-            </TouchableOpacity>
-          </View>
-          <View style={styles.formRow}>
-            <Text style={styles.formLabel}>{Strings.cost}</Text>
-            <TextInput
-              keyboardType="number-pad"
-              style={styles.formDataEntry}
-              value={this.state.cost.toString()}
-              onChangeText={newValue => {
-                let costValue = Number(newValue);
-                if (Number.isNaN(costValue)) {
-                  costValue = 0;
-                }
-
-                this.setState({ cost: costValue });
-              }}
-            />
-          </View>
-
-          <View style={styles.formRow}>
-            <Text style={styles.formLabel}>{Strings.description}</Text>
-            <TextInput
-              style={styles.formDataEntry}
-              value={this.state.description}
-              onChangeText={newValue => {
-                this.setState({ description: newValue });
+                this.setState({ diceRoll: changeValue });
               }}
             />
           </View>
@@ -511,7 +426,7 @@ export default class ItemCreation extends React.Component {
             </View>
             <View style={styles.saveButtonContainer}>
               <TouchableOpacity
-                testID="save-item"
+                testID="save-injury"
                 style={styles.saveButton}
                 onPress={this.validateForm}
               >

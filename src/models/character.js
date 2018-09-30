@@ -34,6 +34,7 @@ class Character {
   melee: number;
 
   items: Array<string>;
+  injuries: Array<string>;
 
   constructor(name: string, gender: string, characterClass: string) {
     this.id = uuid.v4();
@@ -66,6 +67,7 @@ class Character {
     this.melee = 0;
 
     this.items = [];
+    this.injuries = [];
   }
 }
 

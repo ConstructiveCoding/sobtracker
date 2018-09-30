@@ -84,6 +84,30 @@ export default function(
         selectedCharacter: updatedCharacter,
       });
     }
+    case types.CREATE_INJURY: {
+      const injuryId = action.injury.id;
+      const characterToUpdate = state.byId[state.selectedCharacter.id];
+
+      const mutableinjuries = [].concat(characterToUpdate.injuries);
+      mutableinjuries.push(injuryId);
+
+      const updatedCharacter = {
+        ...characterToUpdate,
+        injuries: mutableinjuries,
+      };
+
+      const newById = {
+        ...state.byId,
+      };
+
+      newById[state.selectedCharacter.id] = updatedCharacter;
+
+      return Immutable({
+        ...state,
+        byId: newById,
+        selectedCharacter: updatedCharacter,
+      });
+    }
     default:
       return state;
   }
