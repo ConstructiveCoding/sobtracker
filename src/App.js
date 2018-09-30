@@ -21,6 +21,7 @@ import CharacterListScreen from './screens/characterListScreen';
 import CharacterCreationScreen from './screens/characterCreationScreen';
 import CharacterScreen from './screens/characterScreen';
 import AbilitiesScreen from './screens/abilitiesScreen';
+import AbilityCreation from './screens/createAbilityScreen';
 import AttributesScreen from './screens/attributesScreen';
 import InjuriesScreen from './screens/injuriesScreen';
 import InjuryCreation from './screens/createInjuryScreen';
@@ -238,6 +239,9 @@ const MainAppStack = createStackNavigator(
     },
     InjuryCreation: {
       screen: InjuryCreation,
+    },
+    AbilityCreation: {
+      screen: AbilityCreation,
     },
   },
   {

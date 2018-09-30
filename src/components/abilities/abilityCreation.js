@@ -1,15 +1,5 @@
 /* @flow */
 
-/*
-
-TODO: Support adding Armour through mutation
-TODO: Support altering Move through mutation
-TODO: Support altering Initiative through mutation
-
-TODO: Support altering Damage through mutation?
-
-*/
-
 import React from 'react';
 import Picker from 'react-native-picker';
 import Immutable from 'seamless-immutable';
@@ -24,47 +14,35 @@ import {
   View,
 } from 'react-native';
 
-import SegmentedControlTab from 'react-native-segmented-control-tab';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
+// TODO: Make these generic 'create thing styles'
 import CreateInjuryStyles from '../../theme/standard/components/createInjury.style';
-import Injury from '../../models/injury';
+import Ability from '../../models/ability';
 import Modifier from '../../models/modifier';
 import Strings from '../../language/strings';
 
 import Attribute from '../attribute';
 import AttributeStyles from '../../theme/standard/components/attribute.style';
 
-type InjuryCreationState = {
+type AbilityCreationState = {
   name: string,
-  flavourText: string,
-  effects: string,
-  diceRoll: number,
-  type: string,
+  skillTrack: string,
+  description: string,
   modifiers: Array<Modifier>,
-  injuryTypeIndex: number,
-  selectedModifier: Modifier,
-  selectedModifierId: string,
-  isEditingModifierType: boolean,
   attributePickerItems: Array<any>,
 };
 
 const initialState = {
   name: '',
+  skillTrack: '',
+  description: '',
   modifiers: [],
-  flavourText: '',
-  effects: '',
-  type: 'injury',
-  diceRoll: 2,
-  selectedModifier: undefined,
-  selectedModifierId: undefined,
-  isEditingModifierType: false,
-  injuryTypeIndex: 0,
   attributePickerItems: [],
 };
 
-export default class InjuryCreation extends React.Component {
+export default class AbilityCreation extends React.Component {
   constructor(props) {
     super(props);
 
@@ -87,21 +65,14 @@ export default class InjuryCreation extends React.Component {
 
     this.state = initialState;
 
-    if (props.injuryDetails) {
-      const injuryTypeIndex = [
-        Strings.injury,
-        Strings.mutation,
-        Strings.madness,
-      ].indexOf(props.injuryDetails.type);
-
-      const mutableInjuryDetails = Immutable.asMutable(props.injuryDetails, {
+    if (typeof props.abilityDetails !== 'undefined') {
+      const mutableAbilityDetails = Immutable.asMutable(props.abilityDetails, {
         deep: true,
       });
 
       this.state = {
         ...this.state,
-        ...mutableInjuryDetails,
-        injuryTypeIndex,
+        ...mutableAbilityDetails,
       };
     }
 
@@ -116,7 +87,6 @@ export default class InjuryCreation extends React.Component {
     this.startRemovingModifier = this.startRemovingModifier.bind(this);
     this.displayModifierPicker = this.displayModifierPicker.bind(this);
     this.findAttributeByValue = this.findAttributeByValue.bind(this);
-    this.handleInjuryTypeSelection = this.handleInjuryTypeSelection.bind(this);
   }
 
   componentDidMount() {
@@ -144,22 +114,18 @@ export default class InjuryCreation extends React.Component {
   }
 
   validateForm() {
-    const injuryTypes = [Strings.injury, Strings.mutation, Strings.madness];
-
-    const injury = new Injury(
+    const ability = new Ability(
       this.state.name,
-      this.state.flavourText,
-      this.state.effects,
-      this.state.diceRoll,
-      injuryTypes[this.state.injuryTypeIndex],
+      this.state.skillTrack,
+      this.state.description,
       this.state.modifiers
     );
 
-    if (typeof this.props.injuryDetails !== 'undefined') {
-      injury.id = this.props.injuryDetails.id;
+    if (typeof this.props.abilityDetails !== 'undefined') {
+      ability.id = this.props.abilityDetails.id;
     }
 
-    this.props.onSave(injury);
+    this.props.onSave(ability);
   }
 
   createModifierDecrement(modifierId) {
@@ -282,10 +248,6 @@ export default class InjuryCreation extends React.Component {
     this.setState({ modifiers });
   }
 
-  handleInjuryTypeSelection(injuryTypeIndex) {
-    this.setState({ injuryTypeIndex });
-  }
-
   render() {
     const styles = CreateInjuryStyles.standard;
 
@@ -296,16 +258,7 @@ export default class InjuryCreation extends React.Component {
           style={styles.formContainer}
         >
           <View style={styles.formHeader}>
-            <Text style={styles.formHeaderText}>{Strings.newInjury}</Text>
-          </View>
-
-          <View style={styles.formRow}>
-            <Text style={styles.formLabel}>{Strings.type}</Text>
-            <SegmentedControlTab
-              values={[Strings.injury, Strings.mutation, Strings.madness]}
-              selectedIndex={this.state.injuryTypeIndex}
-              onTabPress={this.handleInjuryTypeSelection}
-            />
+            <Text style={styles.formHeaderText}>{Strings.newAbility}</Text>
           </View>
 
           <View style={styles.formRow}>
@@ -323,48 +276,34 @@ export default class InjuryCreation extends React.Component {
             />
           </View>
           <View style={styles.formRow}>
-            <Text testID={'item-flavour-text-label'} style={styles.formLabel}>
-              {Strings.flavourText}
+            <Text
+              testID={'item-skill-track-text-label'}
+              style={styles.formLabel}
+            >
+              {Strings.skillTrack}
             </Text>
 
             <TextInput
               testID="item-flavour-text-entry"
               style={styles.formDataEntry}
-              value={this.state.flavourText}
+              value={this.state.skillTrack}
               onChangeText={newValue => {
-                this.setState({ flavourText: newValue });
+                this.setState({ skillTrack: newValue });
               }}
             />
           </View>
 
           <View style={styles.formRow}>
-            <Text testID={'item-effects-label'} style={styles.formLabel}>
-              {Strings.effects}
+            <Text testID={'item-description-label'} style={styles.formLabel}>
+              {Strings.description}
             </Text>
 
             <TextInput
-              testID="item-effects-entry"
+              testID="item-description-entry"
               style={styles.formDataEntry}
-              value={this.state.effects}
+              value={this.state.description}
               onChangeText={newValue => {
-                this.setState({ effects: newValue });
-              }}
-            />
-          </View>
-
-          <View style={styles.formRow}>
-            <Text style={styles.formLabel}>{Strings.diceRoll}</Text>
-            <TextInput
-              keyboardType="number-pad"
-              style={styles.formDataEntry}
-              value={this.state.diceRoll.toString()}
-              onChangeText={newValue => {
-                let changeValue = Number(newValue);
-                if (Number.isNaN(changeValue)) {
-                  changeValue = 0;
-                }
-
-                this.setState({ diceRoll: changeValue });
+                this.setState({ description: newValue });
               }}
             />
           </View>

@@ -16,3 +16,8 @@ export const CREATE_INJURY: string = 'sob.app.CREATE_INJURY';
 
 export const EDIT_INJURY: string = 'sob.app.EDIT_INJURY';
 export const SAVE_INJURY: string = 'sob.app.SAVE_INJURY';
+
+export const CREATE_ABILITY: string = 'sob.app.CREATE_ABILITY';
+
+export const EDIT_ABILITY: string = 'sob.app.EDIT_ABILITY';
+export const SAVE_ABILITY: string = 'sob.app.SAVE_ABILITY';

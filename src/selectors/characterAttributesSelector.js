@@ -2,7 +2,14 @@
 
 import Strings from '../language/strings';
 
-const calculateValue = (baseValue, attribute, character, items, injuries) => {
+const calculateValue = (
+  baseValue,
+  attribute,
+  character,
+  items,
+  injuries,
+  abilities
+) => {
   let modifiedValue = 0;
 
   character.items.forEach(itemId => {
@@ -29,6 +36,18 @@ const calculateValue = (baseValue, attribute, character, items, injuries) => {
     }
   });
 
+  character.abilities.forEach(abilityId => {
+    const ability = abilities.byId[abilityId];
+
+    if (ability) {
+      ability.modifiers.forEach(modifier => {
+        if (modifier.attribute === attribute) {
+          modifiedValue += modifier.modification;
+        }
+      });
+    }
+  });
+
   return baseValue + modifiedValue;
 };
 
@@ -42,7 +61,8 @@ export default state => {
       'agility',
       character,
       state.items,
-      state.injuries
+      state.injuries,
+      state.abilities
     ),
     baseValue: character.agility,
     label: Strings.agility,
@@ -54,7 +74,8 @@ export default state => {
       'cunning',
       character,
       state.items,
-      state.injuries
+      state.injuries,
+      state.abilities
     ),
     baseValue: character.cunning,
     label: Strings.cunning,
@@ -66,7 +87,8 @@ export default state => {
       'strength',
       character,
       state.items,
-      state.injuries
+      state.injuries,
+      state.abilities
     ),
     baseValue: character.strength,
     label: Strings.strength,
@@ -78,7 +100,8 @@ export default state => {
       'spirit',
       character,
       state.items,
-      state.injuries
+      state.injuries,
+      state.abilities
     ),
     baseValue: character.spirit,
     label: Strings.spirit,
@@ -90,7 +113,8 @@ export default state => {
       'luck',
       character,
       state.items,
-      state.injuries
+      state.injuries,
+      state.abilities
     ),
     baseValue: character.luck,
     label: Strings.luck,
@@ -102,7 +126,8 @@ export default state => {
       'lore',
       character,
       state.items,
-      state.injuries
+      state.injuries,
+      state.abilities
     ),
     baseValue: character.lore,
     label: Strings.lore,
@@ -114,7 +139,8 @@ export default state => {
       'health',
       character,
       state.items,
-      state.injuries
+      state.injuries,
+      state.abilities
     ),
     baseValue: character.health,
     label: Strings.health,
@@ -126,7 +152,8 @@ export default state => {
       'sanity',
       character,
       state.items,
-      state.injuries
+      state.injuries,
+      state.abilities
     ),
     baseValue: character.sanity,
     label: Strings.sanity,
@@ -138,7 +165,8 @@ export default state => {
       'defense',
       character,
       state.items,
-      state.injuries
+      state.injuries,
+      state.abilities
     ),
     baseValue: character.defense,
     label: Strings.defense,
@@ -150,7 +178,8 @@ export default state => {
       'willpower',
       character,
       state.items,
-      state.injuries
+      state.injuries,
+      state.abilities
     ),
     baseValue: character.willpower,
     label: Strings.willpower,
@@ -162,7 +191,8 @@ export default state => {
       'maxGrit',
       character,
       state.items,
-      state.injuries
+      state.injuries,
+      state.abilities
     ),
     baseValue: character.maxGrit,
     label: Strings.maxGrit,
@@ -174,7 +204,8 @@ export default state => {
       'combat',
       character,
       state.items,
-      state.injuries
+      state.injuries,
+      state.abilities
     ),
     baseValue: character.combat,
     label: Strings.combat,
@@ -186,7 +217,8 @@ export default state => {
       'range',
       character,
       state.items,
-      state.injuries
+      state.injuries,
+      state.abilities
     ),
     baseValue: character.range,
     label: Strings.range,
@@ -198,7 +230,8 @@ export default state => {
       'melee',
       character,
       state.items,
-      state.injuries
+      state.injuries,
+      state.abilities
     ),
     baseValue: character.melee,
     label: Strings.melee,

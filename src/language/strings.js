@@ -58,6 +58,9 @@ const strings = new LocalizedStrings({
     diceRoll: 'Dice Roll',
     injury: 'Injury',
     mutation: 'Mutation',
+    madness: 'Madness',
+    newAbility: 'New Ability',
+    skillTrack: 'Skill Track',
   },
   en: {
     characterClass: 'Class',
@@ -116,6 +119,9 @@ const strings = new LocalizedStrings({
     diceRoll: 'Dice Roll',
     injury: 'Injury',
     mutation: 'Mutation',
+    madness: 'Madness',
+    newAbility: 'New Ability',
+    skillTrack: 'Skill Track',
   },
   de: {
     characterClass: 'Klasse',
@@ -174,6 +180,9 @@ const strings = new LocalizedStrings({
     diceRoll: 'Dice Roll',
     injury: 'Injury',
     mutation: 'Mutation',
+    madness: 'Madness',
+    newAbility: 'New Ability',
+    skillTrack: 'Skill Track',
   },
   dk: {
     characterClass: 'Rolle',
@@ -232,6 +241,9 @@ const strings = new LocalizedStrings({
     diceRoll: 'Dice Roll',
     injury: 'Injury',
     mutation: 'Mutation',
+    madness: 'Madness',
+    newAbility: 'New Ability',
+    skillTrack: 'Skill Track',
   },
 });
 

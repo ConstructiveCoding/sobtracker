@@ -108,6 +108,30 @@ export default function(
         selectedCharacter: updatedCharacter,
       });
     }
+    case types.CREATE_ABILITY: {
+      const abilityId = action.ability.id;
+      const characterToUpdate = state.byId[state.selectedCharacter.id];
+
+      const mutableabilities = [].concat(characterToUpdate.abilities);
+      mutableabilities.push(abilityId);
+
+      const updatedCharacter = {
+        ...characterToUpdate,
+        abilities: mutableabilities,
+      };
+
+      const newById = {
+        ...state.byId,
+      };
+
+      newById[state.selectedCharacter.id] = updatedCharacter;
+
+      return Immutable({
+        ...state,
+        byId: newById,
+        selectedCharacter: updatedCharacter,
+      });
+    }
     default:
       return state;
   }

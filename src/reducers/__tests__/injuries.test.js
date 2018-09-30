@@ -1,5 +1,4 @@
 /* @flow */
-import Immutable from 'seamless-immutable';
 import InjuriesReducer from '../injuries';
 
 import * as types from '../../actions/actionTypes';

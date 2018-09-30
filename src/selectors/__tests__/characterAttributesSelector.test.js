@@ -1,3 +1,14 @@
+// TODO: Detox tests for the following
+// TODO: Alter Attributes on attributes screen
+// TODO: Edit Item
+// TODO: Create Injury
+// TODO: Edit Injury
+// TODO: Add ability
+// TODO: Edit Ability
+// TODO: Items, Injuries and Abilities altering attributes
+
+// TODO: Delete Item, Injury and Ability
+
 import CharacterAttributesSelector from '../characterAttributesSelector';
 
 import Strings from '../../language/strings';
@@ -62,7 +73,7 @@ describe('CharacterAttributeSelector', () => {
     },
   ];
 
-  it('should return all of the attributes of the selected character with no items', () => {
+  it('should return all of the attributes of the selected character with no items, injuries or abilities', () => {
     const characterId = '1';
     const character = {
       id: characterId,
@@ -82,6 +93,7 @@ describe('CharacterAttributeSelector', () => {
       melee: 14,
       items: [],
       injuries: [],
+      abilities: [],
     };
 
     const state = {
@@ -140,6 +152,7 @@ describe('CharacterAttributeSelector', () => {
         '14',
       ],
       injuries: [],
+      abilities: [],
     };
 
     const state = {
@@ -304,6 +317,77 @@ describe('CharacterAttributeSelector', () => {
     },
   };
 
+  const abilities = {
+    allIds: [
+      '1',
+      '2',
+      '3',
+      '4',
+      '5',
+      '6',
+      '7',
+      '8',
+      '9',
+      '10',
+      '11',
+      '12',
+      '13',
+      '14',
+    ],
+    byId: {
+      '1': {
+        id: '1',
+        modifiers: [{ attribute: 'agility', modification: 20 }],
+      },
+      '2': {
+        id: '2',
+        modifiers: [{ attribute: 'cunning', modification: 19 }],
+      },
+      '3': {
+        id: '3',
+        modifiers: [{ attribute: 'strength', modification: 18 }],
+      },
+      '4': {
+        id: '4',
+        modifiers: [{ attribute: 'spirit', modification: 17 }],
+      },
+      '5': { id: '5', modifiers: [{ attribute: 'luck', modification: 16 }] },
+      '6': { id: '6', modifiers: [{ attribute: 'lore', modification: 15 }] },
+      '7': {
+        id: '7',
+        modifiers: [{ attribute: 'health', modification: 14 }],
+      },
+      '8': {
+        id: '8',
+        modifiers: [{ attribute: 'sanity', modification: 13 }],
+      },
+      '9': {
+        id: '9',
+        modifiers: [{ attribute: 'defense', modification: 12 }],
+      },
+      '10': {
+        id: '10',
+        modifiers: [{ attribute: 'willpower', modification: 11 }],
+      },
+      '11': {
+        id: '11',
+        modifiers: [{ attribute: 'maxGrit', modification: 10 }],
+      },
+      '12': {
+        id: '12',
+        modifiers: [{ attribute: 'combat', modification: 9 }],
+      },
+      '13': {
+        id: '13',
+        modifiers: [{ attribute: 'range', modification: 8 }],
+      },
+      '14': {
+        id: '14',
+        modifiers: [{ attribute: 'melee', modification: 7 }],
+      },
+    },
+  };
+
   it('should return all of the attributes of the selected character with injuries that have modifications', () => {
     const characterId = '1';
 
@@ -340,6 +424,7 @@ describe('CharacterAttributeSelector', () => {
         '13',
         '14',
       ],
+      abilities: [],
     };
 
     const state = {
@@ -362,7 +447,66 @@ describe('CharacterAttributeSelector', () => {
     }
   });
 
-  it('should return all of the attributes of the selected character with injuries and items', () => {
+  it('should return all of the attributes of the selected character with attributes that have modifications', () => {
+    const characterId = '1';
+
+    const character = {
+      id: characterId,
+      agility: 1,
+      cunning: 2,
+      strength: 3,
+      spirit: 4,
+      luck: 5,
+      lore: 6,
+      health: 7,
+      sanity: 8,
+      defense: 9,
+      willpower: 10,
+      maxGrit: 11,
+      combat: 12,
+      range: 13,
+      melee: 14,
+      items: [],
+      abilities: [
+        '1',
+        '2',
+        '3',
+        '4',
+        '5',
+        '6',
+        '7',
+        '8',
+        '9',
+        '10',
+        '11',
+        '12',
+        '13',
+        '14',
+      ],
+      injuries: [],
+    };
+
+    const state = {
+      calculator: {},
+      abilities,
+      character: {
+        selectedCharacter: character,
+      },
+    };
+
+    const attributes = CharacterAttributesSelector(state);
+    expect(attributes).toHaveLength(14);
+
+    for (let index = 0; index < attributes.length; index++) {
+      const attribute = attributes[index];
+      expect(attribute.value).toEqual(21);
+      expect(attribute.baseValue).toEqual(index + 1);
+      expect(attribute.label).toEqual(expected[index].label);
+      expect(attribute.attribute).toEqual(expected[index].attribute);
+    }
+  });
+
+  it('should return all of the attributes of the selected character with injuries, items and abilities', () => {
     const characterId = '1';
 
     const character = {
@@ -413,12 +557,29 @@ describe('CharacterAttributeSelector', () => {
         '13',
         '14',
       ],
+      abilities: [
+        '1',
+        '2',
+        '3',
+        '4',
+        '5',
+        '6',
+        '7',
+        '8',
+        '9',
+        '10',
+        '11',
+        '12',
+        '13',
+        '14',
+      ],
     };
 
     const state = {
       calculator: {},
       injuries,
       items,
+      abilities,
       character: {
         selectedCharacter: character,
       },
@@ -429,7 +590,7 @@ describe('CharacterAttributeSelector', () => {
 
     for (let index = 0; index < attributes.length; index++) {
       const attribute = attributes[index];
-      expect(attribute.value).toEqual(40 - index);
+      expect(attribute.value).toEqual(60 - index * 2);
       expect(attribute.baseValue).toEqual(index + 1);
       expect(attribute.label).toEqual(expected[index].label);
       expect(attribute.attribute).toEqual(expected[index].attribute);

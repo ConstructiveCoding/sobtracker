@@ -35,6 +35,7 @@ class Character {
 
   items: Array<string>;
   injuries: Array<string>;
+  abilities: Array<string>;
 
   constructor(name: string, gender: string, characterClass: string) {
     this.id = uuid.v4();
@@ -68,6 +69,7 @@ class Character {
 
     this.items = [];
     this.injuries = [];
+    this.abilities = [];
   }
 }
 
