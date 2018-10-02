@@ -3,11 +3,7 @@
 exports[`CharacterCreation should render the character creation screen with no props 1`] = `
 <View>
   <View>
-    <Text
-      accessible={true}
-      allowFontScaling={true}
-      ellipsizeMode="tail"
-    >
+    <Text>
       Name
     </Text>
     <TextInput
@@ -18,15 +14,12 @@ exports[`CharacterCreation should render the character creation screen with no p
       onChangeText={[Function]}
       placeholder="Name"
       testID="character-name-entry"
+      underlineColorAndroid="transparent"
       value=""
     />
   </View>
   <View>
-    <Text
-      accessible={true}
-      allowFontScaling={true}
-      ellipsizeMode="tail"
-    >
+    <Text>
       Class
     </Text>
     <TextInput
@@ -35,15 +28,12 @@ exports[`CharacterCreation should render the character creation screen with no p
       onChangeText={[Function]}
       placeholder="Class"
       testID="character-class-entry"
+      underlineColorAndroid="transparent"
       value=""
     />
   </View>
   <View>
-    <Text
-      accessible={true}
-      allowFontScaling={true}
-      ellipsizeMode="tail"
-    >
+    <Text>
       Gender
     </Text>
     <TextInput
@@ -52,17 +42,14 @@ exports[`CharacterCreation should render the character creation screen with no p
       onChangeText={[Function]}
       placeholder="Gender"
       testID="character-gender-entry"
+      underlineColorAndroid="transparent"
       value=""
     />
   </View>
   <View
     testID="create-character-view"
   >
-    <Text
-      accessible={true}
-      allowFontScaling={true}
-      ellipsizeMode="tail"
-    >
+    <Text>
       Create Character
     </Text>
   </View>
@@ -72,11 +59,7 @@ exports[`CharacterCreation should render the character creation screen with no p
 exports[`CharacterCreation should render the character creation screen with props 1`] = `
 <View>
   <View>
-    <Text
-      accessible={true}
-      allowFontScaling={true}
-      ellipsizeMode="tail"
-    >
+    <Text>
       Name
     </Text>
     <TextInput
@@ -87,15 +70,12 @@ exports[`CharacterCreation should render the character creation screen with prop
       onChangeText={[Function]}
       placeholder="Name"
       testID="character-name-entry"
+      underlineColorAndroid="transparent"
       value="Test Character"
     />
   </View>
   <View>
-    <Text
-      accessible={true}
-      allowFontScaling={true}
-      ellipsizeMode="tail"
-    >
+    <Text>
       Class
     </Text>
     <TextInput
@@ -104,15 +84,12 @@ exports[`CharacterCreation should render the character creation screen with prop
       onChangeText={[Function]}
       placeholder="Class"
       testID="character-class-entry"
+      underlineColorAndroid="transparent"
       value="TestClass"
     />
   </View>
   <View>
-    <Text
-      accessible={true}
-      allowFontScaling={true}
-      ellipsizeMode="tail"
-    >
+    <Text>
       Gender
     </Text>
     <TextInput
@@ -121,6 +98,7 @@ exports[`CharacterCreation should render the character creation screen with prop
       onChangeText={[Function]}
       placeholder="Gender"
       testID="character-gender-entry"
+      underlineColorAndroid="transparent"
       value="Female"
     />
   </View>
@@ -140,11 +118,7 @@ exports[`CharacterCreation should render the character creation screen with prop
     }
     testID="create-character-button"
   >
-    <Text
-      accessible={true}
-      allowFontScaling={true}
-      ellipsizeMode="tail"
-    >
+    <Text>
       Create Character
     </Text>
   </View>

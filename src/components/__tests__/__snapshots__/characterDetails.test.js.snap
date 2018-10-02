@@ -19,9 +19,6 @@ exports[`CharacterDetails should render the character details screen with the su
     }
   >
     <Text
-      accessible={true}
-      allowFontScaling={true}
-      ellipsizeMode="tail"
       style={
         Object {
           "fontSize": 18,
@@ -49,9 +46,6 @@ exports[`CharacterDetails should render the character details screen with the su
       }
     >
       <Text
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
         style={
           Object {
             "fontSize": 10,
@@ -61,9 +55,6 @@ exports[`CharacterDetails should render the character details screen with the su
         Gender
       </Text>
       <Text
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
         style={
           Object {
             "fontSize": 18,
@@ -83,9 +74,6 @@ exports[`CharacterDetails should render the character details screen with the su
       }
     >
       <Text
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
         style={
           Object {
             "fontSize": 10,
@@ -96,9 +84,6 @@ exports[`CharacterDetails should render the character details screen with the su
         Class
       </Text>
       <Text
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
         style={
           Object {
             "fontSize": 18,
@@ -135,9 +120,6 @@ exports[`CharacterDetails should render the character details screen with the su
       testID="xp"
     >
       <Text
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
         style={
           Object {
             "flex": 1,
@@ -148,9 +130,6 @@ exports[`CharacterDetails should render the character details screen with the su
         XP
       </Text>
       <Text
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
         style={
           Object {
             "flex": 1,
@@ -186,9 +165,6 @@ exports[`CharacterDetails should render the character details screen with the su
       testID="level"
     >
       <Text
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
         style={
           Object {
             "flex": 1,
@@ -199,9 +175,6 @@ exports[`CharacterDetails should render the character details screen with the su
         Level
       </Text>
       <Text
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
         style={
           Object {
             "flex": 1,
@@ -239,9 +212,6 @@ exports[`CharacterDetails should render the character details screen with the su
       testID="gold"
     >
       <Text
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
         style={
           Object {
             "flex": 1,
@@ -252,9 +222,6 @@ exports[`CharacterDetails should render the character details screen with the su
         Gold
       </Text>
       <Text
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
         style={
           Object {
             "flex": 1,
@@ -292,9 +259,6 @@ exports[`CharacterDetails should render the character details screen with the su
       testID="dark-stone"
     >
       <Text
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
         style={
           Object {
             "flex": 1,
@@ -305,9 +269,6 @@ exports[`CharacterDetails should render the character details screen with the su
         Dark Stone
       </Text>
       <Text
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
         style={
           Object {
             "flex": 1,
@@ -345,9 +306,6 @@ exports[`CharacterDetails should render the character details screen with the su
       testID="initiative"
     >
       <Text
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
         style={
           Object {
             "flex": 1,
@@ -358,9 +316,6 @@ exports[`CharacterDetails should render the character details screen with the su
         Initiative
       </Text>
       <Text
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
         style={
           Object {
             "flex": 1,
@@ -398,9 +353,6 @@ exports[`CharacterDetails should render the character details screen with the su
       testID="corruption"
     >
       <Text
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
         style={
           Object {
             "flex": 1,
@@ -411,9 +363,6 @@ exports[`CharacterDetails should render the character details screen with the su
         Corruption
       </Text>
       <Text
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
         style={
           Object {
             "flex": 1,
@@ -451,9 +400,6 @@ exports[`CharacterDetails should render the character details screen with the su
       testID="grit"
     >
       <Text
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
         style={
           Object {
             "flex": 1,
@@ -464,9 +410,6 @@ exports[`CharacterDetails should render the character details screen with the su
         Grit
       </Text>
       <Text
-        accessible={true}
-        allowFontScaling={true}
-        ellipsizeMode="tail"
         style={
           Object {
             "flex": 1,
