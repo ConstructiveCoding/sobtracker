@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`CharacterDetails should render the character details screen with the supplied props 1`] = `
-<View
+<RCTScrollView
   style={
     Object {
       "paddingLeft": 16,
@@ -9,415 +9,692 @@ exports[`CharacterDetails should render the character details screen with the su
     }
   }
 >
-  <View
-    style={
-      Object {
-        "alignItems": "center",
-        "justifyContent": "center",
-        "padding": 8,
-      }
-    }
-  >
-    <Text
-      style={
-        Object {
-          "fontSize": 18,
-        }
-      }
-      testID="character-name"
-    >
-      Test Character
-    </Text>
-  </View>
-  <View
-    style={
-      Object {
-        "flexDirection": "row",
-      }
-    }
-  >
+  <View>
     <View
       style={
         Object {
           "alignItems": "center",
-          "flex": 1,
           "justifyContent": "center",
+          "padding": 8,
         }
       }
     >
-      <Text
-        style={
-          Object {
-            "fontSize": 10,
-          }
-        }
-      >
-        Gender
-      </Text>
       <Text
         style={
           Object {
             "fontSize": 18,
           }
         }
+        testID="character-name"
       >
-        Androgynous
+        Test Character
       </Text>
     </View>
     <View
-      style={
-        Object {
-          "alignItems": "center",
-          "flex": 1,
-          "justifyContent": "center",
-        }
-      }
-    >
-      <Text
-        style={
-          Object {
-            "fontSize": 10,
-          }
-        }
-        testID="character-class"
-      >
-        Class
-      </Text>
-      <Text
-        style={
-          Object {
-            "fontSize": 18,
-          }
-        }
-      >
-        Test Character Class
-      </Text>
-    </View>
-  </View>
-  <View
-    style={
-      Object {
-        "marginTop": 10,
-        "paddingBottom": 5,
-      }
-    }
-  >
-    <View
-      accessible={true}
-      isTVSelectable={true}
-      onResponderGrant={[Function]}
-      onResponderMove={[Function]}
-      onResponderRelease={[Function]}
-      onResponderTerminate={[Function]}
-      onResponderTerminationRequest={[Function]}
-      onStartShouldSetResponder={[Function]}
       style={
         Object {
           "flexDirection": "row",
-          "opacity": 1,
         }
       }
-      testID="xp"
     >
-      <Text
+      <View
         style={
           Object {
+            "alignItems": "center",
             "flex": 1,
-            "textAlign": "left",
+            "justifyContent": "center",
           }
         }
       >
-        XP
-      </Text>
-      <Text
+        <Text
+          style={
+            Object {
+              "fontSize": 10,
+            }
+          }
+        >
+          Gender
+        </Text>
+        <Text
+          style={
+            Object {
+              "fontSize": 18,
+            }
+          }
+        >
+          Androgynous
+        </Text>
+      </View>
+      <View
         style={
           Object {
+            "alignItems": "center",
             "flex": 1,
-            "textAlign": "right",
+            "justifyContent": "center",
           }
         }
-      />
+      >
+        <Text
+          style={
+            Object {
+              "fontSize": 10,
+            }
+          }
+          testID="character-class"
+        >
+          Class
+        </Text>
+        <Text
+          style={
+            Object {
+              "fontSize": 18,
+            }
+          }
+        >
+          Test Character Class
+        </Text>
+      </View>
     </View>
-  </View>
-  <View
-    style={
-      Object {
-        "marginTop": 10,
-        "paddingBottom": 5,
-      }
-    }
-  >
     <View
-      accessible={true}
-      isTVSelectable={true}
-      onResponderGrant={[Function]}
-      onResponderMove={[Function]}
-      onResponderRelease={[Function]}
-      onResponderTerminate={[Function]}
-      onResponderTerminationRequest={[Function]}
-      onStartShouldSetResponder={[Function]}
       style={
         Object {
-          "flexDirection": "row",
-          "opacity": 1,
+          "marginTop": 10,
+          "paddingBottom": 5,
         }
       }
-      testID="level"
     >
-      <Text
+      <View
+        accessible={true}
+        isTVSelectable={true}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
         style={
           Object {
-            "flex": 1,
-            "textAlign": "left",
+            "flexDirection": "row",
+            "opacity": 1,
           }
         }
+        testID="xp"
       >
-        Level
-      </Text>
-      <Text
-        style={
-          Object {
-            "flex": 1,
-            "textAlign": "right",
+        <Text
+          style={
+            Object {
+              "flex": 1,
+              "textAlign": "left",
+            }
           }
-        }
-      >
-        0
-      </Text>
+        >
+          XP
+        </Text>
+        <Text
+          style={
+            Object {
+              "flex": 1,
+              "textAlign": "right",
+            }
+          }
+        />
+      </View>
     </View>
-  </View>
-  <View
-    style={
-      Object {
-        "marginTop": 10,
-        "paddingBottom": 5,
-      }
-    }
-  >
     <View
-      accessible={true}
-      isTVSelectable={true}
-      onResponderGrant={[Function]}
-      onResponderMove={[Function]}
-      onResponderRelease={[Function]}
-      onResponderTerminate={[Function]}
-      onResponderTerminationRequest={[Function]}
-      onStartShouldSetResponder={[Function]}
       style={
         Object {
-          "flexDirection": "row",
-          "opacity": 1,
+          "marginTop": 10,
+          "paddingBottom": 5,
         }
       }
-      testID="gold"
     >
-      <Text
+      <View
+        accessible={true}
+        isTVSelectable={true}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
         style={
           Object {
-            "flex": 1,
-            "textAlign": "left",
+            "flexDirection": "row",
+            "opacity": 1,
           }
         }
+        testID="level"
       >
-        Gold
-      </Text>
-      <Text
-        style={
-          Object {
-            "flex": 1,
-            "textAlign": "right",
+        <Text
+          style={
+            Object {
+              "flex": 1,
+              "textAlign": "left",
+            }
           }
-        }
-      >
-        0
-      </Text>
+        >
+          Level
+        </Text>
+        <Text
+          style={
+            Object {
+              "flex": 1,
+              "textAlign": "right",
+            }
+          }
+        >
+          0
+        </Text>
+      </View>
     </View>
-  </View>
-  <View
-    style={
-      Object {
-        "marginTop": 10,
-        "paddingBottom": 5,
-      }
-    }
-  >
     <View
-      accessible={true}
-      isTVSelectable={true}
-      onResponderGrant={[Function]}
-      onResponderMove={[Function]}
-      onResponderRelease={[Function]}
-      onResponderTerminate={[Function]}
-      onResponderTerminationRequest={[Function]}
-      onStartShouldSetResponder={[Function]}
       style={
         Object {
-          "flexDirection": "row",
-          "opacity": 1,
+          "marginTop": 10,
+          "paddingBottom": 5,
         }
       }
-      testID="dark-stone"
     >
-      <Text
+      <View
+        accessible={true}
+        isTVSelectable={true}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
         style={
           Object {
-            "flex": 1,
-            "textAlign": "left",
+            "flexDirection": "row",
+            "opacity": 1,
           }
         }
+        testID="gold"
       >
-        Dark Stone
-      </Text>
-      <Text
-        style={
-          Object {
-            "flex": 1,
-            "textAlign": "right",
+        <Text
+          style={
+            Object {
+              "flex": 1,
+              "textAlign": "left",
+            }
           }
-        }
-      >
-        0
-      </Text>
+        >
+          Gold
+        </Text>
+        <Text
+          style={
+            Object {
+              "flex": 1,
+              "textAlign": "right",
+            }
+          }
+        >
+          0
+        </Text>
+      </View>
     </View>
-  </View>
-  <View
-    style={
-      Object {
-        "marginTop": 10,
-        "paddingBottom": 5,
-      }
-    }
-  >
     <View
-      accessible={true}
-      isTVSelectable={true}
-      onResponderGrant={[Function]}
-      onResponderMove={[Function]}
-      onResponderRelease={[Function]}
-      onResponderTerminate={[Function]}
-      onResponderTerminationRequest={[Function]}
-      onStartShouldSetResponder={[Function]}
       style={
         Object {
-          "flexDirection": "row",
-          "opacity": 1,
+          "marginTop": 10,
+          "paddingBottom": 5,
         }
       }
-      testID="initiative"
     >
-      <Text
+      <View
+        accessible={true}
+        isTVSelectable={true}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
         style={
           Object {
-            "flex": 1,
-            "textAlign": "left",
+            "flexDirection": "row",
+            "opacity": 1,
           }
         }
+        testID="dark-stone"
       >
-        Initiative
-      </Text>
-      <Text
-        style={
-          Object {
-            "flex": 1,
-            "textAlign": "right",
+        <Text
+          style={
+            Object {
+              "flex": 1,
+              "textAlign": "left",
+            }
           }
-        }
-      >
-        0
-      </Text>
+        >
+          Dark Stone
+        </Text>
+        <Text
+          style={
+            Object {
+              "flex": 1,
+              "textAlign": "right",
+            }
+          }
+        >
+          0
+        </Text>
+      </View>
     </View>
-  </View>
-  <View
-    style={
-      Object {
-        "marginTop": 10,
-        "paddingBottom": 5,
-      }
-    }
-  >
     <View
-      accessible={true}
-      isTVSelectable={true}
-      onResponderGrant={[Function]}
-      onResponderMove={[Function]}
-      onResponderRelease={[Function]}
-      onResponderTerminate={[Function]}
-      onResponderTerminationRequest={[Function]}
-      onStartShouldSetResponder={[Function]}
       style={
         Object {
-          "flexDirection": "row",
-          "opacity": 1,
+          "marginTop": 10,
+          "paddingBottom": 5,
         }
       }
-      testID="corruption"
     >
-      <Text
+      <View
+        accessible={true}
+        isTVSelectable={true}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
         style={
           Object {
-            "flex": 1,
-            "textAlign": "left",
+            "flexDirection": "row",
+            "opacity": 1,
           }
         }
+        testID="initiative"
       >
-        Corruption
-      </Text>
-      <Text
-        style={
-          Object {
-            "flex": 1,
-            "textAlign": "right",
+        <Text
+          style={
+            Object {
+              "flex": 1,
+              "textAlign": "left",
+            }
           }
-        }
-      >
-        0
-      </Text>
+        >
+          Initiative
+        </Text>
+        <Text
+          style={
+            Object {
+              "flex": 1,
+              "textAlign": "right",
+            }
+          }
+        >
+          0
+        </Text>
+      </View>
     </View>
-  </View>
-  <View
-    style={
-      Object {
-        "marginTop": 10,
-        "paddingBottom": 5,
-      }
-    }
-  >
     <View
-      accessible={true}
-      isTVSelectable={true}
-      onResponderGrant={[Function]}
-      onResponderMove={[Function]}
-      onResponderRelease={[Function]}
-      onResponderTerminate={[Function]}
-      onResponderTerminationRequest={[Function]}
-      onStartShouldSetResponder={[Function]}
       style={
         Object {
-          "flexDirection": "row",
-          "opacity": 1,
+          "marginTop": 10,
+          "paddingBottom": 5,
         }
       }
-      testID="grit"
     >
-      <Text
+      <View
+        accessible={true}
+        isTVSelectable={true}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
         style={
           Object {
-            "flex": 1,
-            "textAlign": "left",
+            "flexDirection": "row",
+            "opacity": 1,
+          }
+        }
+        testID="corruption"
+      >
+        <Text
+          style={
+            Object {
+              "flex": 1,
+              "textAlign": "left",
+            }
+          }
+        >
+          Corruption
+        </Text>
+        <Text
+          style={
+            Object {
+              "flex": 1,
+              "textAlign": "right",
+            }
+          }
+        >
+          0
+        </Text>
+      </View>
+    </View>
+    <View
+      style={
+        Object {
+          "marginTop": 10,
+          "paddingBottom": 5,
+        }
+      }
+    >
+      <View
+        accessible={true}
+        isTVSelectable={true}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Object {
+            "flexDirection": "row",
+            "opacity": 1,
+          }
+        }
+        testID="grit"
+      >
+        <Text
+          style={
+            Object {
+              "flex": 1,
+              "textAlign": "left",
+            }
+          }
+        >
+          Grit
+        </Text>
+        <Text
+          style={
+            Object {
+              "flex": 1,
+              "textAlign": "right",
+            }
+          }
+        />
+      </View>
+    </View>
+    <View
+      style={
+        Object {
+          "marginTop": 10,
+          "paddingBottom": 5,
+        }
+      }
+    >
+      <View
+        accessible={true}
+        isTVSelectable={true}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Object {
+            "flexDirection": "row",
+            "opacity": 1,
+          }
+        }
+        testID="move"
+      >
+        <Text
+          style={
+            Object {
+              "flex": 1,
+              "textAlign": "left",
+            }
+          }
+        >
+          Move
+        </Text>
+        <Text
+          style={
+            Object {
+              "flex": 1,
+              "textAlign": "right",
+            }
+          }
+        />
+      </View>
+    </View>
+    <View
+      style={
+        Object {
+          "marginTop": 10,
+          "paddingBottom": 5,
+        }
+      }
+    >
+      <View
+        accessible={true}
+        isTVSelectable={true}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Object {
+            "flexDirection": "row",
+            "opacity": 1,
+          }
+        }
+        testID="wounds"
+      >
+        <Text
+          style={
+            Object {
+              "flex": 1,
+              "textAlign": "left",
+            }
+          }
+        >
+          Wounds
+        </Text>
+        <Text
+          style={
+            Object {
+              "flex": 1,
+              "textAlign": "right",
+            }
+          }
+        />
+      </View>
+    </View>
+    <View
+      style={
+        Object {
+          "marginTop": 10,
+          "paddingBottom": 5,
+        }
+      }
+    >
+      <View
+        accessible={true}
+        isTVSelectable={true}
+        onResponderGrant={[Function]}
+        onResponderMove={[Function]}
+        onResponderRelease={[Function]}
+        onResponderTerminate={[Function]}
+        onResponderTerminationRequest={[Function]}
+        onStartShouldSetResponder={[Function]}
+        style={
+          Object {
+            "flexDirection": "row",
+            "opacity": 1,
+          }
+        }
+        testID="sanityDamage"
+      >
+        <Text
+          style={
+            Object {
+              "flex": 1,
+              "textAlign": "left",
+            }
+          }
+        >
+          Sanity Damage
+        </Text>
+        <Text
+          style={
+            Object {
+              "flex": 1,
+              "textAlign": "right",
+            }
+          }
+        />
+      </View>
+    </View>
+    <View
+      style={
+        Object {
+          "marginTop": 10,
+          "paddingBottom": 5,
+        }
+      }
+    >
+      <View
+        style={
+          Object {
+            "flexDirection": "row",
           }
         }
       >
-        Grit
-      </Text>
-      <Text
+        <Text
+          style={
+            Object {
+              "flex": 1,
+              "textAlign": "left",
+            }
+          }
+        >
+          Health Remaining
+        </Text>
+        <Text
+          style={
+            Object {
+              "flex": 1,
+              "textAlign": "right",
+            }
+          }
+        />
+      </View>
+    </View>
+    <View
+      style={
+        Object {
+          "marginTop": 10,
+          "paddingBottom": 5,
+        }
+      }
+    >
+      <View
         style={
           Object {
-            "flex": 1,
-            "textAlign": "right",
+            "flexDirection": "row",
           }
         }
-      />
+      >
+        <Text
+          style={
+            Object {
+              "flex": 1,
+              "textAlign": "left",
+            }
+          }
+        >
+          Sanity Remaining
+        </Text>
+        <Text
+          style={
+            Object {
+              "flex": 1,
+              "textAlign": "right",
+            }
+          }
+        />
+      </View>
+    </View>
+    <View
+      style={
+        Object {
+          "marginTop": 10,
+          "paddingBottom": 5,
+        }
+      }
+    >
+      <View
+        style={
+          Object {
+            "flexDirection": "row",
+          }
+        }
+      >
+        <Text
+          style={
+            Object {
+              "flex": 1,
+              "textAlign": "left",
+            }
+          }
+        >
+          Armour
+        </Text>
+        <Text
+          style={
+            Object {
+              "flex": 1,
+              "textAlign": "right",
+            }
+          }
+        />
+      </View>
+    </View>
+    <View
+      style={
+        Object {
+          "marginTop": 10,
+          "paddingBottom": 5,
+        }
+      }
+    >
+      <View
+        style={
+          Object {
+            "flexDirection": "row",
+          }
+        }
+      >
+        <Text
+          style={
+            Object {
+              "flex": 1,
+              "textAlign": "left",
+            }
+          }
+        >
+          Spirit Armour
+        </Text>
+        <Text
+          style={
+            Object {
+              "flex": 1,
+              "textAlign": "right",
+            }
+          }
+        />
+      </View>
     </View>
   </View>
-</View>
+</RCTScrollView>
 `;

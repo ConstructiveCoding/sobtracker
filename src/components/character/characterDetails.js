@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Text, TouchableOpacity, View } from 'react-native';
+import { Text, ScrollView, TouchableOpacity, View } from 'react-native';
 
 import Strings from '../../language/strings';
 
@@ -15,6 +15,13 @@ export default ({
   corruption,
   grit,
   xp,
+  move,
+  wounds,
+  sanityDamage,
+  healthRemaining,
+  sanityRemaining,
+  armour,
+  spiritArmour,
   style,
   editXP,
   editGold,
@@ -23,8 +30,11 @@ export default ({
   editInitiative,
   editCorruption,
   editGrit,
+  editMove,
+  editWounds,
+  editSanityDamage,
 }) => (
-  <View style={style.characterDetailsContainer}>
+  <ScrollView style={style.characterDetailsContainer}>
     <View style={style.characterNameContainer}>
       <Text testID="character-name" style={style.characterName}>
         {name}
@@ -114,5 +124,63 @@ export default ({
         <Text style={style.characterDetailValue}>{grit}</Text>
       </TouchableOpacity>
     </View>
-  </View>
+    <View style={style.characterDetailRow}>
+      <TouchableOpacity
+        testID="move"
+        style={style.characterDetailRowButton}
+        onPress={editMove}
+      >
+        <Text style={style.characterDetailTitle}>{Strings.move}</Text>
+        <Text style={style.characterDetailValue}>{move}</Text>
+      </TouchableOpacity>
+    </View>
+    <View style={style.characterDetailRow}>
+      <TouchableOpacity
+        testID="wounds"
+        style={style.characterDetailRowButton}
+        onPress={editWounds}
+      >
+        <Text style={style.characterDetailTitle}>{Strings.wounds}</Text>
+        <Text style={style.characterDetailValue}>{wounds}</Text>
+      </TouchableOpacity>
+    </View>
+    <View style={style.characterDetailRow}>
+      <TouchableOpacity
+        testID="sanityDamage"
+        style={style.characterDetailRowButton}
+        onPress={editSanityDamage}
+      >
+        <Text style={style.characterDetailTitle}>{Strings.sanityDamage}</Text>
+        <Text style={style.characterDetailValue}>{sanityDamage}</Text>
+      </TouchableOpacity>
+    </View>
+    <View style={style.characterDetailRow}>
+      <View style={style.characterDetailRowButton}>
+        <Text style={style.characterDetailTitle}>
+          {Strings.healthRemaining}
+        </Text>
+        <Text style={style.characterDetailValue}>{healthRemaining}</Text>
+      </View>
+    </View>
+    <View style={style.characterDetailRow}>
+      <View style={style.characterDetailRowButton}>
+        <Text style={style.characterDetailTitle}>
+          {Strings.sanityRemaining}
+        </Text>
+        <Text style={style.characterDetailValue}>{sanityRemaining}</Text>
+      </View>
+    </View>
+    <View style={style.characterDetailRow}>
+      <View style={style.characterDetailRowButton}>
+        <Text style={style.characterDetailTitle}>{Strings.armour}</Text>
+        <Text style={style.characterDetailValue}>{armour}</Text>
+      </View>
+    </View>
+    <View style={style.characterDetailRow}>
+      <View style={style.characterDetailRowButton}>
+        <Text style={style.characterDetailTitle}>{Strings.spiritArmour}</Text>
+        <Text style={style.characterDetailValue}>{spiritArmour}</Text>
+      </View>
+    </View>
+  </ScrollView>
 );

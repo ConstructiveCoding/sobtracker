@@ -17,6 +17,10 @@ class Character {
 
   initiative: number;
 
+  wounds: number;
+  sanityDamage: number;
+  move: number;
+
   // TODO: Move these attributes into a collection and their own reducer
   agility: number;
   cunning: number;
@@ -51,6 +55,9 @@ class Character {
     this.darkStone = 0;
 
     this.initiative = 0;
+    this.wounds = 0;
+    this.sanityDamage = 0;
+    this.move = 0;
 
     this.agility = 0;
     this.cunning = 0;

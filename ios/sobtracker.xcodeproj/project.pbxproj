@@ -51,6 +51,8 @@
 		D7A7FE08901D4E67A1632A97 /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = C24C5B1743FB41DCB721F305 /* Octicons.ttf */; };
 		DE7CA07D7E4B439DBFCE036B /* Foundation.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BC78DDEA6847435EAD6C4ECD /* Foundation.ttf */; };
 		DFAC2E70216409490070F514 /* libReactNativeLocalization.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DFAC2E6F2164090F0070F514 /* libReactNativeLocalization.a */; };
+		DFE62B23216A39B500D8CEA6 /* libRCTBEEPickerManager.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DF60C88F2163632C008E3AD2 /* libRCTBEEPickerManager.a */; };
+		DFE62B4B216A3CFD00D8CEA6 /* libRNVectorIcons.a in Frameworks */ = {isa = PBXBuildFile; fileRef = DF60C8952163632C008E3AD2 /* libRNVectorIcons.a */; };
 		E24927A48A6A465F986430EC /* Feather.ttf in Resources */ = {isa = PBXBuildFile; fileRef = AAD2B6726C504AD0A502F1FD /* Feather.ttf */; };
 		FB49AD96462E4F539B9B8BF5 /* FontAwesome5_Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 1578668DCD474EF5983C92EC /* FontAwesome5_Regular.ttf */; };
 /* End PBXBuildFile section */
@@ -411,6 +413,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DFE62B4B216A3CFD00D8CEA6 /* libRNVectorIcons.a in Frameworks */,
+				DFE62B23216A39B500D8CEA6 /* libRCTBEEPickerManager.a in Frameworks */,
 				DFAC2E70216409490070F514 /* libReactNativeLocalization.a in Frameworks */,
 				ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */,
 				11D1A2F320CAFA9E000508D9 /* libRCTAnimation.a in Frameworks */,

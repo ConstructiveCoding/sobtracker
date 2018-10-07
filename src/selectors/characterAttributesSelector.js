@@ -1,62 +1,14 @@
 /* @flow */
 
+import CalculateValue from './calculations';
 import Strings from '../language/strings';
-
-const calculateValue = (
-  baseValue,
-  attribute,
-  character,
-  items,
-  injuries,
-  abilities
-) => {
-  let modifiedValue = 0;
-
-  character.items.forEach(itemId => {
-    const item = items.byId[itemId];
-
-    if (item) {
-      item.modifiers.forEach(modifier => {
-        if (modifier.attribute === attribute) {
-          modifiedValue += modifier.modification;
-        }
-      });
-    }
-  });
-
-  character.injuries.forEach(injuryId => {
-    const injury = injuries.byId[injuryId];
-
-    if (injury) {
-      injury.modifiers.forEach(modifier => {
-        if (modifier.attribute === attribute) {
-          modifiedValue += modifier.modification;
-        }
-      });
-    }
-  });
-
-  character.abilities.forEach(abilityId => {
-    const ability = abilities.byId[abilityId];
-
-    if (ability) {
-      ability.modifiers.forEach(modifier => {
-        if (modifier.attribute === attribute) {
-          modifiedValue += modifier.modification;
-        }
-      });
-    }
-  });
-
-  return baseValue + modifiedValue;
-};
 
 export default state => {
   const character = state.character.selectedCharacter;
   const attributes = [];
 
   attributes.push({
-    value: calculateValue(
+    value: CalculateValue(
       character.agility,
       'agility',
       character,
@@ -69,7 +21,7 @@ export default state => {
     attribute: 'agility',
   });
   attributes.push({
-    value: calculateValue(
+    value: CalculateValue(
       character.cunning,
       'cunning',
       character,
@@ -82,7 +34,7 @@ export default state => {
     attribute: 'cunning',
   });
   attributes.push({
-    value: calculateValue(
+    value: CalculateValue(
       character.strength,
       'strength',
       character,
@@ -95,7 +47,7 @@ export default state => {
     attribute: 'strength',
   });
   attributes.push({
-    value: calculateValue(
+    value: CalculateValue(
       character.spirit,
       'spirit',
       character,
@@ -108,7 +60,7 @@ export default state => {
     attribute: 'spirit',
   });
   attributes.push({
-    value: calculateValue(
+    value: CalculateValue(
       character.luck,
       'luck',
       character,
@@ -121,7 +73,7 @@ export default state => {
     attribute: 'luck',
   });
   attributes.push({
-    value: calculateValue(
+    value: CalculateValue(
       character.lore,
       'lore',
       character,
@@ -134,7 +86,7 @@ export default state => {
     attribute: 'lore',
   });
   attributes.push({
-    value: calculateValue(
+    value: CalculateValue(
       character.health,
       'health',
       character,
@@ -147,7 +99,7 @@ export default state => {
     attribute: 'health',
   });
   attributes.push({
-    value: calculateValue(
+    value: CalculateValue(
       character.sanity,
       'sanity',
       character,
@@ -160,7 +112,7 @@ export default state => {
     attribute: 'sanity',
   });
   attributes.push({
-    value: calculateValue(
+    value: CalculateValue(
       character.defense,
       'defense',
       character,
@@ -173,7 +125,7 @@ export default state => {
     attribute: 'defense',
   });
   attributes.push({
-    value: calculateValue(
+    value: CalculateValue(
       character.willpower,
       'willpower',
       character,
@@ -186,7 +138,7 @@ export default state => {
     attribute: 'willpower',
   });
   attributes.push({
-    value: calculateValue(
+    value: CalculateValue(
       character.maxGrit,
       'maxGrit',
       character,
@@ -199,7 +151,7 @@ export default state => {
     attribute: 'maxGrit',
   });
   attributes.push({
-    value: calculateValue(
+    value: CalculateValue(
       character.combat,
       'combat',
       character,
@@ -212,7 +164,7 @@ export default state => {
     attribute: 'combat',
   });
   attributes.push({
-    value: calculateValue(
+    value: CalculateValue(
       character.range,
       'range',
       character,
@@ -225,7 +177,7 @@ export default state => {
     attribute: 'range',
   });
   attributes.push({
-    value: calculateValue(
+    value: CalculateValue(
       character.melee,
       'melee',
       character,

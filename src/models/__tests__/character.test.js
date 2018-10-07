@@ -20,6 +20,11 @@ describe('Character Model', () => {
       expect(character.grit).toEqual(0);
       expect(character.darkStone).toEqual(0);
 
+      expect(character.initiative).toEqual(0);
+      expect(character.wounds).toEqual(0);
+      expect(character.sanityDamage).toEqual(0);
+      expect(character.move).toEqual(0);
+
       expect(character.agility).toEqual(0);
       expect(character.cunning).toEqual(0);
       expect(character.strength).toEqual(0);

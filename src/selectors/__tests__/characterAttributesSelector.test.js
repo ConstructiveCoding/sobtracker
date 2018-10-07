@@ -8,8 +8,8 @@
 // TODO: Items, Injuries and Abilities altering attributes
 
 // TODO: Delete Item, Injury and Ability
-// TODO: Physical and Spirit wounds
 // TODO: Add keywords to character creation
+
 import CharacterAttributesSelector from '../characterAttributesSelector';
 
 import Strings from '../../language/strings';

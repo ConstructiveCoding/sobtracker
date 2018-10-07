@@ -12,6 +12,7 @@ import {
   createSwitchNavigator,
 } from 'react-navigation';
 import FontAwesomeIcon from 'react-native-vector-icons/FontAwesome';
+import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5';
 import IoniconsIcon from 'react-native-vector-icons/Ionicons';
 import OcticonsIcon from 'react-native-vector-icons/Octicons';
 
@@ -190,8 +191,8 @@ const TabNavigator = createBottomTabNavigator(
           }
           case 'Injuries': {
             icon = (
-              <IoniconsIcon
-                name="ios-medical-outline"
+              <FontAwesome5Icon
+                name="briefcase-medical"
                 size={25}
                 color={tintColor}
               />

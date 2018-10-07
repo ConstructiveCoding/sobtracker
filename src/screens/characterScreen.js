@@ -3,12 +3,15 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { TouchableOpacity, View } from 'react-native';
+import Icon from 'react-native-vector-icons/dist/FontAwesome';
+import { SafeAreaView } from 'react-navigation';
 
 import { prepareCalculator } from '../actions/calculator';
 
 import CharacterDetailsStyles from '../theme/standard/components/characterDetails.styles';
 import CharacterDetails from '../components/character/characterDetails';
-import Icon from 'react-native-vector-icons/dist/FontAwesome';
+
+import CharacterDetailsSelector from '../selectors/characterDetailsSelector';
 
 import Strings from '../language/strings';
 
@@ -38,7 +41,7 @@ class CharacterScreen extends React.Component {
 
   render() {
     return (
-      <View>
+      <SafeAreaView style={{ flex: 1 }}>
         <CharacterDetails
           {...this.props.character}
           style={CharacterDetailsStyles.standard}
@@ -79,15 +82,31 @@ class CharacterScreen extends React.Component {
             this.props.prepareCalculator(this.props.character.grit, 'grit');
             this.props.navigation.navigate('Calculator');
           }}
+          editMove={() => {
+            this.props.prepareCalculator(this.props.character.move, 'move');
+            this.props.navigation.navigate('Calculator');
+          }}
+          editWounds={() => {
+            this.props.prepareCalculator(this.props.character.wounds, 'wounds');
+            this.props.navigation.navigate('Calculator');
+          }}
+          editSanityDamage={() => {
+            this.props.prepareCalculator(
+              this.props.character.sanityDamage,
+              'sanityDamage'
+            );
+            this.props.navigation.navigate('Calculator');
+          }}
         />
-      </View>
+      </SafeAreaView>
     );
   }
 }
 
 function mapStateToProps(state) {
+  const character = CharacterDetailsSelector(state);
   return {
-    character: state.character.selectedCharacter,
+    character,
   };
 }
 

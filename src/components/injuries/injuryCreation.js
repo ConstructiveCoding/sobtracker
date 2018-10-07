@@ -2,10 +2,6 @@
 
 /*
 
-TODO: Support adding Armour through mutation
-TODO: Support altering Move through mutation
-TODO: Support altering Initiative through mutation
-
 TODO: Support altering Damage through mutation?
 
 */
@@ -83,6 +79,11 @@ export default class InjuryCreation extends React.Component {
       { title: Strings.combat, value: 'combat' },
       { title: Strings.range, value: 'range' },
       { title: Strings.melee, value: 'melee' },
+      { title: Strings.armour, value: 'armour' },
+      { title: Strings.spiritArmour, value: 'spiritArmour' },
+      { title: Strings.initiative, value: 'initiative' },
+      { title: Strings.move, value: 'move' },
+      { title: Strings.damage, value: 'damage' },
     ];
 
     this.state = initialState;
@@ -226,6 +227,11 @@ export default class InjuryCreation extends React.Component {
         Strings.combat,
         Strings.range,
         Strings.melee,
+        Strings.armour,
+        Strings.spiritArmour,
+        Strings.initiative,
+        Strings.move,
+        Strings.damage,
       ];
 
       Picker.init({
