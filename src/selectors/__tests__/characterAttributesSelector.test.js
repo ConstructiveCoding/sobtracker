@@ -7,7 +7,6 @@
 // TODO: Edit Ability
 // TODO: Items, Injuries and Abilities altering attributes
 
-// TODO: Delete Item, Injury and Ability
 // TODO: Add keywords to character creation
 
 // TODO: Each armour should have it's own entry, they are not cumulative
