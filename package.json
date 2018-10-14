@@ -25,7 +25,7 @@
   },
   "dependencies": {
     "react": "16.5.0",
-    "react-native": "0.57.1",
+    "react-native": "0.57.2",
     "react-native-device-log": "^1.0.2",
     "react-native-keyboard-aware-scroll-view": "^0.7.2",
     "react-native-localization": "^2.0.1",
@@ -55,7 +55,7 @@
     "husky": "^1.1.0",
     "jest": "^23.6.0",
     "lint-staged": "^7.3.0",
-    "metro-react-native-babel-preset": "0.47.0",
+    "metro-react-native-babel-preset": "0.47.1",
     "mocha": "^5.2.0",
     "pre-commit": "^1.2.2",
     "prettier": "^1.14.3",
