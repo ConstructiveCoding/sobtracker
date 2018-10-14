@@ -58,6 +58,21 @@ export default function(
         editingInjuryId: undefined,
       });
     }
+    case types.DELETE_INJURY: {
+      const byId = {
+        ...state.byId,
+      };
+
+      delete byId[action.injuryId];
+
+      const allIds = state.allIds.filter(id => id !== action.injuryId);
+
+      return Immutable({
+        ...state,
+        byId,
+        allIds,
+      });
+    }
     default:
       return state;
   }

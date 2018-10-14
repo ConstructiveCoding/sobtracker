@@ -58,6 +58,21 @@ export default function(
         editingItemId: undefined,
       });
     }
+    case types.DELETE_ITEM: {
+      const byId = {
+        ...state.byId,
+      };
+
+      delete byId[action.itemId];
+
+      const allIds = state.allIds.filter(id => id !== action.itemId);
+
+      return Immutable({
+        ...state,
+        byId,
+        allIds,
+      });
+    }
     default:
       return state;
   }

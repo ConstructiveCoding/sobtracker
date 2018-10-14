@@ -21,3 +21,7 @@ export const CREATE_ABILITY: string = 'sob.app.CREATE_ABILITY';
 
 export const EDIT_ABILITY: string = 'sob.app.EDIT_ABILITY';
 export const SAVE_ABILITY: string = 'sob.app.SAVE_ABILITY';
+
+export const DELETE_ITEM: string = 'sob.app.DELETE_ITEM';
+export const DELETE_INJURY: string = 'sob.app.DELETE_INJURY';
+export const DELETE_ABILITY: string = 'sob.app.DELETE_ABILITY';

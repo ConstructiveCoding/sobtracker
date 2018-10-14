@@ -26,3 +26,10 @@ export function cancelEditAbility() {
     type: types.CANCEL_EDIT,
   };
 }
+
+export function deleteAbility(abilityId) {
+  return {
+    type: types.DELETE_ABILITY,
+    abilityId,
+  };
+}

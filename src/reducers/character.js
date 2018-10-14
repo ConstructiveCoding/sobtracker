@@ -1,6 +1,6 @@
 /* @flow */
 import Immutable from 'seamless-immutable';
-
+import util from 'util';
 import * as types from '../actions/actionTypes';
 
 type CharacterState = {
@@ -118,6 +118,75 @@ export default function(
       const updatedCharacter = {
         ...characterToUpdate,
         abilities: mutableabilities,
+      };
+
+      const newById = {
+        ...state.byId,
+      };
+
+      newById[state.selectedCharacter.id] = updatedCharacter;
+
+      return Immutable({
+        ...state,
+        byId: newById,
+        selectedCharacter: updatedCharacter,
+      });
+    }
+    case types.DELETE_ITEM: {
+      const characterToUpdate = state.byId[state.selectedCharacter.id];
+      const characterItems = characterToUpdate.items.filter(
+        item => item !== action.itemId
+      );
+
+      const updatedCharacter = {
+        ...characterToUpdate,
+        items: characterItems,
+      };
+
+      const newById = {
+        ...state.byId,
+      };
+
+      newById[state.selectedCharacter.id] = updatedCharacter;
+
+      return Immutable({
+        ...state,
+        byId: newById,
+        selectedCharacter: updatedCharacter,
+      });
+    }
+    case types.DELETE_INJURY: {
+      const characterToUpdate = state.byId[state.selectedCharacter.id];
+      const characterInjuries = characterToUpdate.injuries.filter(
+        injury => injury !== action.injuryId
+      );
+
+      const updatedCharacter = {
+        ...characterToUpdate,
+        injuries: characterInjuries,
+      };
+
+      const newById = {
+        ...state.byId,
+      };
+
+      newById[state.selectedCharacter.id] = updatedCharacter;
+
+      return Immutable({
+        ...state,
+        byId: newById,
+        selectedCharacter: updatedCharacter,
+      });
+    }
+    case types.DELETE_ABILITY: {
+      const characterToUpdate = state.byId[state.selectedCharacter.id];
+      const characterAbilities = characterToUpdate.abilities.filter(
+        ability => ability !== action.abilityId
+      );
+
+      const updatedCharacter = {
+        ...characterToUpdate,
+        abilities: characterAbilities,
       };
 
       const newById = {

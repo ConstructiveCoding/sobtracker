@@ -10,6 +10,8 @@
 // TODO: Delete Item, Injury and Ability
 // TODO: Add keywords to character creation
 
+// TODO: Each armour should have it's own entry, they are not cumulative
+
 import CharacterAttributesSelector from '../characterAttributesSelector';
 
 import Strings from '../../language/strings';

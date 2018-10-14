@@ -26,3 +26,10 @@ export function cancelEditInjury() {
     type: types.CANCEL_EDIT,
   };
 }
+
+export function deleteInjury(injuryId) {
+  return {
+    type: types.DELETE_INJURY,
+    injuryId,
+  };
+}

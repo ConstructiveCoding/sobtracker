@@ -98,4 +98,25 @@ describe('Injuries reducer', () => {
     const returnedState = InjuriesReducer(initialState, action);
     expect(returnedState.editingInjuryId).toBeUndefined();
   });
+
+  it('should delete the specified injury', () => {
+    const initialSatate = {
+      allIds: ['1', '2', '3'],
+      byId: {
+        '1': { id: '1' },
+        '2': { id: '2' },
+        '3': { id: '3' },
+      },
+    };
+
+    const action = {
+      type: types.DELETE_INJURY,
+      injuryId: '2',
+    };
+
+    const returnedState = InjuriesReducer(initialSatate, action);
+
+    expect(returnedState.allIds).toHaveLength(2);
+    expect(returnedState.byId['2']).toBeUndefined();
+  });
 });

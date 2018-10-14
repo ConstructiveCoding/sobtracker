@@ -1,13 +1,13 @@
 /* @flow */
 
 import React from 'react';
-import { FlatList, Text, TouchableOpacity, View } from 'react-native';
+import { Alert, FlatList, Text, TouchableOpacity, View } from 'react-native';
 
 import { connect } from 'react-redux';
 import Icon from 'react-native-vector-icons/dist/FontAwesome';
 import { SafeAreaView } from 'react-navigation';
 
-import { editInjury } from '../actions/injuries';
+import { deleteInjury, editInjury } from '../actions/injuries';
 
 import InjuryScreenStyles from '../theme/standard/screens/injuryScreen.styles';
 
@@ -35,6 +35,7 @@ class InjuriesScreen extends React.Component {
     super(props);
 
     this.addInjury = this.addInjury.bind(this);
+    this.confirmDelete = this.confirmDelete.bind(this);
   }
 
   componentWillMount() {
@@ -43,6 +44,17 @@ class InjuriesScreen extends React.Component {
 
   componentWillUnmount() {
     this.props.navigation.setParams({ addInjury: undefined });
+  }
+
+  confirmDelete(injuryId) {
+    Alert.alert(
+      'Delete',
+      'Are you sure you want to delete this? You cannot undo it!',
+      [
+        { text: 'Cancel' },
+        { text: 'Delete', onPress: () => this.props.deleteInjury(injuryId) },
+      ]
+    );
   }
 
   addInjury() {
@@ -69,6 +81,9 @@ class InjuriesScreen extends React.Component {
                   item.diceRoll
                 })`}</Text>
               </View>
+              <TouchableOpacity onPress={() => this.confirmDelete(item.id)}>
+                <Icon name="remove" />
+              </TouchableOpacity>
             </TouchableOpacity>
           )}
         />
@@ -90,6 +105,7 @@ function mapStateToProps(state) {
 
 const actions = {
   editInjury,
+  deleteInjury,
 };
 
 export default connect(

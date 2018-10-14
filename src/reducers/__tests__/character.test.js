@@ -165,4 +165,103 @@ describe('Character reducer', () => {
     expect(updatedState.selectedCharacter.injuries).toHaveLength(1);
     expect(updatedState.selectedCharacter.injuries[0]).toEqual(testInjuryId);
   });
+
+  it('should remove a deleted Item from the character', () => {
+    const InitialState = Immutable({
+      allIds: ['character2'],
+      byId: {
+        character2: {
+          id: 'character2',
+          name: 'test character 2',
+          xp: 535,
+          level: 0,
+          items: ['1', '2', '3'],
+          injuries: [],
+        },
+      },
+      selectedCharacter: {
+        id: 'character2',
+        items: ['1', '2', '3'],
+      },
+    });
+
+    const action = {
+      type: types.DELETE_ITEM,
+      itemId: '2',
+    };
+
+    const updatedState = CharacterReducer(InitialState, action);
+
+    expect(updatedState.selectedCharacter.items).toHaveLength(2);
+    expect(
+      updatedState.byId[updatedState.selectedCharacter.id].items
+    ).toHaveLength(2);
+  });
+
+  it('should remove a deleted Injury from the character', () => {
+    const InitialState = Immutable({
+      allIds: ['character2'],
+      byId: {
+        character2: {
+          id: 'character2',
+          name: 'test character 2',
+          xp: 535,
+          level: 0,
+          items: ['1', '2', '3'],
+          injuries: ['1', '2', '3'],
+        },
+      },
+      selectedCharacter: {
+        id: 'character2',
+        items: ['1', '2', '3'],
+        injuries: ['1', '2', '3'],
+      },
+    });
+
+    const action = {
+      type: types.DELETE_INJURY,
+      injuryId: '3',
+    };
+
+    const updatedState = CharacterReducer(InitialState, action);
+
+    expect(updatedState.selectedCharacter.injuries).toHaveLength(2);
+    expect(
+      updatedState.byId[updatedState.selectedCharacter.id].injuries
+    ).toHaveLength(2);
+  });
+
+  it('should remove a deleted Ability from the character', () => {
+    const InitialState = Immutable({
+      allIds: ['character2'],
+      byId: {
+        character2: {
+          id: 'character2',
+          name: 'test character 2',
+          xp: 535,
+          level: 0,
+          items: ['1', '2', '3'],
+          abilities: ['1', '2', '3'],
+          injuries: [],
+        },
+      },
+      selectedCharacter: {
+        id: 'character2',
+        items: ['1', '2', '3'],
+        abilities: ['1', '2', '3'],
+      },
+    });
+
+    const action = {
+      type: types.DELETE_ABILITY,
+      abilityId: '1',
+    };
+
+    const updatedState = CharacterReducer(InitialState, action);
+
+    expect(updatedState.selectedCharacter.abilities).toHaveLength(2);
+    expect(
+      updatedState.byId[updatedState.selectedCharacter.id].abilities
+    ).toHaveLength(2);
+  });
 });

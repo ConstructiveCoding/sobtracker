@@ -98,4 +98,25 @@ describe('Abilities reducer', () => {
     const returnedState = AbilitiesReducer(initialState, action);
     expect(returnedState.editingAbilityId).toBeUndefined();
   });
+
+  it('should delete the specified injury', () => {
+    const initialSatate = {
+      allIds: ['1', '2', '3'],
+      byId: {
+        '1': { id: '1' },
+        '2': { id: '2' },
+        '3': { id: '3' },
+      },
+    };
+
+    const action = {
+      type: types.DELETE_ABILITY,
+      abilityId: '2',
+    };
+
+    const returnedState = AbilitiesReducer(initialSatate, action);
+
+    expect(returnedState.allIds).toHaveLength(2);
+    expect(returnedState.byId['2']).toBeUndefined();
+  });
 });

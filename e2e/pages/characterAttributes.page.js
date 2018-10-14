@@ -53,6 +53,6 @@ module.exports = () => ({
     await expect(element(by.id(attributeID))).toHaveText(value);
   },
   scrollToBottom: async () => {
-    await element(by.type('UIScrollView')).swipe('up', 'fast');
+    await element(by.id('attributes-list')).swipe('up', 'fast');
   },
 });

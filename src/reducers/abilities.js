@@ -58,6 +58,21 @@ export default function(
         editingAbilityId: undefined,
       });
     }
+    case types.DELETE_ABILITY: {
+      const byId = {
+        ...state.byId,
+      };
+
+      delete byId[action.abilityId];
+
+      const allIds = state.allIds.filter(id => id !== action.abilityId);
+
+      return Immutable({
+        ...state,
+        byId,
+        allIds,
+      });
+    }
     default:
       return state;
   }

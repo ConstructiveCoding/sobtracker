@@ -110,6 +110,7 @@ class AttributesScreen extends React.Component {
   render() {
     return (
       <FlatList
+        testID="attributes-list"
         numColumns={2}
         data={this.state.dataSource}
         extraData={this.state}

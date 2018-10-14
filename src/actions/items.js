@@ -26,3 +26,10 @@ export function cancelEditItem() {
     type: types.CANCEL_EDIT,
   };
 }
+
+export function deleteItem(itemId) {
+  return {
+    type: types.DELETE_ITEM,
+    itemId,
+  };
+}
