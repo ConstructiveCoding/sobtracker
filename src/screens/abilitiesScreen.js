@@ -80,10 +80,13 @@ class AbilitiesScreen extends React.Component {
               <View style={styles.row}>
                 <Text style={styles.itemName}>{item.name}</Text>
                 <Text style={styles.itemType}>{item.skillTrack}</Text>
+                <TouchableOpacity
+                  style={styles.deleteIcon}
+                  onPress={() => this.confirmDelete(item.id)}
+                >
+                  <Icon name="remove" />
+                </TouchableOpacity>
               </View>
-              <TouchableOpacity onPress={() => this.confirmDelete(item.id)}>
-                <Icon name="remove" />
-              </TouchableOpacity>
             </TouchableOpacity>
           )}
         />

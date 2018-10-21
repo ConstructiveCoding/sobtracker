@@ -1,4 +1,5 @@
 apply plugin: "com.android.application"
+apply plugin: 'io.fabric'
 
 import com.android.build.OutputFile
 
@@ -98,13 +99,21 @@ android {
     buildToolsVersion rootProject.ext.buildToolsVersion
 
     defaultConfig {
-        applicationId "com.sobtracker"
+        applicationId "com.constructivecoding.sobtracker"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
         versionName "1.0"
         ndk {
             abiFilters "armeabi-v7a", "x86"
+        }
+    }
+    signingConfigs {
+        release {
+            storeFile file(SOB_TRACKER_APP_RELEASE_STORE_FILE)
+            storePassword SOB_TRACKER_APP_RELEASE_STORE_PASSWORD
+            keyAlias SOB_TRACKER_APP_RELEASE_KEY_ALIAS
+            keyPassword SOB_TRACKER_APP_RELEASE_KEY_PASSWORD
         }
     }
     splits {
@@ -119,6 +128,7 @@ android {
         release {
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
+            signingConfig signingConfigs.release
         }
     }
     // applicationVariants are e.g. debug, release
@@ -137,12 +147,20 @@ android {
 }
 
 dependencies {
-    compile project(':react-native-vector-icons')
-    compile project(':react-native-picker')
-    compile project(':react-native-localization')
+    implementation project(':react-native-firebase')
+    implementation project(':react-native-vector-icons')
+    implementation project(':react-native-picker')
+    implementation project(':react-native-localization')
+
+    implementation "com.google.android.gms:play-services-base:16.0.1"
+    implementation 'com.google.firebase:firebase-core:16.0.4'
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation "com.android.support:appcompat-v7:${rootProject.ext.supportLibVersion}"
     implementation "com.facebook.react:react-native:+"  // From node_modules
+
+    implementation('com.crashlytics.sdk.android:crashlytics:2.9.5@aar') {
+      transitive = true
+    }
 }
 
 // Run this once to be able to run the application with BUCK
@@ -151,3 +169,5 @@ task copyDownloadableDepsToLibs(type: Copy) {
     from configurations.compile
     into 'libs'
 }
+
+apply plugin: 'com.google.gms.google-services'

@@ -1,7 +1,7 @@
 {
   "name": "sobtracker",
   "engines": {
-    "node": "10.0.0"
+    "node": "10.11.0"
   },
   "version": "0.0.1",
   "private": true,
@@ -27,6 +27,7 @@
     "react": "16.5.0",
     "react-native": "0.57.2",
     "react-native-device-log": "^1.0.2",
+    "react-native-firebase": "^5.0.0",
     "react-native-keyboard-aware-scroll-view": "^0.7.2",
     "react-native-localization": "^2.0.1",
     "react-native-picker": "^4.3.7",
@@ -77,7 +78,7 @@
     "configurations": {
       "ios.sim.debug": {
         "binaryPath": "ios/build/Build/Products/Debug-iphonesimulator/sobtracker.app",
-        "build": "xcodebuild -project ios/sobtracker.xcodeproj -scheme sobtracker -configuration Debug -sdk iphonesimulator -derivedDataPath ios/build",
+        "build": "xcodebuild -workspace ios/sobtracker.xcworkspace -scheme sobtracker -configuration Debug -sdk iphonesimulator -derivedDataPath ios/build",
         "type": "ios.simulator",
         "name": "iPhone X"
       },

@@ -9,6 +9,7 @@ export default class ItemScreenStyles {
     row: {
       flexDirection: 'row',
       padding: 10,
+      justifyContent: 'center',
     },
     itemName: {
       fontWeight: '900',
@@ -16,6 +17,7 @@ export default class ItemScreenStyles {
     },
     itemType: {
       fontWeight: '100',
+      flex: 1,
     },
   });
 }

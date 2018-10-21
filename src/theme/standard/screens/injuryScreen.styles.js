@@ -9,6 +9,7 @@ export default class InjuryScreenStyles {
     row: {
       flexDirection: 'row',
       padding: 10,
+      justifyContent: 'center',
     },
     injuryName: {
       fontWeight: '900',
@@ -16,6 +17,7 @@ export default class InjuryScreenStyles {
     },
     injuryType: {
       fontWeight: '100',
+      flex: 1,
     },
   });
 }

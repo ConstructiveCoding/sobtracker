@@ -80,10 +80,13 @@ class InjuriesScreen extends React.Component {
                 <Text style={styles.injuryType}>{`${item.type} (${
                   item.diceRoll
                 })`}</Text>
+                <TouchableOpacity
+                  style={styles.deleteIcon}
+                  onPress={() => this.confirmDelete(item.id)}
+                >
+                  <Icon name="remove" />
+                </TouchableOpacity>
               </View>
-              <TouchableOpacity onPress={() => this.confirmDelete(item.id)}>
-                <Icon name="remove" />
-              </TouchableOpacity>
             </TouchableOpacity>
           )}
         />
